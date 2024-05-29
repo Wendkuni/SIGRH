@@ -1,4 +1,7 @@
-package com.nyn.eHabita.entities.common.constant;
+package com.sigrh.gestionressourceh.common.constant;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -6,6 +9,8 @@ package com.nyn.eHabita.entities.common.constant;
  *
  * @param <T>
  */
+
+@Getter @Setter 
 public class ApiResponse<T> {
 	private int status;
 	private String message;
@@ -17,29 +22,7 @@ public class ApiResponse<T> {
 		this.result = builder.result;
 	}
 
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public T getResult() {
-		return result;
-	}
-
-	public void setResult(T result) {
-		this.result = result;
-	}
+	
 
 	public static class Builder<T> {
 		private int status;

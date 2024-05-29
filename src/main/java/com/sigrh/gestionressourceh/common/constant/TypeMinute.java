@@ -1,4 +1,4 @@
-package com.nyn.eHabita.entities.common.constant;
+package com.sigrh.gestionressourceh.common.constant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
