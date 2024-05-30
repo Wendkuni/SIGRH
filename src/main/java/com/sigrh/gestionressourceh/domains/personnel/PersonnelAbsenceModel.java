@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.domains;
+package com.sigrh.gestionressourceh.domains.personnel;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
