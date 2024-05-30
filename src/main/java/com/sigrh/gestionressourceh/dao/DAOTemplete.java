@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.common;
+package com.sigrh.gestionressourceh.dao;
 
 
 import java.util.List;
