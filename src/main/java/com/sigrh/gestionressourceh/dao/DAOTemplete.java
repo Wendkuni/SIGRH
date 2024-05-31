@@ -10,6 +10,8 @@ public interface DAOTemplete<T> {
 
 	boolean create(T obj);
 	
+	boolean delete(int id);
+
 	boolean delete(T obj);
 
 	boolean update(T obj);

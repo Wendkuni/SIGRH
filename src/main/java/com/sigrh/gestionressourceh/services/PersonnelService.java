@@ -28,7 +28,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     @Override
     public boolean update(PersonnelModel obj) {
-        return false;
+        return this.daoImplement.update(obj);
     }
 
     @Override
@@ -39,5 +39,20 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     @Override
     public List<PersonnelModel> findAll() {
         return List.of();
+    }
+
+    public boolean delete(Integer id) {
+        return this.daoImplement.delete(id);
+    }
+
+    public boolean update(Integer id, PersonnelModel m) {
+        PersonnelModel model = find(id);
+        if(model != null) {
+            model.setNni(m.getNni());
+            model.setNomPrenom(m.getNomPrenom());
+            model.setMatricule(m.getMatricule());
+            return this.update(model);
+        }
+        return false;
     }
 }

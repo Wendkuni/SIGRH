@@ -17,11 +17,13 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
     private SimpleJdbcCall procRead;
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert insert;
+
     DataSource ds ;
     
     public PersonnelDAOImplement(DataSource ds) {
 		super();
 		this.ds = ds;
+        this.jdbcTemplate = new JdbcTemplate(ds);
 		this.insert = new SimpleJdbcInsert(ds)
                 .withTableName("personnel")
                 .usingGeneratedKeyColumns("IDagent");
@@ -46,6 +48,11 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 
     }
 
+    @Override
+    public boolean delete(PersonnelModel obj) {
+        return false;
+    }
+
     public boolean add(PersonnelModel obj) {
         Map<String, Object> params = new HashMap<>();
         params.put("nometprenom", obj.getNomPrenom());
@@ -56,10 +63,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
        return true;
     }
     @Override
-    public boolean delete(PersonnelModel obj) {
-        String SQL = "delete from Student where IDagent = ?";
-        boolean b = jdbcTemplate.update(SQL, obj.getIdAgent()) != 0;
-        System.out.println("Deleted Record with ID = " + obj.getIdAgent() );
+    public boolean delete(int id) {
+        String SQL = "delete from personnel where IDagent = ?";
+        boolean b = jdbcTemplate.update(SQL, id) != 0;
+        System.out.println("Deleted Record with ID = " + id );
         return b;
     }
 
