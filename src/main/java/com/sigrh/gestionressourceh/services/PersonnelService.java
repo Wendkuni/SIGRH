@@ -33,12 +33,12 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     @Override
     public PersonnelModel find(int id) {
-        return null;
+        return this.daoImplement.find(id);
     }
 
     @Override
     public List<PersonnelModel> findAll() {
-        return List.of();
+        return this.daoImplement.findAll();
     }
 
     public boolean delete(Integer id) {
@@ -55,4 +55,5 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
         }
         return false;
     }
+
 }

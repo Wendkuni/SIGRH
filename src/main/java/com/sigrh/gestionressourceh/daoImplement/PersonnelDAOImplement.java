@@ -72,8 +72,8 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 
     @Override
     public boolean update(PersonnelModel obj) {
-        String SQL = "select * from personnel where IDagent = ?";
-        boolean b = jdbcTemplate.update(SQL, obj.getNomPrenom(), obj.getMatricule(), obj.getNni()) != 0;
+        String SQL = "update  personnel set nometprenom=?,matricul=?,nni=? where IDagent = ?";
+        boolean b = jdbcTemplate.update(SQL, obj.getNomPrenom(), obj.getMatricule(), obj.getNni(),obj.getIdAgent()) != 0;
         return b;
     }
 

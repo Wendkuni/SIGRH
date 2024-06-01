@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/v1/api")
@@ -27,5 +29,15 @@ public class PersonnelController  {
     @DeleteMapping(path = "/personnel/delete/{id}")
     public boolean deletePersonnel(@PathVariable Integer id) {
         return service.delete(id);
+    }
+
+    @GetMapping(path = "/personnels")
+    public List<PersonnelModel> getAllPersonnel() {
+        return service.findAll();
+    }
+
+    @GetMapping(path = "/personnelsBy/{id}")
+    public PersonnelModel getPersonnelById(@PathVariable Integer id) {
+        return service.find(id);
     }
 }
