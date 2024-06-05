@@ -30,6 +30,7 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
                 .matricule(rs.getString("matricul"))
                 .ministerOrigine(rs.getString("ministerorigne"))
                 .nomPrenom(rs.getString("nometprenom"))
+                .nomPrenomArab(rs.getString("nometprenomarab"))
                 .numroCpte(rs.getInt("numrocpte"))
                 .statusEmp(rs.getString("statusemp"))
                 .tlphone(rs.getString("tlphone"))

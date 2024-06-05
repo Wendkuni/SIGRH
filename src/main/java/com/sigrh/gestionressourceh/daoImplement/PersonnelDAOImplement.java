@@ -55,9 +55,28 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 
     public boolean add(PersonnelModel obj) {
         Map<String, Object> params = new HashMap<>();
+        params.put("actifornot", obj.getActiformot());
+        params.put("adrssemp", obj.getAdrssEmp());
+        params.put("clerib", obj.getCleRib());
+        params.put("dtesortie", obj.getDteSortie());
         params.put("nometprenom", obj.getNomPrenom());
         params.put("matricul", obj.getMatricule());
         params.put("nni", obj.getNni());
+        params.put("codbank",obj.getCodeBank());
+        params.put("bank",obj.getBank());
+        params.put("datenaiss",obj.getDateNaiss());
+        params.put("debucntrat",obj.getDebuCntrat());
+        params.put("detacher",obj.getDetacher());
+        params.put("dterecutmn",obj.getDteRecrutement());
+        params.put("dtetitularisation",obj.getDteTitularisation());
+        params.put("fincntrat",obj.getFinCntrat());
+        params.put("lieunaiss",obj.getLieuNaiss());
+        params.put("ministerorigne",obj.getMinisterOrigine());
+        params.put("nometprenom",obj.getNomPrenomArab());
+        params.put("numrocpte",obj.getNumroCpte());
+        params.put("statusemp",obj.getStatusEmp());
+        params.put("tlphone",obj.getTlphone());
+        params.put("Typeeducation",obj.getTypeEducation().toString());
         Number newId = insert.executeAndReturnKey(params);
         obj.setIdAgent(newId.intValue());
        return true;

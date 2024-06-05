@@ -14,6 +14,7 @@ public class PersonnelModel {
     private long idAgent;
     private String matricule;
     private String nomPrenom;
+    private String nomPrenomArab;
     private String nni;
     private LocalDateTime dteRecrutement;
     private LocalDateTime dteTitularisation;
