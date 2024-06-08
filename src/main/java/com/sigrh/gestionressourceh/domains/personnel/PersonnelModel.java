@@ -37,7 +37,7 @@ public class PersonnelModel {
   
     private TypeEducation Typeeducation;
 
-    @Override
+
     public String toString() {
         return nometprenom+" Mle:"+matricule+" Nni:"+nni;
     }
