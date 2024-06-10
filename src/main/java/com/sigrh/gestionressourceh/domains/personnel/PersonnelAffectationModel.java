@@ -1,20 +1,16 @@
 package com.sigrh.gestionressourceh.domains.personnel;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
-public class PresonnelAffectationModel implements Serializable {
+@Builder
+public class PersonnelAffectationModel implements Serializable {
 
     private Long idAffectation;
     private PersonnelModel personnel;

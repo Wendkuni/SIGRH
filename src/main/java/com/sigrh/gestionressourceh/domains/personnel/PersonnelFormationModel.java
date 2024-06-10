@@ -21,7 +21,7 @@ public class PersonnelFormationModel  implements Serializable {
 	private Long idFormation;
 	private PersonnelModel personnel;
 	private String libFormation;
-	private Date dateDebut;
+	private Date dateeffet;
 	private Date dateFin;
 	private String finaltef;
 	private String lieuFormation;

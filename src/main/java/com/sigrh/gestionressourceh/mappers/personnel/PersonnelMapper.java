@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.mappers;
+package com.sigrh.gestionressourceh.mappers.personnel;
 
 import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
@@ -10,32 +10,38 @@ import java.sql.SQLException;
 public class PersonnelMapper implements RowMapper<PersonnelModel> {
     @Override
     public PersonnelModel mapRow(ResultSet rs, int rowNum) throws SQLException {
-    	System.out.println(rs.getString("Typeeducation"));
+
         return PersonnelModel.builder()
-//                .actifornot(rs.getString("actifornot"))
+                .actifOrNot(rs.getString("actifornot"))
                 .adressEmp(rs.getString("adrssemp"))
-//                .bank(rs.getString("bank"))
-//                .clerib(rs.getString("clerib"))
-//                .codbank(rs.getString("codbank"))
-                .dateNaiss(DateUtil.parseToDateTime(rs.getString("datenaiss")))
-                .debutCntrat(DateUtil.parse(rs.getString("debucntrat")))
-//                .detacher(rs.getString("detacher"))
-                .dteRecrutement(DateUtil.parseToDateTime(rs.getString("dterecrutmnt")))
-                .dteSortie(DateUtil.parseToDateTime(rs.getString("dtesortie")))
+                .bank(rs.getString("bank"))
+                .cleRib(rs.getString("clerib"))
+                .codeBank(rs.getString("codbank"))
+                .dateNaiss(DateUtil.parseDate(rs.getString("datenaiss")))
+                .debutCntrat(DateUtil.parseDate(rs.getString("debucntrat")))
+                .detacher(rs.getString("detacher"))
+                .dteRecrutement(DateUtil.parseDate(rs.getString("dterecrutmnt")))
+                .dteSortie(DateUtil.parseDate(rs.getString("dtesortie")))
                 .nni(rs.getString("nni"))
-                .dteTitularisation(DateUtil.parseToDateTime(rs.getString("dtetitularisation")))
+                .dteTitularisation(DateUtil.parseDate(rs.getString("dtetitularisation")))
                 .idAgent(rs.getLong("IDagent"))
                 .lieuNaiss(rs.getString("lieunaiss"))
-                .finCntrat(DateUtil.parse(rs.getString("fincntrat")))
+                .finCntrat(DateUtil.parseDate(rs.getString("fincntrat")))
                 .matricule(rs.getString("matricul"))
                 .ministerOrigine(rs.getString("ministerorigne"))
                 .nomPrenom(rs.getString("nometprenom"))
                 .nomPrenomArab(rs.getString("nometprenomarab"))
                 .numroCpte(rs.getInt("numrocpte"))
-//                .statusemp(rs.getString("statusemp"))
+                .statusEmp(rs.getString("statusemp"))
                 .tlphone(rs.getString("tlphone"))
 //                .Typeeducation(rs.getString("Typeeducation")!=null&&!rs.getString("Typeeducation").isBlank()?
 //                		TypeEducation.getTypeEducationByLabel(rs.getString("Typeeducation")):TypeEducation.PROFESSIONAL)
                 .build();
+    }
+
+    public PersonnelModel mapRowLite(ResultSet rs, int rowNum) throws SQLException {
+        PersonnelModel p = new PersonnelModel();
+
+        return null;
     }
 }

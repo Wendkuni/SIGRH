@@ -1,9 +1,9 @@
-package com.sigrh.gestionressourceh.daoImplement;
+package com.sigrh.gestionressourceh.daoImplement.personnel;
 
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
-import com.sigrh.gestionressourceh.mappers.PersonnelMapper;
+import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;

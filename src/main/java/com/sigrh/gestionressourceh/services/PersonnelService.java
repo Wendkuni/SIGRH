@@ -2,7 +2,7 @@ package com.sigrh.gestionressourceh.services;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
-import com.sigrh.gestionressourceh.daoImplement.PersonnelDAOImplement;
+import com.sigrh.gestionressourceh.daoImplement.personnel.PersonnelDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
