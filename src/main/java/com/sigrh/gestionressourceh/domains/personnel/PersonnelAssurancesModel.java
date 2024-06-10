@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +21,8 @@ public class PersonnelAssurancesModel {
     private PersonnelModel personnel;
     private String tupeAssurance;
     private String liblAssurance;
-    private LocalDate debutAssurance;
-    private LocalDate finAssurance;
+    private Date debutAssurance;
+    private Date finAssurance;
     private String etatAct;
 
 }

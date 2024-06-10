@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 @AllArgsConstructor
@@ -23,8 +24,8 @@ public class PersonnelAbsenceModel implements Serializable {
 	private String autorisation;
 	private String motif;
 	private int nbJour;
-	private String dateDebut;
-	private String dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	private String libelle;
 	
 	

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +19,5 @@ public class PersonnelRenumerationAgentModel {
     private PersonnelModel personnel;
     private double valmnt;
     private String bankLib;
-    private LocalDateTime dateEffet;
+    private Date dateEffet;
 }

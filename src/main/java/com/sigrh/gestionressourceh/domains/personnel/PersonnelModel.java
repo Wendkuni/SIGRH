@@ -1,11 +1,10 @@
 package com.sigrh.gestionressourceh.domains.personnel;
 
-import com.fasterxml.jackson.databind.annotation.EnumNaming;
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,31 +13,31 @@ import java.time.LocalDateTime;
 public class PersonnelModel {
     private long idAgent;
     private String matricule;
-    private String nometprenom;
-    private String nometprenomarab;
+    private String nomPrenom;
+    private String nomPrenomArab;
     private String nni;
-    private LocalDateTime dterecrutement;
-    private LocalDateTime dtetitularisation;
-    private LocalDateTime dtesortie;
-    private String statusemp;
+    private Date dteRecrutement;
+    private Date dteTitularisation;
+    private Date dteSortie;
+    private String statusEmp;
     private String tlphone;
-    private String adressemp;
-    private LocalDate debutcntrat;
-    private LocalDate fincntrat;
-    private LocalDateTime datenaiss;
-    private String lieunaiss;
-    private String actifornot;
+    private String adressEmp;
+    private Date debutCntrat;
+    private Date finCntrat;
+    private Date dateNaiss;
+    private String lieuNaiss;
+    private String actifOrNot;
     private String bank;
-    private String codbank;
-    private Integer numrocpte;
-    private String clerib;
+    private String codeBank;
+    private Integer numroCpte;
+    private String cleRib;
     private String detacher;
-    private String ministerorigine;
+    private String ministerOrigine;
   
     private TypeEducation Typeeducation;
 
 
     public String toString() {
-        return nometprenom+" Mle:"+matricule+" Nni:"+nni;
+        return nomPrenom +" Mle:"+matricule+" Nni:"+nni;
     }
 }

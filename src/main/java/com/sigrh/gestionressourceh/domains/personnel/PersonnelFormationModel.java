@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +21,8 @@ public class PersonnelFormationModel  implements Serializable {
 	private Long idFormation;
 	private PersonnelModel personnel;
 	private String libFormation;
-	private LocalDateTime dateDebut;
-	private LocalDateTime dateFin;
+	private Date dateDebut;
+	private Date dateFin;
 	private String finaltef;
 	private String lieuFormation;
 	

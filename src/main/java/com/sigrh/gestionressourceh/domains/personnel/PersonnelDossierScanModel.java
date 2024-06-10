@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +17,8 @@ public class PersonnelDossierScanModel {
     private long idDossierScan;
     private PersonnelModel personnel;
     private String libelDossier;
-    private LocalDate dateUpload;
-    private String observvation;
-   // private ???  imageFold;
+    private Date dateUpload;
+    private String observation;
+    private String imageFold;
 
 }

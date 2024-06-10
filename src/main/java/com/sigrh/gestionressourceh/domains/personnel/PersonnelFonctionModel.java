@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public class PersonnelFonctionModel  implements Serializable {
 	private String groupe;
 	private String corps;
 	private String grade;
-	private LocalDateTime dateDebFonction;
+	private Date dateDebFonction;
 	private String corpsArab;
 	private String libelleFonctionArab;
 	private String indixe;

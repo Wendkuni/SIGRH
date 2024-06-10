@@ -49,7 +49,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
         PersonnelModel model = find(id);
         if(model != null) {
             model.setNni(m.getNni());
-            model.setNometprenom(m.getNometprenom());
+            model.setNomPrenom(m.getNomPrenom());
             model.setMatricule(m.getMatricule());
             model.setTypeeducation(m.getTypeeducation());
             return this.update(model);

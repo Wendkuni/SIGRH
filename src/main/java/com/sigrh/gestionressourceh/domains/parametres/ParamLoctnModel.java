@@ -13,6 +13,6 @@ public class ParamLoctnModel {
     private  String localiteInfo;
     private  int valindeminite;
     private  String libeFctnarab;
-    private  String localiteInfoarabe;
+    private  String localiteInfoArabe;
 }
 

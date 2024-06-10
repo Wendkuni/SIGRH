@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class PresonnelAffectationModel implements Serializable {
     private PersonnelModel personnel;
     private String localite;
     private String serviceEcole;
-    private  LocalDateTime dateEffet ;
+    private Date dateEffet ;
     private String dren;
     private double notePedagogiq;
 

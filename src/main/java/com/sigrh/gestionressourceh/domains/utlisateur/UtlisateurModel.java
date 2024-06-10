@@ -10,7 +10,7 @@ import lombok.*;
 public class UtlisateurModel {
     private long idUtilsateur;
     private String loginA;
-    private String nometprenom;
+    private String nomPrenom;
     private String droitA;
     private String passwd;
 }

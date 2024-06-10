@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +19,8 @@ public class PersonnelIndeminitesModel {
     private long idIndeminites;
     private PersonnelModel personnel;
     private String libIdnmite;
-    private Boolean valIndeminite;
-    private LocalDate datEffet;
+    private int valIndeminite;
+    private Date datEffet;
     private String etatAct;
-    private Boolean encours;
+    private int encours;
 }
