@@ -3,15 +3,11 @@ package com.sigrh.gestionressourceh.daoImplement.personnel;
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
-import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectationModel> {
 
@@ -40,24 +36,6 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
                     "values (?,?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getIdAffectation(), obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
                     obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole() )!=0;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean add(PersonnelAffectationModel obj) {
-        try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("dateffet", obj.getDateEffet());
-            params.put("DREN", obj.getDren());
-            params.put("localite", obj.getLocalite());
-            params.put("NOTEPEDAGOCIQ", obj.getNotePedagogiq());
-            params.put("serviceecole", obj.getServiceEcole());
-            params.put("IDagent", obj.getPersonnel().getIdAgent());
-            Number newId = insert.executeAndReturnKey(params);
-            obj.setIdAffectation(newId.longValue());
-            return true;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
