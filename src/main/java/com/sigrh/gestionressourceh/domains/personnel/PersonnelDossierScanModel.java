@@ -16,6 +16,6 @@ public class PersonnelDossierScanModel {
     private String libelDossier;
     private Date dateUpload;
     private String observation;
-    private String imageFold;
+    private byte[] imageFold;
 
 }

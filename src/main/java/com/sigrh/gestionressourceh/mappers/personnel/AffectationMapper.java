@@ -1,9 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.personnel;
 
-import com.sigrh.gestionressourceh.common.util.DateUtil;
-import com.sigrh.gestionressourceh.daoImplement.personnel.PersonnelDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -18,7 +15,6 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .dren(rs.getString("DREN"))
                 .localite(rs.getString("localite"))
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))
-                //.personnel(PersonnelModel.builder().idAgent(rs.getInt("IDagent")).build())
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .serviceEcole(rs.getString("serviceecole"))
                 .build();

@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.services;
+package com.sigrh.gestionressourceh.services.personnel;
 
 import java.io.File;
 import java.io.FileInputStream;

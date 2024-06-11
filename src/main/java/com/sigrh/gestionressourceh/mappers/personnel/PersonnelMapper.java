@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.personnel;
 
+import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.jdbc.core.RowMapper;
@@ -34,8 +35,8 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
                 .numroCpte(rs.getInt("numrocpte"))
                 .statusEmp(rs.getString("statusemp"))
                 .tlphone(rs.getString("tlphone"))
-//                .Typeeducation(rs.getString("Typeeducation")!=null&&!rs.getString("Typeeducation").isBlank()?
-//                		TypeEducation.getTypeEducationByLabel(rs.getString("Typeeducation")):TypeEducation.PROFESSIONAL)
+               .Typeeducation(rs.getString("Typeeducation")!=null&&!rs.getString("Typeeducation").isBlank()?
+               		TypeEducation.getTypeEducationByLabel(rs.getString("Typeeducation")).getLabel():TypeEducation.PROFESSIONAL.getLabel())
                 .build();
     }
 

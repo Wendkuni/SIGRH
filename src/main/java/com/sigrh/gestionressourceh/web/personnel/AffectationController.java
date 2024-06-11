@@ -1,8 +1,7 @@
-package com.sigrh.gestionressourceh.web;
+package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
-import com.sigrh.gestionressourceh.services.AffectationService;
+import com.sigrh.gestionressourceh.services.personnel.AffectationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

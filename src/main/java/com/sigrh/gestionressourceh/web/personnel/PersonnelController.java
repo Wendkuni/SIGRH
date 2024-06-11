@@ -1,7 +1,7 @@
-package com.sigrh.gestionressourceh.web;
+package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
-import com.sigrh.gestionressourceh.services.PersonnelService;
+import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
