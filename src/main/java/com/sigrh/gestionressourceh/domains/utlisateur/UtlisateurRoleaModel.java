@@ -5,6 +5,7 @@ import lombok.*;
 @Getter@Setter@AllArgsConstructor@NoArgsConstructor@Builder
 public class UtlisateurRoleaModel {
     private UtlisateurModel utlisateur;
-    private RoleModel role;
+    private long idRolesa;
+    private String rolesa;
 
 }

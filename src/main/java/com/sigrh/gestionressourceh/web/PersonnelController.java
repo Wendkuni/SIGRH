@@ -40,4 +40,15 @@ public class PersonnelController  {
     public PersonnelModel getPersonnelById(@PathVariable Integer id) {
         return service.find(id);
     }
+
+    @GetMapping(path = "/personnelsByAffectation/{id}")
+    public List<PersonnelModel> getAllPersonnelByAffectation(@PathVariable Integer id) {
+        return service.findByAffectation(id
+        );
+    }
+    @GetMapping(path = "/personnelsByLocalite/{id}")
+    public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable Integer id) {
+        return service.findByLocalite(id
+        );
+    }
 }

@@ -14,11 +14,12 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
     public PersonnelAffectationModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         return PersonnelAffectationModel.builder()
                 .idAffectation(rs.getLong("IDaffectation"))
-                .dateEffet(DateUtil.parseDate(rs.getString("dateffet")))
+                .dateEffet(rs.getDate("dateffet"))
                 .dren(rs.getString("DREN"))
                 .localite(rs.getString("localite"))
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))
-                .personnel(PersonnelModel.builder().idAgent(rs.getInt("IDagent")).build())
+                //.personnel(PersonnelModel.builder().idAgent(rs.getInt("IDagent")).build())
+                .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .serviceEcole(rs.getString("serviceecole"))
                 .build();
     }

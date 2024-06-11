@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,5 +110,18 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
         return jdbcTemplate.query(SQL,new PersonnelMapper());
     }
 
+    public List<PersonnelModel> findByAffectation(int id) {
+        String SQL = "select p.* from personnel p" +
+                " inner join affectation aff on p.IDagent =aff.IDagent " +
+                " where IDaffectation ="+id;
+        return jdbcTemplate.query(SQL,new PersonnelMapper());
+    }
+
+    public List<PersonnelModel> findByLocalite(int id) {
+        String SQL = "select p.* from personnel p" +
+                " right join localite loc on p.IDagent =loc.IDagent " +
+                " where IDLOCALITE ="+id;
+        return jdbcTemplate.query(SQL, new PersonnelMapper());
+    }
 
 }

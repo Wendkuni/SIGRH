@@ -17,16 +17,16 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
                 .bank(rs.getString("bank"))
                 .cleRib(rs.getString("clerib"))
                 .codeBank(rs.getString("codbank"))
-                .dateNaiss(DateUtil.parseDate(rs.getString("datenaiss")))
-                .debutCntrat(DateUtil.parseDate(rs.getString("debucntrat")))
+                .dateNaiss(rs.getDate("datenaiss"))
+                .debutCntrat(rs.getDate("debucntrat"))
                 .detacher(rs.getString("detacher"))
-                .dteRecrutement(DateUtil.parseDate(rs.getString("dterecrutmnt")))
-                .dteSortie(DateUtil.parseDate(rs.getString("dtesortie")))
+                .dteRecrutement(rs.getDate("dterecrutmnt"))
+                .dteSortie(rs.getDate("dtesortie"))
                 .nni(rs.getString("nni"))
-                .dteTitularisation(DateUtil.parseDate(rs.getString("dtetitularisation")))
+                .dteTitularisation(rs.getDate("dtetitularisation"))
                 .idAgent(rs.getLong("IDagent"))
                 .lieuNaiss(rs.getString("lieunaiss"))
-                .finCntrat(DateUtil.parseDate(rs.getString("fincntrat")))
+                .finCntrat(rs.getDate("fincntrat"))
                 .matricule(rs.getString("matricul"))
                 .ministerOrigine(rs.getString("ministerorigne"))
                 .nomPrenom(rs.getString("nometprenom"))
@@ -39,9 +39,4 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
                 .build();
     }
 
-    public PersonnelModel mapRowLite(ResultSet rs, int rowNum) throws SQLException {
-        PersonnelModel p = new PersonnelModel();
-
-        return null;
-    }
 }

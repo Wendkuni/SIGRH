@@ -34,7 +34,7 @@ public class PersonnelModel {
     private String detacher;
     private String ministerOrigine;
   
-    private TypeEducation Typeeducation;
+    private String Typeeducation;
 
 
     public String toString() {

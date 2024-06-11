@@ -56,5 +56,11 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
         }
         return false;
     }
+    public List<PersonnelModel> findByAffectation(int id) {
+        return this.daoImplement.findByAffectation(id);
+    }
 
+    public List<PersonnelModel> findByLocalite(int id) {
+        return this.daoImplement.findByLocalite(id);
+    }
 }
