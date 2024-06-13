@@ -118,8 +118,9 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
     }
 
     public List<PersonnelModel> findByLocalite(int id) {
-        String SQL = "select p.* from personnel p" +
-                " right join localite loc on p.IDagent =loc.IDagent " +
+        String SQL = "select p.* from personnel p " +
+                "inner join affectation aff on p.IDagent =aff.IDagent " +
+                " right join localite loc on aff.localite =loc.liblocalite " +
                 " where IDLOCALITE ="+id;
         return jdbcTemplate.query(SQL, new PersonnelMapper());
     }

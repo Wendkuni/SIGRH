@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class IndeminitesListeModel {
-    private long inIndeminites;
+    private long idIndeminites;
     private String libidnmite;
 
 }

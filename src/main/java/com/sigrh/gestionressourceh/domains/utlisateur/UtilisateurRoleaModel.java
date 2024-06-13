@@ -3,8 +3,8 @@ package com.sigrh.gestionressourceh.domains.utlisateur;
 import lombok.*;
 
 @Getter@Setter@AllArgsConstructor@NoArgsConstructor@Builder
-public class UtlisateurRoleaModel {
-    private UtlisateurModel utlisateur;
+public class UtilisateurRoleaModel {
+    private UtilisateurModel utlisateur;
     private long idRolesa;
     private String rolesa;
 

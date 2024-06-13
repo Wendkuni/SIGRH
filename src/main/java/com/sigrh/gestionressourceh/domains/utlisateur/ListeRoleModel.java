@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.domains.comptablite;
+package com.sigrh.gestionressourceh.domains.utlisateur;
 
 import lombok.*;
 

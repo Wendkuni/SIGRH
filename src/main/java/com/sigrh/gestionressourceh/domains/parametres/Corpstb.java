@@ -5,6 +5,10 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class UsertbModel {
+public class Corpstb {
+    private long idCorpsTb;
+    private String libCorps;
+
 }

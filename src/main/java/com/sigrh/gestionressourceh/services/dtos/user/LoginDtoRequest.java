@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.dtos.user;
+package com.sigrh.gestionressourceh.services.dtos.user;
 
 //import javax.validation.constraints.NotNull;
 
