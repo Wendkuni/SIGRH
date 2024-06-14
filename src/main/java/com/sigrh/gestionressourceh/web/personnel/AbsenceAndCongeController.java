@@ -14,7 +14,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping(value = "/v1/api")
 @AllArgsConstructor
-public class AbsenceController {
+public class AbsenceAndCongeController {
     AbsenceService service;
 
     @PostMapping(path = "/absence")
