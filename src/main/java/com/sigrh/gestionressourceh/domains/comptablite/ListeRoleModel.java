@@ -7,8 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IndeminitesListeModel {
-    private long inIndeminites;
-    private String libidnmite;
-
+public class ListeRoleModel {
+     private long idListeRole;
+     private String roleLib;
+     private int attribuable;
 }

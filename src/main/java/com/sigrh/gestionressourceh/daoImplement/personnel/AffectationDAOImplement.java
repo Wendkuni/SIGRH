@@ -102,7 +102,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     }
     public List<PersonnelAffectationModel> findByLocalite(String localite) {
         try {
-            String SQL = "select * from affectationaff " +
+            String SQL = "select * from affectation aff " +
                     " inner join personnel p on p.IDagent =aff.IDagent" +
                     " where localite ="+localite;
             return jdbcTemplate.query(SQL,new AffectationMapper());
