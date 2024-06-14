@@ -7,12 +7,12 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
+@Getter@Setter@AllArgsConstructor@NoArgsConstructor@Builder
 public class ConfigIdemit {
     private long idConfigIdemit;
-    private FonctionListe fonctionListe;
+    private FonctionListe idFonctionListe;
     private String libIdnmite;
-    private Boolean valIdeminite;
+    private int valIdeminite;
     private Date dateCreat;
 }
 
