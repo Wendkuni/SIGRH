@@ -19,7 +19,7 @@ public class AbsenceMapper implements RowMapper<PersonnelAbsenceModel> {
                 .libelle(rs.getString("libelleab"))
                 .nbJour(rs.getInt("nombrejr"))
                 .signataire(rs.getString("signataire"))
-                .personnel(PersonnelModel.builder().idAgent(rs.getInt("IDagent")).build())
+                .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .build();
     }
 }

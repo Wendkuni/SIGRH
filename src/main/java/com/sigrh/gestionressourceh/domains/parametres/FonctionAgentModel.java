@@ -3,6 +3,7 @@ package com.sigrh.gestionressourceh.domains.parametres;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FonctionAgentModel {
+public class FonctionAgentModel implements Serializable {
     private long idFonctionAgent;
     private PersonnelModel personnel;
     private String foctionLib;

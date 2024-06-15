@@ -3,9 +3,11 @@ package com.sigrh.gestionressourceh.domains.parametres;
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter@NoArgsConstructor@AllArgsConstructor@Builder
-public class EcolesModel {
+public class EcolesModel implements Serializable {
     private long idEcoles;
     private String libEcoles;
     private String zonel;

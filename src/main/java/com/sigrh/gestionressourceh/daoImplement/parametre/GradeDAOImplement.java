@@ -2,11 +2,20 @@ package com.sigrh.gestionressourceh.daoImplement.parametre;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.parametres.GradeModel;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
 
 public class GradeDAOImplement implements DAOTemplete<GradeModel> {
+    private JdbcTemplate jdbcTemplate;
+    DataSource ds ;
+
+    public GradeDAOImplement(DataSource ds) {
+        this.ds = ds;
+        this.jdbcTemplate = new JdbcTemplate(ds);
+    }
+
     @Override
     public void setDataSource(DataSource ds) {
 

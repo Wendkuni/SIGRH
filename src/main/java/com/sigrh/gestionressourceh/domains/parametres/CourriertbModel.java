@@ -2,6 +2,7 @@ package com.sigrh.gestionressourceh.domains.parametres;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CourriertbModel {
+public class CourriertbModel implements Serializable {
     private  long idCourtierTb;
     private String libecourriel;
     private String typDeCourrier;

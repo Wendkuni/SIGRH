@@ -13,8 +13,8 @@ import java.util.Date;
 @Builder
 public class IndeminiteModel implements Serializable {
     private long idIndeminites;
-    private String libIdnmite;
-    private Boolean valIndeminite;
+    private String libelleIndeminite;
+    private Integer valeurIndeminite;
     private Date dateEffet;
     private Boolean encours;
     private String etatact;

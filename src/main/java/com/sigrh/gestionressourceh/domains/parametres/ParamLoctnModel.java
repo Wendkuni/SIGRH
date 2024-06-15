@@ -2,12 +2,14 @@ package com.sigrh.gestionressourceh.domains.parametres;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ParamLoctnModel {
+public class ParamLoctnModel implements Serializable {
     private long idParamLoctn;
     private  String libeFctn;
     private  String localiteInfo;

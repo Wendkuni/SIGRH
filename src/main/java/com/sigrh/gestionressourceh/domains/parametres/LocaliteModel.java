@@ -2,12 +2,14 @@ package com.sigrh.gestionressourceh.domains.parametres;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LocaliteModel {
+public class LocaliteModel implements Serializable {
     private long idLocalite;
     private String libLocalite;
     private String ddren;

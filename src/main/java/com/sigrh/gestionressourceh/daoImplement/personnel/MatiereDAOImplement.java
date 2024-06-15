@@ -1,16 +1,12 @@
 package com.sigrh.gestionressourceh.daoImplement.personnel;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
-import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
-import com.sigrh.gestionressourceh.mappers.personnel.MatiereMapper;
+import com.sigrh.gestionressourceh.mappers.parametre.MatiereMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 public class MatiereDAOImplement implements DAOTemplete <PersonnelMatieresModel> {
