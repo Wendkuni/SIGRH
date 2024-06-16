@@ -47,7 +47,8 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
     public boolean update(Integer id, FonctionListeModel m) {
         FonctionListeModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdFonctionListe(Long.valueOf(id));
             return this.update(model);
         }return false;
     }

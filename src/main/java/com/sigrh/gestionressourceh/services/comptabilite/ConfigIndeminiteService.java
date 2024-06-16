@@ -46,7 +46,8 @@ public class ConfigIndeminiteService implements InterfaceTemplete<ConfigIdemitMo
     public boolean update(Integer id, ConfigIdemitModel m) {
         ConfigIdemitModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdConfigIdemit(id);
             return this.update(model);
         }return false;
     }

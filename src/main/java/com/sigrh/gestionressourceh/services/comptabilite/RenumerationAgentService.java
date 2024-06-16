@@ -53,7 +53,8 @@ public class RenumerationAgentService implements InterfaceTemplete<RenumerationA
     public boolean update(Integer id, RenumerationAgentModel m) {
         RenumerationAgentModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdRenumeration(Long.valueOf(id));
             return this.update(model);
         }return false;
     }
