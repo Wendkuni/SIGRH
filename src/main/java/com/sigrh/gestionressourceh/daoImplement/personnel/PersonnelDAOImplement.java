@@ -70,7 +70,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("numrocpte",obj.getNumroCpte());
            params.put("statusemp",obj.getStatusEmp());
            params.put("tlphone",obj.getTlphone());
-           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().toString():TypeEducation.PROFESSIONAL.getLabel());
+           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation():TypeEducation.PROFESSIONAL);
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
            return true;

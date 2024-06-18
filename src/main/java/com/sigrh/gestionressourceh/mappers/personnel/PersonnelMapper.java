@@ -36,7 +36,7 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
                 .statusEmp(rs.getString("statusemp"))
                 .tlphone(rs.getString("tlphone"))
                .Typeeducation(rs.getString("Typeeducation")!=null&&!rs.getString("Typeeducation").isBlank()?
-               		TypeEducation.getTypeEducationByLabel(rs.getString("Typeeducation")).getLabel():TypeEducation.PROFESSIONAL.getLabel())
+               		TypeEducation.valueOf(rs.getString("Typeeducation")):TypeEducation.PROFESSIONAL)
                 .build();
     }
 
