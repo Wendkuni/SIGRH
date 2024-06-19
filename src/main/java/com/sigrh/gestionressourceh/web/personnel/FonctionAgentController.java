@@ -1,6 +1,7 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.common.ApiResponse;
+
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.services.personnel.FonctionAgentService;
 import lombok.AllArgsConstructor;
@@ -12,13 +13,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/v1/api/fonctionAgent")
 @AllArgsConstructor
 public class FonctionAgentController {
 
 FonctionAgentService service;
 
-    @PostMapping(path = "/fonctionAgent")
+    @PostMapping(path = "/create")
     public ResponseEntity<ApiResponse<PersonnelFonctionModel>> addFonctionAgent(@RequestBody PersonnelFonctionModel model) {
         ApiResponse<PersonnelFonctionModel> response;
         if (service.create(model)) {
@@ -37,7 +38,7 @@ FonctionAgentService service;
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping(path = "/fonctionAgent/{id}")
+    @PutMapping(path = "/Update/{id}")
     public ResponseEntity<ApiResponse<PersonnelFonctionModel>> updateFonctionAgent (@RequestParam Integer id, PersonnelFonctionModel model){
         ApiResponse<PersonnelFonctionModel> response;
         if (service.update(id, model)) {
@@ -57,7 +58,7 @@ FonctionAgentService service;
         }
     }
 
-    @DeleteMapping(path = "/fonctionAgent/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteFonctionAgent (@PathVariable Integer id){
         ApiResponse<Void> response;
         if (service.delete(id)) {
@@ -76,7 +77,7 @@ FonctionAgentService service;
         }
     }
 
-    @GetMapping(path = "/fonctionAgents")
+    @GetMapping(path = "/All")
     public ResponseEntity<ApiResponse<List<PersonnelFonctionModel>>> getAllFonctionAgent () {
         ApiResponse<List<PersonnelFonctionModel>> reponse = new ApiResponse.
                 Builder<List<PersonnelFonctionModel>>().status(HttpStatus.OK.value())
@@ -84,11 +85,19 @@ FonctionAgentService service;
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/fonctionAgents/{id}")
+    @GetMapping(path = "/ById/{id}")
     public ResponseEntity<ApiResponse<PersonnelFonctionModel>> getFonctionAgentById (@PathVariable Integer id){
         ApiResponse<PersonnelFonctionModel> reponse = new ApiResponse.
                 Builder<PersonnelFonctionModel>().status(HttpStatus.OK.value())
                 .message("Liste des fonctionAgents par identifiant").result(service.find(id)).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/ByAgent")
+    public ResponseEntity<ApiResponse<PersonnelFonctionModel>> getFonctionByAgent (@PathVariable Integer IDagent){
+        ApiResponse<PersonnelFonctionModel> reponse = new ApiResponse.
+                Builder<PersonnelFonctionModel>().status(HttpStatus.OK.value())
+                .message("Liste des fonction par Agents").result(service.find(IDagent)).build();
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 }

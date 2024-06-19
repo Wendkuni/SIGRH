@@ -2,7 +2,10 @@ package com.sigrh.gestionressourceh.daoImplement.parametre;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.parametres.FonctionListeModel;
+
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.mappers.parametre.FonctionListeMapper;
+import com.sigrh.gestionressourceh.mappers.personnel.FonctionAgentMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -82,6 +85,18 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
         try {
             String SQL = "select * from fonctionliste ";
             return jdbcTemplate.query(SQL,new FonctionListeMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<PersonnelFonctionModel> findFonctionByAgent(int IDagent) {
+        try {
+            String SQL = "select * from fonctionagent fonct" +
+                    " left join personnel p on p.IDagent =fonct.IDagent"
+                    + " where fonct.IDagent =" + IDagent ;
+            return jdbcTemplate.query(SQL, new FonctionAgentMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;

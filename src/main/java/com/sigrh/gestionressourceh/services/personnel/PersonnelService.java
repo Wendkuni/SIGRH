@@ -18,7 +18,8 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     @Override
     public boolean create(PersonnelModel obj) {
-        return this.daoImplement.add(obj);
+
+        return this.daoImplement.create(obj);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
         return this.daoImplement.findByAffectation(id);
     }
 
-    public List<PersonnelModel> findByLocalite(int id) {
-        return this.daoImplement.findByLocalite(id);
+    public List<PersonnelModel> findByLocalite(String localite) {
+        return this.daoImplement.findByLocalite(localite);
     }
 }

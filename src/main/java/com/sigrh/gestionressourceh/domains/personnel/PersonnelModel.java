@@ -2,7 +2,9 @@ package com.sigrh.gestionressourceh.domains.personnel;
 
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import lombok.*;
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import java.io.Serializable;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -10,7 +12,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-public class PersonnelModel {
+@ToString
+public class PersonnelModel implements Serializable {
     private long idAgent;
     private String matricule;
     private String nomPrenom;
@@ -33,11 +36,12 @@ public class PersonnelModel {
     private String cleRib;
     private String detacher;
     private String ministerOrigine;
-  
-    private String Typeeducation;
+    @Enumerated(EnumType.STRING)
+    private TypeEducation Typeeducation;
+    private byte[] imagPers;
 
 
-    public String toString() {
+    /*public String toString() {
         return nomPrenom +" Mle:"+matricule+" Nni:"+nni;
-    }
+    }*/
 }

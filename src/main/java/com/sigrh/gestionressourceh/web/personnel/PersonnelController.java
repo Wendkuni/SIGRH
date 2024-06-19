@@ -10,45 +10,46 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/v1/api/personnel")
 @AllArgsConstructor
 public class PersonnelController  {
     @Autowired
     private PersonnelService service;
 
-    @PostMapping(path = "/personnel")
+    @PostMapping(path = "/create")
     public boolean addPersonnel(@RequestBody PersonnelModel model) {
         return service.create(model);
     }
 
-    @PutMapping(path = "/personnel/{id}")
+    @PutMapping(path = "/updade/{id}")
     public boolean updatePersonnel(@RequestParam Integer id, PersonnelModel model) {
         return service.update(id,model);
     }
 
-    @DeleteMapping(path = "/personnel/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public boolean deletePersonnel(@PathVariable Integer id) {
         return service.delete(id);
     }
 
-    @GetMapping(path = "/personnels")
+    @GetMapping(path = "/All")
     public List<PersonnelModel> getAllPersonnel() {
         return service.findAll();
     }
 
-    @GetMapping(path = "/personnelsBy/{id}")
+    @GetMapping(path = "/ById/{id}")
     public PersonnelModel getPersonnelById(@PathVariable Integer id) {
         return service.find(id);
     }
 
-    @GetMapping(path = "/personnelsByAffectation/{id}")
+
+
+    @GetMapping(path = "/ByAffectation/{id}")
     public List<PersonnelModel> getAllPersonnelByAffectation(@PathVariable Integer id) {
         return service.findByAffectation(id
         );
     }
-    @GetMapping(path = "/personnelsByLocalite/{id}")
-    public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable Integer id) {
-        return service.findByLocalite(id
-        );
+    @GetMapping(path = "/ByLocalite/{id}")
+    public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String id) {
+        return service.findByLocalite(id);
     }
 }

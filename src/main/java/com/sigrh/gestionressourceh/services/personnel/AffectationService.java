@@ -45,6 +45,10 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
         return dao.findAll();
     }
 
+    public List<PersonnelAffectationModel> findByAgent(int IDagent) {
+        return dao.findByAgent(IDagent);
+    }
+
     public boolean update(Integer id, PersonnelAffectationModel m) {
         PersonnelAffectationModel model = find(id);
         if(model != null) {

@@ -7,7 +7,12 @@ import lombok.Getter;
 
 @Getter
 public enum TypeEducation {
-	AUCUN("aucun"), SCOLAIRE("Scolaire"), FORMATION("Formation"), PROFESSIONAL("Professional");
+	AUCUN,
+	SCOLAIRE,
+	FORMATION,
+	PROFESSIONAL;
+
+	/*AUCUN("aucun"), SCOLAIRE("Scolaire"), FORMATION("Formation"), PROFESSIONAL("Professional");
 
 	private final String label;
 
@@ -24,5 +29,5 @@ public enum TypeEducation {
 	public String toString() {
 		return label.toString();
 	}
-
+*/
 }

@@ -14,7 +14,7 @@ public class DossierMapper implements RowMapper<PersonnelDossierScanModel> {
                 .dateUpload(rs.getDate("dateupload"))
                 .idDossierScan(rs.getLong("IDdossier"))
                 .observation(rs.getString("observation"))
-                .imageFold(rs.getBytes("imagefold"))
+                .imagFold(rs.getBytes("imagfold"))
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .build();
     }

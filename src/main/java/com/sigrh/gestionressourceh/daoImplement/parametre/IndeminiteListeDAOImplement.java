@@ -28,6 +28,7 @@ public class IndeminiteListeDAOImplement implements DAOTemplete<IndeminitesListe
             String sql = "Insert into indeminitesliste(libidnmite,IDINDEMINITES) " +
                     "values (?,?)";
             return  jdbcTemplate.update(sql,obj.getLibelleIndeminite(),obj.getIdIndeminites())!=0;
+
         }catch (Exception e) {
             e.printStackTrace();
             return false;

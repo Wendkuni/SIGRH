@@ -1,3 +1,4 @@
+
 package com.sigrh.gestionressourceh.common.constant;
 
 import lombok.AllArgsConstructor;

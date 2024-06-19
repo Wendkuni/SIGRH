@@ -28,7 +28,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
             String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagefold) " +
                     "values (?,?,?,?,?)";
             return  jdbcTemplate.update(sql, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),
-                    obj.getObservation(), obj.getDateUpload(),obj.getImageFold() )!=0;
+                    obj.getObservation(), obj.getDateUpload(),obj.getImagFold() )!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -59,7 +59,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
             String SQL = "update  dossierscan set libeldossier= ?,IDagent= ?,observation= ?,dateupload= ?,imagefold= ?" +
                     " where IDdossier = ?";
             return  jdbcTemplate.update(SQL, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),obj.getObservation(),
-                    obj.getDateUpload(),obj.getImageFold() )!=0;
+                    obj.getDateUpload(),obj.getImagFold() )!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -38,50 +38,45 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 //                .usingGeneratedKeyColumns("IDagent");
     }
 
-    @Override
-    public boolean create(PersonnelModel obj) {
-        try {
-            String sql = "Insert into personnel(nometprenom,matricule,nni) values (?, ?, ?)";
-            return  jdbcTemplate.update(sql, obj.getNomPrenom(),  obj.getMatricule(), obj.getNni())!=0;
-        }catch (Exception e) {
-           e.printStackTrace();
-            return false;
-        }
-
-    }
 
     @Override
     public boolean delete(PersonnelModel obj) {
         return false;
     }
 
-    public boolean add(PersonnelModel obj) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("actifornot", obj.getActifOrNot());
-        params.put("adrssemp", obj.getAdressEmp());
-        params.put("clerib", obj.getCleRib());
-        params.put("dtesortie", obj.getDteSortie());
-        params.put("nometprenom", obj.getNomPrenom());
-        params.put("matricul", obj.getMatricule());
-        params.put("nni", obj.getNni());
-        params.put("codbank",obj.getCodeBank());
-        params.put("bank",obj.getBank());
-        params.put("datenaiss",obj.getDateNaiss());
-        params.put("debucntrat",obj.getDebutCntrat());
-        params.put("detacher",obj.getDetacher());
-        params.put("dterecutmn",obj.getDteRecrutement());
-        params.put("dtetitularisation",obj.getDteTitularisation());
-        params.put("fincntrat",obj.getFinCntrat());
-        params.put("lieunaiss",obj.getLieuNaiss());
-        params.put("ministerorigne",obj.getMinisterOrigine());
-        params.put("nometprenom",obj.getNomPrenomArab());
-        params.put("numrocpte",obj.getNumroCpte());
-        params.put("statusemp",obj.getStatusEmp());
-        params.put("tlphone",obj.getTlphone());
-        params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation():TypeEducation.PROFESSIONAL);
-        Number newId = insert.executeAndReturnKey(params);
-        obj.setIdAgent(newId.intValue());
-       return true;
+    @Override
+    public boolean create(PersonnelModel obj) {
+       try {
+           Map<String, Object> params = new HashMap<>();
+           params.put("actifornot", obj.getActifOrNot());
+           params.put("adrssemp", obj.getAdressEmp());
+           params.put("clerib", obj.getCleRib());
+           params.put("dtesortie", obj.getDteSortie());
+           params.put("nometprenom", obj.getNomPrenom());
+           params.put("matricul", obj.getMatricule());
+           params.put("nni", obj.getNni());
+           params.put("codbank",obj.getCodeBank());
+           params.put("bank",obj.getBank());
+           params.put("datenaiss",obj.getDateNaiss());
+           params.put("debucntrat",obj.getDebutCntrat());
+           params.put("detacher",obj.getDetacher());
+           params.put("dterecrutmnt",obj.getDteRecrutement());
+           params.put("dtetitularisation",obj.getDteTitularisation());
+           params.put("fincntrat",obj.getFinCntrat());
+           params.put("lieunaiss",obj.getLieuNaiss());
+           params.put("ministerorigne",obj.getMinisterOrigine());
+           params.put("nometprenomarab",obj.getNomPrenomArab());
+           params.put("numrocpte",obj.getNumroCpte());
+           params.put("statusemp",obj.getStatusEmp());
+           params.put("tlphone",obj.getTlphone());
+           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation():TypeEducation.PROFESSIONAL);
+           Number newId = insert.executeAndReturnKey(params);
+           obj.setIdAgent(newId.intValue());
+           return true;
+       }catch (Exception e){
+           e.printStackTrace();
+           return false;
+       }
     }
     @Override
     public boolean delete(int id) {
@@ -93,8 +88,25 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 
     @Override
     public boolean update(PersonnelModel obj) {
-        String SQL = "update  personnel set nometprenom=?,matricul=?,nni=? where IDagent = ?";
-        boolean b = jdbcTemplate.update(SQL, obj.getNomPrenom(), obj.getMatricule(), obj.getNni(),obj.getIdAgent()) != 0;
+        String SQL = "update  personnel set actifornot=?, adrssemp=?, clerib=?, dtesortie=?," +
+                " nometprenom=?,matricul=?,nni=?," +
+                " codbank=?, bank=?, datenaiss=?, " +
+                "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
+                "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=? where IDagent = ?";
+        boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
+                obj.getAdressEmp(), obj.getCleRib(),
+                obj.getDteSortie(), obj.getNomPrenom(),
+                obj.getMatricule(), obj.getNni(),
+                obj.getCodeBank(),obj.getBank(),
+                obj.getDateNaiss(), obj.getDebutCntrat(),
+                obj.getDetacher(), obj.getDteRecrutement(),
+                obj.getDteTitularisation(), obj.getFinCntrat(),
+                obj.getLieuNaiss(), obj.getMinisterOrigine(),
+                obj.getNomPrenomArab(), obj.getNumroCpte(),
+                obj.getStatusEmp(), obj.getTlphone(),
+                obj.getTypeeducation(),
+                obj.getIdAgent()) != 0;
         return b;
     }
 
@@ -117,10 +129,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
         return jdbcTemplate.query(SQL,new PersonnelMapper());
     }
 
-    public List<PersonnelModel> findByLocalite(int id) {
+    public List<PersonnelModel> findByLocalite(String localite) {
         String SQL = "select p.* from personnel p" +
-                " right join localite loc on p.IDagent =loc.IDagent " +
-                " where IDLOCALITE ="+id;
+                " right join affectation aff on p.IDagent=aff.IDagent" +
+                " where localite ="+localite;
         return jdbcTemplate.query(SQL, new PersonnelMapper());
     }
 

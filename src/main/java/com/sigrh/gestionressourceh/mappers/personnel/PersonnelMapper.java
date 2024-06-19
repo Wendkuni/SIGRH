@@ -12,32 +12,38 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
     @Override
     public PersonnelModel mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        return PersonnelModel.builder()
-                .actifOrNot(rs.getString("actifornot"))
-                .adressEmp(rs.getString("adrssemp"))
-                .bank(rs.getString("bank"))
-                .cleRib(rs.getString("clerib"))
-                .codeBank(rs.getString("codbank"))
-                .dateNaiss(rs.getDate("datenaiss"))
-                .debutCntrat(rs.getDate("debucntrat"))
-                .detacher(rs.getString("detacher"))
-                .dteRecrutement(rs.getDate("dterecrutmnt"))
-                .dteSortie(rs.getDate("dtesortie"))
-                .nni(rs.getString("nni"))
-                .dteTitularisation(rs.getDate("dtetitularisation"))
-                .idAgent(rs.getLong("IDagent"))
-                .lieuNaiss(rs.getString("lieunaiss"))
-                .finCntrat(rs.getDate("fincntrat"))
-                .matricule(rs.getString("matricul"))
-                .ministerOrigine(rs.getString("ministerorigne"))
-                .nomPrenom(rs.getString("nometprenom"))
-                .nomPrenomArab(rs.getString("nometprenomarab"))
-                .numroCpte(rs.getInt("numrocpte"))
-                .statusEmp(rs.getString("statusemp"))
-                .tlphone(rs.getString("tlphone"))
-               .Typeeducation(rs.getString("Typeeducation")!=null&&!rs.getString("Typeeducation").isBlank()?
-               		TypeEducation.getTypeEducationByLabel(rs.getString("Typeeducation")).getLabel():TypeEducation.PROFESSIONAL.getLabel())
-                .build();
+        PersonnelModel personnel = new PersonnelModel();
+        personnel.setIdAgent(rs.getLong("IDagent"));
+        personnel.setMatricule(rs.getString("matricul"));
+        personnel.setNomPrenom(rs.getString("nometprenom"));
+        personnel.setNomPrenomArab(rs.getString("nometprenomArab"));
+        personnel.setNni(rs.getString("nni"));
+        personnel.setDteRecrutement(rs.getDate("dterecrutement"));
+        personnel.setDteTitularisation(rs.getDate("dtetitularisation"));
+        personnel.setDteSortie(rs.getDate("dtesortie"));
+        personnel.setStatusEmp(rs.getString("statusemp"));
+        personnel.setTlphone(rs.getString("tlphone"));
+        personnel.setAdressEmp(rs.getString("adressemp"));
+        personnel.setDebutCntrat(rs.getDate("debutcntrat"));
+        personnel.setFinCntrat(rs.getDate("fincntrat"));
+        personnel.setDateNaiss(rs.getDate("datenaiss"));
+        personnel.setLieuNaiss(rs.getString("lieunaiss"));
+        personnel.setActifOrNot(rs.getString("actifornot"));
+        personnel.setBank(rs.getString("bank"));
+        personnel.setCodeBank(rs.getString("codebank"));
+        personnel.setNumroCpte(rs.getInt("numrocpte"));
+        personnel.setCleRib(rs.getString("clerib"));
+        personnel.setDetacher(rs.getString("detacher"));
+        personnel.setMinisterOrigine(rs.getString("ministerorigine"));
+
+        String typeEducation = rs.getString("Typeeducation");
+        if (typeEducation != null) {
+            personnel.setTypeeducation(TypeEducation.valueOf(typeEducation));
+        } else {
+            personnel.setTypeeducation(null);
+        }
+
+        return personnel;
     }
 
 }

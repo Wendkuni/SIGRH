@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/v1/api/absence")
 @AllArgsConstructor
 public class AbsenceAndCongeController {
     AbsenceService service;
 
-    @PostMapping(path = "/absence")
+    @PostMapping(path = "/create")
     public ResponseEntity<ApiResponse<PersonnelAbsenceModel>> addAbsence(@RequestBody PersonnelAbsenceModel model) {
         ApiResponse<PersonnelAbsenceModel> response;
         if (service.create(model)) {
@@ -36,7 +36,7 @@ public class AbsenceAndCongeController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-        @PutMapping(path = "/absence/{id}")
+        @PutMapping(path = "/update/{id}")
         public ResponseEntity<ApiResponse<PersonnelAbsenceModel>> updateAbsence (@RequestParam Integer id, PersonnelAbsenceModel model){
             ApiResponse<PersonnelAbsenceModel> response;
             if (service.update(id, model)) {
@@ -56,7 +56,7 @@ public class AbsenceAndCongeController {
             }
         }
 
-        @DeleteMapping(path = "/absence/delete/{id}")
+        @DeleteMapping(path = "/delete/{id}")
         public ResponseEntity<ApiResponse<Void>> deleteAbsence (@PathVariable Integer id){
             ApiResponse<Void> response;
             if (service.delete(id)) {
@@ -75,7 +75,7 @@ public class AbsenceAndCongeController {
             }
         }
 
-        @GetMapping(path = "/absences")
+        @GetMapping(path = "/All")
         public ResponseEntity<ApiResponse<List<PersonnelAbsenceModel>>> getAllAbsence () {
             ApiResponse<List<PersonnelAbsenceModel>> reponse = new ApiResponse.
                     Builder<List<PersonnelAbsenceModel>>().status(HttpStatus.OK.value())
@@ -83,7 +83,7 @@ public class AbsenceAndCongeController {
             return new ResponseEntity<>(reponse, HttpStatus.OK);
         }
 
-        @GetMapping(path = "/absences/{id}")
+        @GetMapping(path = "/ById/{id}")
         public ResponseEntity<ApiResponse<PersonnelAbsenceModel>> getAbsenceById (@PathVariable Integer id){
             ApiResponse<PersonnelAbsenceModel> reponse = new ApiResponse.
                     Builder<PersonnelAbsenceModel>().status(HttpStatus.OK.value())
