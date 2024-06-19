@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
+
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.services.personnel.DossierService;

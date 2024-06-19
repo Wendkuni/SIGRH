@@ -9,37 +9,32 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/v1/api/affectation")
+@RequestMapping(value = "/v1/api")
 @AllArgsConstructor
 public class AffectationController {
     AffectationService service;
 
-    @PostMapping(path = "/create")
+    @PostMapping(path = "/affectation")
     public boolean addAffectation(@RequestBody PersonnelAffectationModel model) {
         return service.create(model);
     }
 
-    @PutMapping(path = "/update/{id}")
+    @PutMapping(path = "/affectation/{id}")
     public boolean updateAffectation(@RequestParam Integer id, PersonnelAffectationModel model) {
         return service.update(id,model);
     }
 
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/affectation/delete/{id}")
     public boolean deleteAffectation(@PathVariable Integer id) {
         return service.delete(id);
     }
 
-    @GetMapping(path = "/All")
+    @GetMapping(path = "/affectations")
     public List<PersonnelAffectationModel> getAllAffectation() {
         return service.findAll();
     }
 
-    @GetMapping(path = "/ByAgent")
-    public List<PersonnelAffectationModel> getAffectationByAgent(@PathVariable int IDagent) {
-        return service.findByAgent(IDagent);
-    }
-
-    @GetMapping(path = "/ById/{id}")
+    @GetMapping(path = "/affectationsBy/{id}")
     public PersonnelAffectationModel getAffectationById(@PathVariable Integer id) {
         return service.find(id);
     }

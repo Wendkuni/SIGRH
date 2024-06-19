@@ -1,7 +1,7 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.common.ApiResponse;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
+
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.services.personnel.FonctionAgentService;
 import lombok.AllArgsConstructor;
@@ -100,6 +100,4 @@ FonctionAgentService service;
                 .message("Liste des fonction par Agents").result(service.find(IDagent)).build();
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
-
-
 }

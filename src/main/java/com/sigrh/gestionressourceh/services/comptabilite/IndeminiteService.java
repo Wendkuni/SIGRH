@@ -46,7 +46,8 @@ public class IndeminiteService implements InterfaceTemplete<IndeminiteModel> {
     public boolean update(Integer id, IndeminiteModel m) {
         IndeminiteModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdIndeminites(id);
             return this.update(model);
         }return false;
     }

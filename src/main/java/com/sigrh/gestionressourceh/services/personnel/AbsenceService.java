@@ -4,7 +4,6 @@ import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.AbsenceDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAbsenceModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,7 +49,8 @@ public class AbsenceService implements InterfaceTemplete<PersonnelAbsenceModel> 
     public boolean update(Integer id, PersonnelAbsenceModel m) {
         PersonnelAbsenceModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdAbsence(Long.valueOf(id));
             return this.update(model);
         }return false;
     }

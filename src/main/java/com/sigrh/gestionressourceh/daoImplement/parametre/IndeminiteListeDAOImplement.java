@@ -25,9 +25,10 @@ public class IndeminiteListeDAOImplement implements DAOTemplete<IndeminitesListe
     @Override
     public boolean create(IndeminitesListeModel obj) {
         try {
-            String sql = "Insert into indeminitesliste(libidnmite) " +
-                    "values (?)";
-            return  jdbcTemplate.update(sql,obj.getLibelleIndeminite())!=0;
+            String sql = "Insert into indeminitesliste(libidnmite,IDINDEMINITES) " +
+                    "values (?,?)";
+            return  jdbcTemplate.update(sql,obj.getLibelleIndeminite(),obj.getIdIndeminites())!=0;
+
         }catch (Exception e) {
             e.printStackTrace();
             return false;

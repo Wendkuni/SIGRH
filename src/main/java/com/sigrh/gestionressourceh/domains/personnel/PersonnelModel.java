@@ -2,7 +2,6 @@ package com.sigrh.gestionressourceh.domains.personnel;
 
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import lombok.*;
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;

@@ -1,8 +1,6 @@
 package com.sigrh.gestionressourceh.dao;
 
 
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
-
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -20,8 +18,7 @@ public interface DAOTemplete<T> {
 
 	T find(int id);
 
-
-    List<T> findAll();
+	List<T> findAll();
 
 	
 }

@@ -38,7 +38,6 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
     }
 
 
-
     @Override
     public boolean delete(PersonnelModel obj) {
         return false;

@@ -4,8 +4,6 @@ import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.parametre.FonctionListeDAOImplement;
 import com.sigrh.gestionressourceh.domains.parametres.FonctionListeModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,11 +36,8 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
 
     @Override
     public List<FonctionListeModel> findAll() {
-        return dao.findAll();
-    }
-
-    public List<PersonnelFonctionModel> findFonctionByAgent(int IDagent) {
-        return dao.findFonctionByAgent(IDagent);
+        return dao.findAll()
+                ;
     }
 
     public boolean delete(Integer id) {
@@ -52,7 +47,8 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
     public boolean update(Integer id, FonctionListeModel m) {
         FonctionListeModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdFonctionListe(Long.valueOf(id));
             return this.update(model);
         }return false;
     }

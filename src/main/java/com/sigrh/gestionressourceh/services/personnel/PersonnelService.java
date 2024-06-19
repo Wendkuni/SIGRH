@@ -18,6 +18,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     @Override
     public boolean create(PersonnelModel obj) {
+
         return this.daoImplement.create(obj);
     }
 

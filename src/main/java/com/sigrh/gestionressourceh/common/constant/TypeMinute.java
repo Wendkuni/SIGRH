@@ -99,4 +99,3 @@ public enum TypeMinute {
     	return label.toString();
     }
 }
-

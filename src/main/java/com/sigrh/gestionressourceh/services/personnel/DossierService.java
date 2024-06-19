@@ -54,6 +54,7 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
             return this.update(model);
         }return false;
     }
+
     public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
         return dao.findByAgent(IDagent);
     }

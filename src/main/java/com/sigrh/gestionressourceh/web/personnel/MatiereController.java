@@ -1,6 +1,5 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
 import com.sigrh.gestionressourceh.services.personnel.MatiereService;
 import lombok.AllArgsConstructor;

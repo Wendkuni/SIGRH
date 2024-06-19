@@ -25,7 +25,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     @Override
     public boolean create(PersonnelDossierScanModel obj) {
         try {
-            String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagfold) " +
+            String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagefold) " +
                     "values (?,?,?,?,?)";
             return  jdbcTemplate.update(sql, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),
                     obj.getObservation(), obj.getDateUpload(),obj.getImagFold() )!=0;
@@ -38,7 +38,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     @Override
     public boolean delete(int id) {
         try {
-            String SQL = "delete from dossierscan where IDdossierscan = ? ";
+            String SQL = "delete from dossierscan where IDdossier = ? ";
             boolean b = jdbcTemplate.update(SQL, id) != 0;
             System.out.println("Deleted Record with ID = " + id );
             return b;
@@ -56,8 +56,8 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     @Override
     public boolean update(PersonnelDossierScanModel obj) {
         try {
-            String SQL = "update  dossierscan set libeldossier= ?,IDagent= ?,observation= ?,dateupload= ?,imagfold= ?" +
-                    " where IDdossierscan = ?";
+            String SQL = "update  dossierscan set libeldossier= ?,IDagent= ?,observation= ?,dateupload= ?,imagefold= ?" +
+                    " where IDdossier = ?";
             return  jdbcTemplate.update(SQL, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),obj.getObservation(),
                     obj.getDateUpload(),obj.getImagFold() )!=0;
         }catch (Exception e) {
@@ -71,17 +71,13 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
         try {
             String SQL = "select * from dossierscan doss " +
                     " left join personnel p on p.IDagent =doss.IDagent " +
-                    " where IDdossierscan =?";
+                    " where IDdossier =?";
             return jdbcTemplate.queryForObject(SQL, new Object[]{id}, new DossierMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
-
     }
-
-
 
     @Override
     public List<PersonnelDossierScanModel> findAll() {
@@ -95,15 +91,8 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
         }
     }
 
-    public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
-        try {
-            String SQL = "select * from dossierscan doss" +
-                    " left join personnel p on p.IDagent =doss.IDagent"
-                    + " where doss.IDagent =" + IDagent ;
-            return jdbcTemplate.query(SQL, new DossierMapper());
-        }catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+	public List<PersonnelDossierScanModel> findByAgent(int iDagent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

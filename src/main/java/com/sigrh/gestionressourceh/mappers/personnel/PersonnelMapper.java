@@ -46,7 +46,6 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
 
 
         return personnel;
-
     }
 
 }

@@ -46,7 +46,8 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
     public boolean update(Integer id, PersonnelFonctionModel m) {
         PersonnelFonctionModel model = find(id);
         if(model != null) {
-
+            model=m;
+            model.setIdFonction(Long.valueOf(id));
             return this.update(model);
         }return false;
     }

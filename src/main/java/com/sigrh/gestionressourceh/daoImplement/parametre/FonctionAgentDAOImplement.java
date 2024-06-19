@@ -1,9 +1,7 @@
 package com.sigrh.gestionressourceh.daoImplement.parametre;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
-import com.sigrh.gestionressourceh.mappers.personnel.DossierMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.FonctionAgentMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -96,6 +94,4 @@ public class FonctionAgentDAOImplement implements DAOTemplete<PersonnelFonctionM
             return null;
         }
     }
-
-
 }
