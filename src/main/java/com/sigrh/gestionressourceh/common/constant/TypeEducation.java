@@ -7,7 +7,10 @@ import lombok.Getter;
 
 @Getter
 public enum TypeEducation {
-	AUCUN, SCOLAIRE, FORMATION, PROFESSIONAL;
+	AUCUN,
+	SCOLAIRE,
+	FORMATION,
+	PROFESSIONAL;
 
 	/*AUCUN("aucun"), SCOLAIRE("Scolaire"), FORMATION("Formation"), PROFESSIONAL("Professional");
 

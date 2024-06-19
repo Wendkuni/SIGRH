@@ -39,6 +39,7 @@ public class PersonnelModel implements Serializable {
     private String ministerOrigine;
     @Enumerated(EnumType.STRING)
     private TypeEducation Typeeducation;
+    private byte[] imagPers;
 
 
     /*public String toString() {
