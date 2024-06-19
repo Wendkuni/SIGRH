@@ -106,7 +106,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getLieuNaiss(), obj.getMinisterOrigine(),
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
-                obj.getTypeeducation(),
+                obj.getTypeeducation().getLabel(),
                 obj.getIdAgent()) != 0;
         return b;
     }
