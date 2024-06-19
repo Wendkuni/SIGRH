@@ -2,17 +2,15 @@ package com.sigrh.gestionressourceh.common.constant;
 
 import java.util.stream.Stream;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 public enum TypeEducation {
-	AUCUN,
-	SCOLAIRE,
-	FORMATION,
-	PROFESSIONAL;
 
-	/*AUCUN("aucun"), SCOLAIRE("Scolaire"), FORMATION("Formation"), PROFESSIONAL("Professional");
+	AUCUN("aucun"),
+	SCOLAIRE("Scolaire"),
+	FORMATION("Formation"),
+	PROFESSIONNEL("Professionnel");
 
 	private final String label;
 
@@ -29,5 +27,5 @@ public enum TypeEducation {
 	public String toString() {
 		return label.toString();
 	}
-*/
+
 }

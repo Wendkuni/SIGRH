@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,9 +69,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("numrocpte",obj.getNumroCpte());
            params.put("statusemp",obj.getStatusEmp());
            params.put("tlphone",obj.getTlphone());
-           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation():TypeEducation.PROFESSIONAL);
+           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().getLabel():TypeEducation.PROFESSIONNEL.getLabel());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
+           params.put("imgpers", obj.getImagPers());
            return true;
        }catch (Exception e){
            e.printStackTrace();

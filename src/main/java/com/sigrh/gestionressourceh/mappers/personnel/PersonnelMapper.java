@@ -16,32 +16,34 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setIdAgent(rs.getLong("IDagent"));
         personnel.setMatricule(rs.getString("matricul"));
         personnel.setNomPrenom(rs.getString("nometprenom"));
-        personnel.setNomPrenomArab(rs.getString("nometprenomArab"));
+        personnel.setNomPrenomArab(rs.getString("nometprenomarab"));
         personnel.setNni(rs.getString("nni"));
-        personnel.setDteRecrutement(rs.getDate("dterecrutement"));
+        personnel.setDteRecrutement(rs.getDate("dterecrutmnt"));
         personnel.setDteTitularisation(rs.getDate("dtetitularisation"));
         personnel.setDteSortie(rs.getDate("dtesortie"));
         personnel.setStatusEmp(rs.getString("statusemp"));
         personnel.setTlphone(rs.getString("tlphone"));
-        personnel.setAdressEmp(rs.getString("adressemp"));
-        personnel.setDebutCntrat(rs.getDate("debutcntrat"));
+        personnel.setAdressEmp(rs.getString("adrssemp"));
+        personnel.setDebutCntrat(rs.getDate("debucntrat"));
         personnel.setFinCntrat(rs.getDate("fincntrat"));
         personnel.setDateNaiss(rs.getDate("datenaiss"));
         personnel.setLieuNaiss(rs.getString("lieunaiss"));
         personnel.setActifOrNot(rs.getString("actifornot"));
         personnel.setBank(rs.getString("bank"));
-        personnel.setCodeBank(rs.getString("codebank"));
+        personnel.setCodeBank(rs.getString("codbank"));
         personnel.setNumroCpte(rs.getInt("numrocpte"));
         personnel.setCleRib(rs.getString("clerib"));
         personnel.setDetacher(rs.getString("detacher"));
-        personnel.setMinisterOrigine(rs.getString("ministerorigine"));
-
+        personnel.setMinisterOrigine(rs.getString("ministerorigne"));
+        personnel.setImagPers(rs.getBytes("imgpers"));
         String typeEducation = rs.getString("Typeeducation");
-        if (typeEducation != null) {
-            personnel.setTypeeducation(TypeEducation.valueOf(typeEducation));
+
+        if (typeEducation != null&&!typeEducation.isBlank()) {
+            personnel.setTypeeducation(TypeEducation.getTypeEducationByLabel(typeEducation));
         } else {
-            personnel.setTypeeducation(null);
+            personnel.setTypeeducation(TypeEducation.AUCUN);
         }
+
 
         return personnel;
 
