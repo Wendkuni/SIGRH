@@ -55,8 +55,8 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
         }return false;
     }
 
-	public List<PersonnelDossierScanModel> findByAgent(int iDagent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
+        return dao.findByAgent(IDagent);
+    }
+
 }

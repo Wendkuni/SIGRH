@@ -90,4 +90,9 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
             return null;
         }
     }
+
+	public List<PersonnelDossierScanModel> findByAgent(int iDagent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
