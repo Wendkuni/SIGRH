@@ -18,9 +18,9 @@ public class PersonnelAllocationFamilleModel {
 
     private long idAllocationFamille;
     private PersonnelModel personnel;
-    private Date dateNaissPrise;
+    private LocalDate dateNaissPrise;
     private String nomePrenomPrise;
-    private Date dateEffet;
+    private LocalDate dateEffet;
     private String etatAct;
     private String echele;
     private String echelon;

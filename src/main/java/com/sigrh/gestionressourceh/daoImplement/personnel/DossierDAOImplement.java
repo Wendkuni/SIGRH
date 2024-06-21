@@ -25,7 +25,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     @Override
     public boolean create(PersonnelDossierScanModel obj) {
         try {
-            String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagefold) " +
+            String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagfold) " +
                     "values (?,?,?,?,?)";
             return  jdbcTemplate.update(sql, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),
                     obj.getObservation(), obj.getDateUpload(),obj.getImagFold() )!=0;

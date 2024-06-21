@@ -4,6 +4,7 @@ import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.util.Date;
 @Builder
 public class RenumerationAgentModel implements Serializable {
     private Long idRenumeration;
-    private Date dateEffet;
+    private LocalDate dateEffet;
     private  String libelleBank;
     private  String codeBank;
     private Double valeurMontant;

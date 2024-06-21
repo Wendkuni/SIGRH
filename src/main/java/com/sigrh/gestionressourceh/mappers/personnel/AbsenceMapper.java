@@ -15,7 +15,7 @@ public class AbsenceMapper implements RowMapper<PersonnelAbsenceModel> {
                 .idAbsence(rs.getLong("IDABSENCEA"))
                 .autorisation(rs.getString("autorisation"))
                 .motif(rs.getString("motif"))
-                .dateeffet(rs.getDate("dateeffet"))
+                .dateeffet(DateUtil.parse(rs.getString("dateeffet")))
                 .libelle(rs.getString("libelleab"))
                 .nbJour(rs.getInt("nombrejr"))
                 .signataire(rs.getString("signataire"))

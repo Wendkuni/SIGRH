@@ -20,7 +20,7 @@ public class PersonnelIndeminitesModel {
     private PersonnelModel personnel;
     private String libIdnmite;
     private int valIndeminite;
-    private Date datEffet;
+    private LocalDate datEffet;
     private String etatAct;
     private int encours;
 }

@@ -1,6 +1,7 @@
 package com.sigrh.gestionressourceh.mappers.personnel;
 
 import com.sigrh.gestionressourceh.common.constant.TypeNature;
+import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -12,7 +13,7 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
     public PersonnelAffectationModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         return PersonnelAffectationModel.builder()
                 .idAffectation(rs.getLong("IDaffectation"))
-                .dateEffet(rs.getDate("dateffet"))
+                .dateEffet(DateUtil.parse(rs.getString("dateffet")))
                 .dren(rs.getString("DREN"))
                 .localite(rs.getString("localite"))
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))

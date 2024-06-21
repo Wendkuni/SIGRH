@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -19,7 +20,7 @@ public class PersonnelAffectationModel implements Serializable {
     private PersonnelModel personnel;
     private String localite;
     private String serviceEcole;
-    private Date dateEffet ;
+    private LocalDate dateEffet ;
     private String dren;
     private double notePedagogiq;
     @Enumerated(EnumType.STRING)
