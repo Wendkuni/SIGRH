@@ -3,6 +3,7 @@ package com.sigrh.gestionressourceh.domains.personnel;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -22,7 +23,7 @@ public class PersonnelAbsenceModel implements Serializable {
 	private String autorisation;
 	private String motif;
 	private int nbJour;
-	private Date dateeffet;
+	private LocalDate dateeffet;
 	private String signataire;
 	private String libelle;
 	

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -19,20 +20,20 @@ public class PersonnelModel implements Serializable {
     private String nomPrenom;
     private String nomPrenomArab;
     private String nni;
-    private Date dteRecrutement;
-    private Date dteTitularisation;
-    private Date dteSortie;
+    private LocalDate dteRecrutement;
+    private LocalDate dteTitularisation;
+    private LocalDate dteSortie;
     private String statusEmp;
     private String tlphone;
     private String adressEmp;
-    private Date debutCntrat;
-    private Date finCntrat;
-    private Date dateNaiss;
+    private LocalDate debutCntrat;
+    private LocalDate finCntrat;
+    private LocalDate dateNaiss;
     private String lieuNaiss;
     private String actifOrNot;
     private String bank;
     private String codeBank;
-    private Integer numroCpte;
+    private String numroCpte;
     private String cleRib;
     private String detacher;
     private String ministerOrigine;

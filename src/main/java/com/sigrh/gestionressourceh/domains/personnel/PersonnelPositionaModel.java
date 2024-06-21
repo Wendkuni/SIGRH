@@ -18,7 +18,7 @@ public class PersonnelPositionaModel {
     private long idPostiona;
     private PersonnelModel personnel;
     private String refernces;
-    private Date dateEffect;
+    private LocalDate dateEffect;
     private String libelPosition;
 
 }

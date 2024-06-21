@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.comptabilite;
 
+import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.comptablite.IndeminiteModel;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +13,7 @@ public class IndeminiteMapper implements RowMapper<IndeminiteModel> {
     public IndeminiteModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         return IndeminiteModel.builder()
                 .idIndeminites(rs.getLong("IDINDEMINITES"))
-                .dateEffet(rs.getDate("dateffet"))
+                .dateEffet(DateUtil.parse(rs.getString("dateffet")))
                 .encours(rs.getBoolean("encours"))
                 .etatact(rs.getString("etatact"))
                 .fctionLibelle(rs.getString("fctionlib"))

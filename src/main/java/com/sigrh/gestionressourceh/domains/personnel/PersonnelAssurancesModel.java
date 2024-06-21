@@ -21,8 +21,8 @@ public class PersonnelAssurancesModel {
     private PersonnelModel personnel;
     private String tupeAssurance;
     private String liblAssurance;
-    private Date debutAssurance;
-    private Date finAssurance;
+    private LocalDate debutAssurance;
+    private LocalDate finAssurance;
     private String etatAct;
 
 }

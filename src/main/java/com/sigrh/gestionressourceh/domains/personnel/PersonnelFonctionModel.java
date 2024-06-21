@@ -3,6 +3,7 @@ package com.sigrh.gestionressourceh.domains.personnel;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -26,7 +27,7 @@ public class PersonnelFonctionModel  implements Serializable {
 	private String groupe;
 	private String corps;
 	private String grade;
-	private Date dateDebFonction;
+	private LocalDate dateDebFonction;
 	private String corpsArab;
 	private String libelleFonctionArab;
 	private String indixe;

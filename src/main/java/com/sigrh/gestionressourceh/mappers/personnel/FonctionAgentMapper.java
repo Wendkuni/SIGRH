@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.personnel;
 
+import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -21,7 +22,7 @@ public class FonctionAgentMapper implements RowMapper<PersonnelFonctionModel> {
                 .categorie(rs.getString("CAtegoriA"))
                 .corpsArab(rs.getString("CORPSAarab"))
                 .groupe(rs.getString("GroupeA"))
-                .dateDebFonction(rs.getDate("datefonction"))
+                .dateDebFonction(DateUtil.parse(rs.getString("datefonction")))
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .build();
     }

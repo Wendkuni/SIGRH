@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.comptabilite;
 
+import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.comptablite.RenumerationAgentModel;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,7 +15,7 @@ public class RenumerationAgentMapper implements RowMapper<RenumerationAgentModel
                 .idRenumeration(rs.getLong("IDRENUMERATIONAGENT"))
                 .codeBank(rs.getString("codebank"))
                 .libelleBank(rs.getString("banklib"))
-                .dateEffet(rs.getDate("dateeffet"))
+                .dateEffet(DateUtil.parse(rs.getString("dateeffet")))
                 .valeurMontant(rs.getDouble("valmnt"))
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .build();

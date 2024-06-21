@@ -1,5 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.personnel;
 
+import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -11,7 +12,7 @@ public class DossierMapper implements RowMapper<PersonnelDossierScanModel> {
     public PersonnelDossierScanModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         return PersonnelDossierScanModel.builder()
                 .libelDossier(rs.getString("libeldossier"))
-                .dateUpload(rs.getDate("dateupload"))
+                .dateUpload(DateUtil.parse(rs.getString("dateupload")))
                 .idDossierScan(rs.getLong("IDdossier"))
                 .observation(rs.getString("observation"))
                 .imagFold(rs.getBytes("imagfold"))
