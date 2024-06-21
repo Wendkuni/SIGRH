@@ -38,4 +38,10 @@ public class AffectationController {
     public PersonnelAffectationModel getAffectationById(@PathVariable Integer id) {
         return service.find(id);
     }
+
+    @GetMapping(path = "/affectationsByAgent/{IDagent}")
+    public PersonnelAffectationModel getAffectationByAgent(@PathVariable Integer IDagent) {
+        return service.find(IDagent);
+    }
+
 }

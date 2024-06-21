@@ -118,11 +118,11 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
         }
     }
 
-    public List<PersonnelAffectationModel> findByAgent(int id) {
+    public List<PersonnelAffectationModel> findByAgent(int IDagent) {
         try {
             String SQL = "select * from affectation aff " +
                     " inner join personnel p on p.IDagent =aff.IDagent " +
-                    " where IDagent ="+id;
+                    " where IDagent ="+IDagent;
             return jdbcTemplate.query(SQL,new AffectationMapper());
         }catch (Exception e) {
             e.printStackTrace();
