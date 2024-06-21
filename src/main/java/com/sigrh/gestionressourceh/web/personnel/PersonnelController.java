@@ -22,7 +22,7 @@ public class PersonnelController  {
     }
 
     @PutMapping(path = "/updade/{id}")
-    public boolean updatePersonnel(@RequestParam Integer id, PersonnelModel model) {
+    public boolean updatePersonnel(@PathVariable Integer id, @RequestBody PersonnelModel model) {
         return service.update(id,model);
     }
 

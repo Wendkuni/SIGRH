@@ -52,6 +52,25 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
             model.setNni(m.getNni());
             model.setNomPrenom(m.getNomPrenom());
             model.setMatricule(m.getMatricule());
+            model.setNumroCpte(m.getNumroCpte());
+            model.setLieuNaiss(m.getLieuNaiss());
+            model.setBank(m.getBank());
+            model.setImagPers(m.getImagPers());
+            model.setCleRib(m.getCleRib());
+            model.setCodeBank(m.getCodeBank());
+            model.setAdressEmp(m.getAdressEmp());
+            model.setActifOrNot(m.getActifOrNot());
+            model.setDateNaiss(m.getDateNaiss());
+            model.setDebutCntrat(m.getDebutCntrat());
+            model.setDetacher(m.getDetacher());
+            model.setDteRecrutement(m.getDteRecrutement());
+            model.setDteSortie(m.getDteSortie());
+            model.setDteTitularisation(m.getDteTitularisation());
+            model.setFinCntrat(m.getFinCntrat());
+            model.setNomPrenomArab(m.getNomPrenomArab());
+            model.setMinisterOrigine(m.getMinisterOrigine());
+            model.setStatusEmp(m.getStatusEmp());
+            model.setTlphone(m.getTlphone());
             model.setTypeeducation(m.getTypeeducation());
             return this.update(model);
         }
