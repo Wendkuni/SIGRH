@@ -5,7 +5,6 @@ import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
@@ -15,7 +14,6 @@ import java.util.Map;
 
 public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 {
-    private SimpleJdbcCall procRead;
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert insert;
 

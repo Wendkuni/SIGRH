@@ -41,13 +41,11 @@ public class PersonnelController  {
         return service.find(id);
     }
 
-
-
     @GetMapping(path = "/ByAffectation/{id}")
     public List<PersonnelModel> getAllPersonnelByAffectation(@PathVariable Integer id) {
-        return service.findByAffectation(id
-        );
+        return service.findByAffectation(id);
     }
+
     @GetMapping(path = "/ByLocalite/{id}")
     public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String id) {
         return service.findByLocalite(id);
