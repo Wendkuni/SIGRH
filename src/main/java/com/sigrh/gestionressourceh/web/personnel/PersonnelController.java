@@ -1,12 +1,18 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
+import com.sigrh.gestionressourceh.common.ApiResponse;
+import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -49,5 +55,14 @@ public class PersonnelController  {
     @GetMapping(path = "/ByLocalite/{id}")
     public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String id) {
         return service.findByLocalite(id);
+    }
+
+    @GetMapping(path = "/TypeEducations")
+    public ResponseEntity<ApiResponse<List<String>>> getAllTypeEducation(){
+        List<String> types = Arrays.stream(TypeEducation.values()).map(e->e.toString().toUpperCase()).toList();
+        ApiResponse<List<String>> response=new ApiResponse.Builder<List<String>>().
+        status(HttpStatus.OK.value())
+                .message("Liste des types éducation").result(types).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
