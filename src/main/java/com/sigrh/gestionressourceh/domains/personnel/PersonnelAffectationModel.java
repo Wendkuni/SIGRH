@@ -1,7 +1,10 @@
 package com.sigrh.gestionressourceh.domains.personnel;
 
+import com.sigrh.gestionressourceh.common.constant.TypeNature;
 import lombok.*;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +22,8 @@ public class PersonnelAffectationModel implements Serializable {
     private Date dateEffet ;
     private String dren;
     private double notePedagogiq;
+    @Enumerated(EnumType.STRING)
+    private TypeNature nature;
 
 
 }
