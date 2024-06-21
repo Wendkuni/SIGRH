@@ -32,7 +32,7 @@ public class PersonnelModel implements Serializable {
     private String actifOrNot;
     private String bank;
     private String codeBank;
-    private Integer numroCpte;
+    private String numroCpte;
     private String cleRib;
     private String detacher;
     private String ministerOrigine;
