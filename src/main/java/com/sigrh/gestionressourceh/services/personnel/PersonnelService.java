@@ -1,12 +1,15 @@
 package com.sigrh.gestionressourceh.services.personnel;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
+import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.PersonnelDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -19,6 +22,11 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     @Override
     public boolean create(PersonnelModel obj) {
 
+        return this.daoImplement.create(obj);
+    }
+
+    public boolean create(MultipartFile imageFile, PersonnelModel obj) throws IOException {
+        obj.setImagPers(ImageUtil.compressImage(imageFile.getBytes()));
         return this.daoImplement.create(obj);
     }
 

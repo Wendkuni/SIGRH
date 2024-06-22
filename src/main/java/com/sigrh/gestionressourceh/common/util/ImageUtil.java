@@ -2,10 +2,7 @@ package com.sigrh.gestionressourceh.common.util;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -16,11 +13,15 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.DataFormatException;
+import java.util.zip.Deflater;
+import java.util.zip.Inflater;
 
 public class ImageUtil {
+	public static final int BITE_SIZE = 4 * 1024;
 
 	public static String getLienImage(String nomImage) {
-		String var ="ersto/images";
+		String var ="sigrh/images";
 		Path path_dir = Paths.get(System.getenv("APPDATA"));
 		Object path = Paths.get(path_dir.toString(), var);
 		File nf = new File(path+"/"+nomImage);
@@ -66,7 +67,7 @@ public class ImageUtil {
 
 	public static String saveImage(String base64Image){
 		String nomImage;
-		String var ="ersto/images";
+		String var ="sigrh/images";
 		Path path_dir = Paths.get(System.getenv("APPDATA"));
 		Object path = Paths.get(path_dir.toString(), var);
 		if(!new File(path.toString()).exists()){
@@ -102,5 +103,41 @@ public class ImageUtil {
 		byte[] bytes = Files.readAllBytes(Paths.get(imagePath));
 		//inputStream.close();
 		return Base64.getEncoder().encodeToString(bytes);
+	}
+
+
+
+	public static byte[] compressImage(byte[] data) throws IOException {
+		Deflater deflater = new Deflater();
+		deflater.setLevel(Deflater.BEST_COMPRESSION);
+		deflater.setInput(data);
+		deflater.finish();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+		byte[] tmp = new byte[BITE_SIZE];
+
+		while(!deflater.finished()) {
+			int size = deflater.deflate(tmp);
+			outputStream.write(tmp,0, size);
+		}
+
+		outputStream.close();
+
+		return outputStream.toByteArray();
+	}
+
+	public static byte[] decompressImage(byte[] data) throws DataFormatException, IOException {
+		Inflater inflater = new Inflater();
+		inflater.setInput(data);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+		byte[] tmp = new byte[BITE_SIZE];
+
+		while (!inflater.finished()) {
+			int count = inflater.inflate(tmp);
+			outputStream.write(tmp, 0, count);
+		}
+
+		outputStream.close();
+
+		return outputStream.toByteArray();
 	}
 }

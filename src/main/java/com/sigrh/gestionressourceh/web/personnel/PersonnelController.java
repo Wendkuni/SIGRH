@@ -7,9 +7,12 @@ import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +28,15 @@ public class PersonnelController  {
     @PostMapping(path = "/create")
     public boolean addPersonnel(@RequestBody PersonnelModel model) {
         return service.create(model);
+    }
+
+    @PostMapping(path = "/createWithImage",consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
+    public boolean createPersonnel(@RequestParam("image")  MultipartFile image,@RequestBody PersonnelModel model) {
+        try {
+            return service.create(image,model);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PutMapping(path = "/updade/{id}")
