@@ -13,7 +13,7 @@ public class DossierMapper implements RowMapper<PersonnelDossierScanModel> {
         return PersonnelDossierScanModel.builder()
                 .libelDossier(rs.getString("libeldossier"))
                 .dateUpload(DateUtil.parse(rs.getString("dateupload")))
-                .idDossierScan(rs.getLong("IDdossier"))
+                .idDossierScan(rs.getLong("IDdossierscan"))
                 .observation(rs.getString("observation"))
                 .imagFold(rs.getBytes("imagfold"))
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))

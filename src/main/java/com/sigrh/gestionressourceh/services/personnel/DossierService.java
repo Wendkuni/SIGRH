@@ -1,13 +1,16 @@
 package com.sigrh.gestionressourceh.services.personnel;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
+import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.DossierDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 @Service
 @Transactional
@@ -16,6 +19,15 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
 
     @Override
     public boolean create(PersonnelDossierScanModel obj) {
+        return dao.create(obj);
+    }
+
+    public boolean create(MultipartFile imageFile, PersonnelDossierScanModel obj) {
+        try {
+            obj.setImagFold(ImageUtil.compressImage(imageFile.getBytes()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return dao.create(obj);
     }
 

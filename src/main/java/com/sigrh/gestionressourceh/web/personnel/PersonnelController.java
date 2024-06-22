@@ -12,12 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.zip.DataFormatException;
 
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
@@ -31,12 +28,12 @@ public class PersonnelController  {
     @Autowired
     private PersonnelService service;
 
-    @PostMapping(path = "/create")
-    public boolean addPersonnel(@RequestBody PersonnelModel model) {
-        return service.create(model);
-    }
+//    @PostMapping(path = "/create")
+//    public boolean addPersonnel(@RequestBody PersonnelModel model) {
+//        return service.create(model);
+//    }
 
-    @PostMapping(path = "/createWithImage",consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/create",consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
     public boolean createPersonnel(@RequestParam MultipartFile image,PersonnelModel model) {
         try {
             return service.create(image,model);
