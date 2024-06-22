@@ -11,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @Service
 @Transactional
@@ -26,8 +28,8 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     }
 
     public boolean create(MultipartFile imageFile, PersonnelModel obj) throws IOException {
-        obj.setImagPers(ImageUtil.compressImage(imageFile.getBytes()));
-        return this.daoImplement.create(obj);
+    	obj.setImagPers(ImageUtil.compressImage(imageFile.getBytes()));
+    	return this.daoImplement.create(obj);
     }
 
     @Override
@@ -90,5 +92,10 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     public List<PersonnelModel> findByLocalite(String localite) {
         return this.daoImplement.findByLocalite(localite);
+    }
+
+    public byte[] getImage(int id) throws DataFormatException, IOException {
+        PersonnelModel dbImage = this.find(id);
+        return dbImage.getImagPers();
     }
 }

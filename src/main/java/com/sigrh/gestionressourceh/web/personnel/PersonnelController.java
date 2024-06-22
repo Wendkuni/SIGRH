@@ -12,10 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.zip.DataFormatException;
+
+import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
 @RestController
 @CrossOrigin("*")
@@ -31,7 +36,7 @@ public class PersonnelController  {
     }
 
     @PostMapping(path = "/createWithImage",consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestParam("image")  MultipartFile image,@RequestBody PersonnelModel model) {
+    public boolean createPersonnel(@RequestParam MultipartFile image,PersonnelModel model) {
         try {
             return service.create(image,model);
         } catch (IOException e) {
@@ -62,7 +67,7 @@ public class PersonnelController  {
     @GetMapping(path = "/ByAffectation/{id}")
     public List<PersonnelModel> getAllPersonnelByAffectation(@PathVariable Integer id) {
         return service.findByAffectation(id);
-    }
+    };
 
     @GetMapping(path = "/ByLocalite/{id}")
     public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String id) {
@@ -76,5 +81,14 @@ public class PersonnelController  {
         status(HttpStatus.OK.value())
                 .message("Liste des types éducation").result(types).build();
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/image/{id}",produces = IMAGE_PNG_VALUE)
+    public byte[] getImage(@PathVariable int id){
+        try {
+           return this.service.getImage(id);
+        } catch (DataFormatException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

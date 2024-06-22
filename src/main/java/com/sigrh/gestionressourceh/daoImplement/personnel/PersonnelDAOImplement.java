@@ -67,9 +67,9 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("statusemp",obj.getStatusEmp());
            params.put("tlphone",obj.getTlphone());
            params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().getLabel():TypeEducation.PROFESSIONNEL.getLabel());
+           params.put("imgpers", obj.getImagPers());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
-           params.put("imgpers", obj.getImagPers());
            return true;
        }catch (Exception e){
            e.printStackTrace();
