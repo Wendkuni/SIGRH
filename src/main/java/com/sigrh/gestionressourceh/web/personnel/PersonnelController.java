@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import java.util.zip.DataFormatException;
 
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
+import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
 @RestController
 @CrossOrigin("*")
@@ -83,7 +84,7 @@ public class PersonnelController  {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/image/{id}",produces = IMAGE_PNG_VALUE)
+    @GetMapping(path = "/image/{id}",produces = {IMAGE_PNG_VALUE,IMAGE_JPEG_VALUE})
     public byte[] getImage(@PathVariable int id){
         try {
            return this.service.getImage(id);
