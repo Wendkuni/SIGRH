@@ -28,7 +28,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     }
 
     public boolean create(MultipartFile imageFile, PersonnelModel obj) throws IOException {
-    	obj.setImagPers(ImageUtil.compressImage(imageFile.getBytes()));
+    	obj.setImagPers(imageFile.getBytes());
     	return this.daoImplement.create(obj);
     }
 
@@ -51,6 +51,8 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     public List<PersonnelModel> findAll() {
         return this.daoImplement.findAll();
     }
+
+
 
     public boolean delete(Integer id) {
         return this.daoImplement.delete(id);
@@ -96,6 +98,7 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     public byte[] getImage(int id) throws DataFormatException, IOException {
         PersonnelModel dbImage = this.find(id);
-        return ImageUtil.decompressImage(dbImage.getImagPers());
+        return dbImage.getImagPers();
     }
+
 }

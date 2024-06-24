@@ -1,11 +1,9 @@
-package com.sigrh.gestionressourceh.services.personnel;
+package com.sigrh.gestionressourceh.services.parametre;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
-import com.sigrh.gestionressourceh.daoImplement.personnel.AffectationDAOImplement;
 import com.sigrh.gestionressourceh.daoImplement.personnel.MatiereDAOImplement;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
+import com.sigrh.gestionressourceh.domains.parametres.PersonnelMatieresModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

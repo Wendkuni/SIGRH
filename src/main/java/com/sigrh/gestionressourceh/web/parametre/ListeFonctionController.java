@@ -3,6 +3,7 @@ package com.sigrh.gestionressourceh.web.parametre;
 import com.sigrh.gestionressourceh.common.ApiResponse;
 import com.sigrh.gestionressourceh.domains.parametres.FonctionListeModel;
 import com.sigrh.gestionressourceh.services.parametre.FonctionListeService;
+import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -91,4 +92,6 @@ FonctionListeService service;
                 .message("Liste des ListeFonctions par identifiant").result(service.find(id)).build();
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
+
+
 }

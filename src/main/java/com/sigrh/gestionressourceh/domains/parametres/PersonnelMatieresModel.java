@@ -1,5 +1,6 @@
-package com.sigrh.gestionressourceh.domains.personnel;
+package com.sigrh.gestionressourceh.domains.parametres;
 
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import lombok.*;
 
 @AllArgsConstructor

@@ -1,7 +1,7 @@
-package com.sigrh.gestionressourceh.web.personnel;
+package com.sigrh.gestionressourceh.web.parametre;
 
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
-import com.sigrh.gestionressourceh.services.personnel.MatiereService;
+import com.sigrh.gestionressourceh.domains.parametres.PersonnelMatieresModel;
+import com.sigrh.gestionressourceh.services.parametre.MatiereService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

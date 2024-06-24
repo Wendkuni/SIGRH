@@ -3,7 +3,7 @@ package com.sigrh.gestionressourceh.web.personnel;
 import com.sigrh.gestionressourceh.common.ApiResponse;
 
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
-import com.sigrh.gestionressourceh.services.personnel.FonctionAgentService;
+import com.sigrh.gestionressourceh.services.parametre.FonctionAgentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -24,10 +24,10 @@ public class ConfigIndeminiteDAOImplement implements DAOTemplete<ConfigIdemitMod
     @Override
     public boolean create(ConfigIdemitModel obj) {
         try {
-            String sql = "Insert into configidemit(libidnmite,valinddeminite,dateeffet,IDFONCTIONLISTE) " +
-                    "values (?,?,?,?)";
+            String sql = "Insert into configidemit(libidnmite,valindeminite,datecreat,IDFONCTIONLISTE, IDCONFIGIDEMIT) " +
+                    "values (?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getLibIdnmite(),obj.getValIdeminite(),
-                    obj.getDateCreat(),obj.getFonctionListe().getIdFonctionListe())!=0;
+                    obj.getDateCreat(),obj.getFonctionListe().getIdFonctionListe(), obj.getIdConfigIdemit())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -63,7 +63,7 @@ public class ConfigIndeminiteDAOImplement implements DAOTemplete<ConfigIdemitMod
     @Override
     public boolean update(ConfigIdemitModel obj) {
         try {
-            String SQL = "update  configidemit set libidnmite= ?,valinddeminite= ?,dateeffet= ?,IDFONCTIONLISTE= ?" +
+            String SQL = "update  configidemit set libidnmite= ?,valindeminite= ?,datecreat= ?,IDFONCTIONLISTE= ?" +
                     " where IDCONFIGIDEMIT = ?";
             return  jdbcTemplate.update(SQL, obj.getLibIdnmite(),obj.getValIdeminite(),
                     obj.getDateCreat(),obj.getFonctionListe().getIdFonctionListe(),obj.getIdConfigIdemit())!=0;

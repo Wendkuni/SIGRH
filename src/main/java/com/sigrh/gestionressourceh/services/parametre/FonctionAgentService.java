@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.services.personnel;
+package com.sigrh.gestionressourceh.services.parametre;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;

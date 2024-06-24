@@ -31,10 +31,10 @@ public class RenumerationAgentDAOImplement implements DAOTemplete<RenumerationAg
     @Override
     public boolean create(RenumerationAgentModel obj) {
         try {
-            String sql = "Insert into renumerationagent(odebank,banklib,dateeffet,valmnt,IDagent) " +
-                    "values (?,?,?,?,?)";
+            String sql = "Insert into renumerationagent(codebank,banklib,dateeffet,valmnt,IDagent, IDRENUMERATIONAGENT) " +
+                    "values (?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getCodeBank(),obj.getLibelleBank(),obj.getDateEffet(),
-                    getSalaire(obj.getPersonnel().getIdAgent()),obj.getPersonnel().getIdAgent())!=0;
+                    getSalaire(obj.getPersonnel().getIdAgent()),obj.getPersonnel().getIdAgent(), obj.getIdRenumeration())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;

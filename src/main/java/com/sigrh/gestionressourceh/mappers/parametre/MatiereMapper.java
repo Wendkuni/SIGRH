@@ -1,6 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.parametre;
 
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
+import com.sigrh.gestionressourceh.domains.parametres.PersonnelMatieresModel;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.RowMapper;
 

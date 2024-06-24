@@ -50,4 +50,9 @@ public class GradeDAOImplement implements DAOTemplete<GradeModel> {
     public List<GradeModel> findAll() {
         return List.of();
     }
+
+    public List<String> findGrade() {
+        String sql = "SELECT DISTINCT libfonctn FROM fonctionliste";
+        return jdbcTemplate.queryForList(sql, String.class);
+    }
 }

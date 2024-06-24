@@ -25,11 +25,11 @@ public class IndeminiteDAOImplement implements DAOTemplete<IndeminiteModel> {
     @Override
     public boolean create(IndeminiteModel obj) {
         try {
-            String sql = "Insert into indeminites(encours,etatact,dateffet,fctionlib,grade,IDagent,libidnmite,valindeminite) " +
-                    "values (?,?,?,?,?,?,?,?)";
+            String sql = "Insert into indeminites(encours,etatact,dateffet,fctionlib,grade,IDagent,libidnmite,valindeminite, IDINDEMINITES) " +
+                    "values (?,?,?,?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getEncours(),obj.getEtatact(),
                     obj.getDateEffet(),obj.getFctionLibelle(),obj.getGrade(),obj.getPersonnel().getIdAgent(),
-                    obj.getLibelleIndeminite(),obj.getValeurIndeminite())!=0;
+                    obj.getLibelleIndeminite(),obj.getValeurIndeminite(), obj.getIdIndeminites())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
