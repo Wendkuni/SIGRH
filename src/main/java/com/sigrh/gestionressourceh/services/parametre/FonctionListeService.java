@@ -39,9 +39,7 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
         return dao.findAll()
                 ;
     }
-    public List<String> getAllFonctions() {
-        return dao.findDistinctFonctions();
-    }
+
 
     public boolean delete(Integer id) {
         return this.dao.delete(id);
