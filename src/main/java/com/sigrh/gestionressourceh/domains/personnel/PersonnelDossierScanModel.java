@@ -2,6 +2,7 @@ package com.sigrh.gestionressourceh.domains.personnel;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -10,13 +11,13 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-public class PersonnelDossierScanModel {
+public class PersonnelDossierScanModel implements Serializable {
 
-    private long idDossierScan;
+    private static final long serialVersionUID = 1L;
+	private long idDossierScan;
     private PersonnelModel personnel;
     private String libelDossier;
     private LocalDate dateUpload;
     private String observation;
-
     private byte[] imagFold;
 }

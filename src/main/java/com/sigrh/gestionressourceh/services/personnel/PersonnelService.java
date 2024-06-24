@@ -96,6 +96,6 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
 
     public byte[] getImage(int id) throws DataFormatException, IOException {
         PersonnelModel dbImage = this.find(id);
-        return dbImage.getImagPers();
+        return ImageUtil.decompressImage(dbImage.getImagPers());
     }
 }

@@ -62,7 +62,12 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
     public boolean update(Integer id, PersonnelDossierScanModel m) {
         PersonnelDossierScanModel model = find(id);
         if(model != null) {
-
+        	model.setDateUpload(m.getDateUpload());
+        	model.setIdDossierScan(m.getIdDossierScan());
+        	model.setImagFold(m.getImagFold());
+        	model.setLibelDossier(m.getLibelDossier());
+        	model.setObservation(m.getObservation());
+        	model.setPersonnel(m.getPersonnel());
             return this.update(model);
         }return false;
     }

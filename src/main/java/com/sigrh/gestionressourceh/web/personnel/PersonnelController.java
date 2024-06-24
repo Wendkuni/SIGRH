@@ -1,13 +1,14 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sigrh.gestionressourceh.common.ApiResponse;
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
+import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 
@@ -27,14 +29,19 @@ import static org.springframework.http.MediaType.IMAGE_JPEG_VALUE;
 public class PersonnelController  {
     @Autowired
     private PersonnelService service;
-
+    private final ObjectMapper objectMapper = new ObjectMapper();
 //    @PostMapping(path = "/create")
 //    public boolean addPersonnel(@RequestBody PersonnelModel model) {
 //        return service.create(model);
 //    }
+    
+//    @PutMapping(path = "/updade/{id}")
+//    public boolean updatePersonnel(@PathVariable Integer id, @RequestBody PersonnelModel model) {
+//        return service.update(id,model);
+//    }
 
-    @PostMapping(path = "/create",consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestParam MultipartFile image,PersonnelModel model) {
+    @PostMapping(path = "/create",consumes =MULTIPART_FORM_DATA_VALUE)
+    public boolean createPersonnel(@RequestPart(value = "image") MultipartFile image, PersonnelModel model) {
         try {
             return service.create(image,model);
         } catch (IOException e) {
@@ -42,8 +49,10 @@ public class PersonnelController  {
         }
     }
 
-    @PutMapping(path = "/updade/{id}")
-    public boolean updatePersonnel(@PathVariable Integer id, @RequestBody PersonnelModel model) {
+    
+    @PutMapping(path = "/updade/{id}",consumes =MULTIPART_FORM_DATA_VALUE)
+    public boolean updatePersonnel(@RequestPart(value = "image") MultipartFile image,@PathVariable Integer id, PersonnelModel model) throws IOException {
+    	model.setImagPers(ImageUtil.compressImage(image.getBytes()));
         return service.update(id,model);
     }
 

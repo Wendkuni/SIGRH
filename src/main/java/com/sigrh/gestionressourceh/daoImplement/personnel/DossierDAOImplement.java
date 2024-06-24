@@ -25,9 +25,9 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     @Override
     public boolean create(PersonnelDossierScanModel obj) {
         try {
-            String sql = "Insert into dossierscan(libeldossier,IDagent,observation,dateupload,imagfold) " +
-                    "values (?,?,?,?,?)";
-            return  jdbcTemplate.update(sql, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),
+            String sql = "Insert into dossierscan(IDdossierscan,libeldossier,IDagent,observation,dateupload,imagfold) " +
+                    "values (?,?,?,?,?,?)";
+            return  jdbcTemplate.update(sql,obj.getIdDossierScan(), obj.getLibelDossier(),obj.getPersonnel().getIdAgent(),
                     obj.getObservation(), obj.getDateUpload(),obj.getImagFold() )!=0;
         }catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +59,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
             String SQL = "update  dossierscan set libeldossier= ?,IDagent= ?,observation= ?,dateupload= ?,imagfold= ?" +
                     " where IDdossierscan = ?";
             return  jdbcTemplate.update(SQL, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),obj.getObservation(),
-                    obj.getDateUpload(),obj.getImagFold() )!=0;
+                    obj.getDateUpload(),obj.getImagFold(),obj.getIdDossierScan() )!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
