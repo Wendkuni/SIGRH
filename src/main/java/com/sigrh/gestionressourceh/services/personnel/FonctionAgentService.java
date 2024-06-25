@@ -1,4 +1,4 @@
-package com.sigrh.gestionressourceh.services.parametre;
+package com.sigrh.gestionressourceh.services.personnel;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
@@ -33,9 +33,6 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
     public PersonnelFonctionModel find(int id) {
         return dao.find(id);
     }
-    public PersonnelFonctionModel findByAgent(int IDagent) {
-        return dao.findByAgent(IDagent);
-    }
 
     @Override
     public List<PersonnelFonctionModel> findAll() {
@@ -54,4 +51,9 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
             return this.update(model);
         }return false;
     }
+
+	public List<PersonnelFonctionModel> findByAgent(int iDagent) {
+		
+		return dao.findByAgent(iDagent);
+	}
 }
