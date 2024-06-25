@@ -2,6 +2,7 @@ package com.sigrh.gestionressourceh.daoImplement.personnel;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
+import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.DossierMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -79,6 +80,7 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
         }
     }
 
+
     @Override
     public List<PersonnelDossierScanModel> findAll() {
         try {
@@ -91,8 +93,15 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
         }
     }
 
-	public List<PersonnelDossierScanModel> findByAgent(int iDagent) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
+        try {
+            String SQL = "select * from dossierscan aff " +
+                    " inner join personnel p on p.IDagent =aff.IDagent " +
+                    " where IDagent ="+IDagent;
+            return jdbcTemplate.query(SQL,new DossierMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 	}
 }

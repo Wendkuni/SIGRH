@@ -83,10 +83,10 @@ public class FonctionAgentDAOImplement implements DAOTemplete<PersonnelFonctionM
         }
     }
 
-    public List<PersonnelFonctionModel> findByAgent(int IDagent) {
+    public PersonnelFonctionModel findByAgent(int IDagent) {
         try {
-            String SQL = "select * from fonctionagent aff  where IDagent =?";
-            return jdbcTemplate.query(SQL, new Object[]{IDagent}, new FonctionAgentMapper());
+            String SQL = "select * from fonctionagent aff  where IDagent ="+IDagent;
+            return jdbcTemplate.queryForObject(SQL, new Object[]{IDagent}, new FonctionAgentMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;

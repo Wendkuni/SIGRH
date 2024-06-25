@@ -33,7 +33,7 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
     public PersonnelFonctionModel find(int id) {
         return dao.find(id);
     }
-    public List<PersonnelFonctionModel> findByAgent(int IDagent) {
+    public PersonnelFonctionModel findByAgent(int IDagent) {
         return dao.findByAgent(IDagent);
     }
 
