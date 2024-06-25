@@ -14,7 +14,7 @@ public class FonctionListeMapper implements RowMapper<FonctionListeModel> {
                 .idFonctionListe(rs.getLong("IDFONCTIONLISTE"))
                 .echelle(rs.getString("ECHELLE"))
                 .echelon(rs.getString("echelon"))
-                .garde(rs.getString("GRADE"))
+                .grade(rs.getString("GRADE"))
                 .indixe(rs.getString("INDIXE"))
                 .libelleFonction(rs.getString("libfonctn"))
                 .libelleFonctionArab(rs.getString("libfonctnarab"))

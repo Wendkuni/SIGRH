@@ -19,7 +19,7 @@ public class IndeminiteModel implements Serializable {
     private LocalDate dateEffet;
     private Boolean encours;
     private String etatact;
-    private  String fctionLibelle;
+    private String fctionLibelle;
     private String grade;
     private PersonnelModel personnel;
 }

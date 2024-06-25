@@ -24,7 +24,7 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
 
     public boolean create(MultipartFile imageFile, PersonnelDossierScanModel obj) {
         try {
-            obj.setImagFold(ImageUtil.compressImage(imageFile.getBytes()));
+            obj.setImagFold((imageFile.getBytes()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

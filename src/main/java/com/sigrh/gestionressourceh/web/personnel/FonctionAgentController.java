@@ -2,8 +2,10 @@ package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.common.ApiResponse;
 
+import com.sigrh.gestionressourceh.domains.parametres.FonctionAgentModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.services.personnel.FonctionAgentService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,11 +95,16 @@ FonctionAgentService service;
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/ByAgent")
+    @GetMapping(path = "/ByAgent/{IDagent}")
     public ResponseEntity<ApiResponse<PersonnelFonctionModel>> getFonctionByAgent (@PathVariable Integer IDagent){
         ApiResponse<PersonnelFonctionModel> reponse = new ApiResponse.
                 Builder<PersonnelFonctionModel>().status(HttpStatus.OK.value())
                 .message("Liste des fonction par Agents").result(service.find(IDagent)).build();
         return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/agent/{IDagent}")
+    public List<PersonnelFonctionModel> getFonctionsByAgentId(@PathVariable int IDagent) {
+        return service.findByAgent(IDagent);
     }
 }

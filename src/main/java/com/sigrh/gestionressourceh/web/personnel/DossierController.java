@@ -46,7 +46,7 @@ public class DossierController {
     @PutMapping(path = "/Update/{id}",consumes=MULTIPART_FORM_DATA_VALUE)
     public boolean updateDossier(@RequestPart(value = "image") MultipartFile image,@RequestParam Integer id, DossierDTO model) throws IOException {
     	PersonnelDossierScanModel doc = new DossierDTO().toDossierScanModel(model);
-        doc.setImagFold(ImageUtil.compressImage(image.getBytes()));
+        doc.setImagFold((image.getBytes()));
     	return service.update(id,doc);
     }
 
@@ -67,13 +67,13 @@ public class DossierController {
         return service.find(id);
     }
 
-    @GetMapping(path = "/ByAgent")
+    @GetMapping(path = "/ByAgent/{IDagent}")
     public List<PersonnelDossierScanModel> getDossierByAgent(@PathVariable int IDagent) {
         return service.findByAgent(IDagent);
     }
     @GetMapping(path = "/image/{id}",produces={APPLICATION_PDF_VALUE,IMAGE_PNG_VALUE,IMAGE_JPEG_VALUE})
     public byte[] getImageFold(@PathVariable int id) throws DataFormatException, IOException {
         PersonnelDossierScanModel dbImage = this.getDossierById(id);
-        return ImageUtil.decompressImage(dbImage.getImagFold());
+        return (dbImage.getImagFold());
     }
 }

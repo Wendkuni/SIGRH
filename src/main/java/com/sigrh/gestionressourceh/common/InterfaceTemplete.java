@@ -16,4 +16,6 @@ public interface InterfaceTemplete<T> {
 
 	List<T> findAll();
 
+
+
 }

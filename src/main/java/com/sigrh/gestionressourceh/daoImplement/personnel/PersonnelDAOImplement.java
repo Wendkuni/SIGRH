@@ -28,6 +28,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 .usingGeneratedKeyColumns("IDagent");
 	}
 
+    public List<String> findDistinctFonctions() {
+        String sql = "SELECT DISTINCT libfonctn FROM fonctionliste";
+        return jdbcTemplate.queryForList(sql, String.class);
+    }
 	@Override
     public void setDataSource(DataSource ds) {
 //        this.insert = new SimpleJdbcInsert(ds)

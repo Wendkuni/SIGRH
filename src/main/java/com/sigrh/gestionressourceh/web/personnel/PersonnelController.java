@@ -90,6 +90,8 @@ public class PersonnelController  {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
+
     @GetMapping(path = "/image/{id}",produces = {IMAGE_PNG_VALUE,IMAGE_JPEG_VALUE})
     public byte[] getImage(@PathVariable int id){
         try {

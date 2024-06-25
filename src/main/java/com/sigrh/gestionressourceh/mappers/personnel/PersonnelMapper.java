@@ -28,7 +28,7 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setFinCntrat(DateUtil.parse(rs.getString("fincntrat")));
         personnel.setDateNaiss(DateUtil.parse(rs.getString("datenaiss")));
         personnel.setLieuNaiss(rs.getString("lieunaiss"));
-        personnel.setActifOrNot(rs.getString("actifornot"));
+        personnel.setActifOrNot(rs.getBoolean("actifornot"));
         personnel.setBank(rs.getString("bank"));
         personnel.setCodeBank(rs.getString("codbank"));
         personnel.setNumroCpte(rs.getString("numrocpte"));

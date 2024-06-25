@@ -12,11 +12,16 @@ import java.io.Serializable;
 public class LocaliteModel implements Serializable {
     private long idLocalite;
     private String libLocalite;
-    private String ddren;
+    private String dDren;
     private String province;
-    private String zonel;
-    private String liblocaliteArab;
-    private String ddrenwaliah;
-    private String provincearab;
-    private String zonelArab;
+    private String zoneL;
+    private String libLocaliteArab;
+    private String dDrenwaliah;
+    private String provinceArab;
+    private String zoneLArab;
+    private int codew;
+    private int codemougkata;
+    private int priority;
+    private int nombreDePoint;
+
 }

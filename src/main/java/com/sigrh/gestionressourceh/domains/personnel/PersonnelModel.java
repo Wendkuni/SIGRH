@@ -30,7 +30,7 @@ public class PersonnelModel implements Serializable {
     private LocalDate finCntrat;
     private LocalDate dateNaiss;
     private String lieuNaiss;
-    private String actifOrNot;
+    private Boolean actifOrNot;
     private String bank;
     private String codeBank;
     private String numroCpte;

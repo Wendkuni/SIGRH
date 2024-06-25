@@ -40,6 +40,7 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
                 ;
     }
 
+
     public boolean delete(Integer id) {
         return this.dao.delete(id);
     }
@@ -52,4 +53,5 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
             return this.update(model);
         }return false;
     }
+
 }

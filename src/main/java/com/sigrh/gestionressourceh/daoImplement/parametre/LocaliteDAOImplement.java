@@ -2,6 +2,8 @@ package com.sigrh.gestionressourceh.daoImplement.parametre;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.parametres.LocaliteModel;
+import com.sigrh.gestionressourceh.mappers.parametre.FonctionListeMapper;
+import com.sigrh.gestionressourceh.mappers.parametre.LocaliteMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -48,6 +50,12 @@ public class LocaliteDAOImplement implements DAOTemplete<LocaliteModel> {
 
     @Override
     public List<LocaliteModel> findAll() {
-        return List.of();
+        try {
+            String SQL = "SELECT distinct * FROM localite";
+            return jdbcTemplate.query(SQL,new LocaliteMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

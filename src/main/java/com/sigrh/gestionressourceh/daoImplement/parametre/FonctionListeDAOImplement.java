@@ -6,6 +6,7 @@ import com.sigrh.gestionressourceh.domains.parametres.FonctionListeModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.mappers.parametre.FonctionListeMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.FonctionAgentMapper;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -20,6 +21,7 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
+
     @Override
     public void setDataSource(DataSource ds) {
 
@@ -28,10 +30,10 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
     @Override
     public boolean create(FonctionListeModel obj) {
         try {
-            String sql = "Insert into fonctionliste(ECHELLE,echelon,GRADE,INDIXE,libfonctn,libfonctnarab,salbase) " +
-                    "values (?,?,?,?,?,?,?)";
-            return  jdbcTemplate.update(sql,obj.getEchelle(),obj.getEchelon(),obj.getGarde(),obj.getIndixe(),obj.getLibelleFonction(),
-                    obj.getLibelleFonctionArab(),obj.getSalaireBase())!=0;
+            String sql = "Insert into fonctionliste(ECHELLE,echelon,GRADE,INDIXE,libfonctn,libfonctnarab,salbase,IDFONCTIONLISTE) " +
+                    "values (?,?,?,?,?,?,?,?)";
+            return  jdbcTemplate.update(sql,obj.getEchelle(),obj.getEchelon(),obj.getGrade(),obj.getIndixe(),obj.getLibelleFonction(),
+                    obj.getLibelleFonctionArab(),obj.getSalaireBase(), obj.getIdFonctionListe())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -61,7 +63,7 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
         try {
             String SQL = "update  fonctionliste set ECHELLE= ?,echelon= ?,GRADE= ?,INDIXE= ?," +
                     " libfonctn= ?,libfonctnarab= ?,salbase= ? where IDFONCTIONLISTE = ?";
-            return  jdbcTemplate.update(SQL,obj.getEchelle(),obj.getEchelon(),obj.getGarde(),obj.getIndixe(),obj.getLibelleFonction(),
+            return  jdbcTemplate.update(SQL,obj.getEchelle(),obj.getEchelon(),obj.getGrade(),obj.getIndixe(),obj.getLibelleFonction(),
                     obj.getLibelleFonctionArab(),obj.getSalaireBase(),obj.getIdFonctionListe())!=0;
         }catch (Exception e) {
             e.printStackTrace();
@@ -83,13 +85,14 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
     @Override
     public List<FonctionListeModel> findAll() {
         try {
-            String SQL = "select * from fonctionliste ";
+            String SQL = "SELECT distinct * FROM fonctionliste";
             return jdbcTemplate.query(SQL,new FonctionListeMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     public List<PersonnelFonctionModel> findFonctionByAgent(int IDagent) {
         try {
@@ -102,4 +105,6 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
             return null;
         }
     }
+
+
 }

@@ -51,4 +51,9 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
             return this.update(model);
         }return false;
     }
+
+	public List<PersonnelFonctionModel> findByAgent(int iDagent) {
+		
+		return dao.findByAgent(iDagent);
+	}
 }

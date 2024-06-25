@@ -21,7 +21,7 @@ public class FonctionAgentModel implements Serializable {
     private String groupA;
     private String categoriA;
     private String corpsA;
-    private String garde;
+    private String grade;
     private String indixe;
     private String corpsAarab;
     private String fonctionLiarab;

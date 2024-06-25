@@ -1,7 +1,7 @@
 package com.sigrh.gestionressourceh.daoImplement.personnel;
 
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelMatieresModel;
+import com.sigrh.gestionressourceh.domains.parametres.PersonnelMatieresModel;
 import com.sigrh.gestionressourceh.mappers.parametre.MatiereMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
