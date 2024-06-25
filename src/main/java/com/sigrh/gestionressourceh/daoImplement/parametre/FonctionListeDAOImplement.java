@@ -6,7 +6,6 @@ import com.sigrh.gestionressourceh.domains.parametres.FonctionListeModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelFonctionModel;
 import com.sigrh.gestionressourceh.mappers.parametre.FonctionListeMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.FonctionAgentMapper;
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -92,6 +91,15 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
             return null;
         }
     }
+    public List<String> ListEchelle() {
+        try {
+            String SQL = "select ECHELLE  from fonctionliste group by ECHELLE";
+            return jdbcTemplate.queryForList(SQL,String.class).stream().map(String::toUpperCase).toList();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
     public List<PersonnelFonctionModel> findFonctionByAgent(int IDagent) {
@@ -107,4 +115,33 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
     }
 
 
+    public List<String> ListEchelon() {
+        try {
+            String SQL = "select echelon  from fonctionliste group by echelon";
+            return jdbcTemplate.queryForList(SQL,String.class).stream().map(String::toUpperCase).toList();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<String> ListGrade() {
+        try {
+            String SQL = "select GRADE  from fonctionliste group by GRADE";
+            return jdbcTemplate.queryForList(SQL,String.class).stream().map(String::toUpperCase).toList();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<String> LibFonction() {
+        try {
+            String SQL = "select libfonctn  from fonctionliste group by libfonctn";
+            return jdbcTemplate.queryForList(SQL,String.class).stream().map(String::toLowerCase).toList();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
