@@ -54,4 +54,19 @@ public class FonctionListeService implements InterfaceTemplete<FonctionListeMode
         }return false;
     }
 
+    public List<String> ListEchelle() {
+        return dao.ListEchelle();               
+    }
+
+    public List<String> ListEchelon() {
+        return dao.ListEchelon();
+    }
+
+    public List<String> ListGrades() {
+        return dao.ListGrade();
+    }
+
+    public List<String> LibFonction() {
+        return dao.LibFonction();
+    }
 }

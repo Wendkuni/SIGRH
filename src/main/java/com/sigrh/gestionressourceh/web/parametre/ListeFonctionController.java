@@ -93,5 +93,34 @@ FonctionListeService service;
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/ListeEchelle")
+    public ResponseEntity<ApiResponse<List<String>>> getAllListeEchelle () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des echelles").result(service.ListEchelle()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
 
+    @GetMapping(path = "/ListeGrade")
+    public ResponseEntity<ApiResponse<List<String>>> getAllListeGrade () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des grades").result(service.ListGrades()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+    @GetMapping(path = "/ListeEchelon")
+    public ResponseEntity<ApiResponse<List<String>>> getAllListeEchelon () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des echelons").result(service.ListEchelon()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/AllLibFonction")
+    public ResponseEntity<ApiResponse<List<String>>> getAllLibFonction () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des echelons").result(service.LibFonction()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
 }
