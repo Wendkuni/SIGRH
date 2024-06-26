@@ -58,4 +58,16 @@ public class LocaliteDAOImplement implements DAOTemplete<LocaliteModel> {
             return null;
         }
     }
+    public List<String> ListeLocalite() {
+        try {
+            String SQL = "select ddren  from localite group by ddren";
+            return jdbcTemplate.queryForList(SQL, String.class).stream().map(String::toUpperCase).toList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
+
