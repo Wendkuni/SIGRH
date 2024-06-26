@@ -1,6 +1,7 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.services.dtos.personnel.DossierDTO;
@@ -26,6 +27,7 @@ public class DossierController {
      
 	@Autowired
     DossierService service;
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
 
 //    @PostMapping(path = "/create")
@@ -39,7 +41,8 @@ public class DossierController {
 //  }   
 
     @PostMapping(path = "/create",consumes=MULTIPART_FORM_DATA_VALUE)
-    public boolean createDossier(@RequestPart(value = "image") MultipartFile image, DossierDTO model) {
+    public boolean createDossier(@RequestPart(value = "image") MultipartFile image, DossierDTO model)
+    {
         return service.create(image,new DossierDTO().toDossierScanModel(model));
      }
     

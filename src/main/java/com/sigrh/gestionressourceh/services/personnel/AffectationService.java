@@ -56,4 +56,5 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
             return this.update(model);
         }return false;
     }
+
 }

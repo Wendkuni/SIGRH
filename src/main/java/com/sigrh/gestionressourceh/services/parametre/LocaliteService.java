@@ -39,4 +39,8 @@ public class LocaliteService implements InterfaceTemplete<LocaliteModel> {
     public List<LocaliteModel> findAll() {
         return dao.findAll();
     }
+
+    public List<String> ListeLocalite() {
+        return dao.ListeLocalite();
+    }
 }
