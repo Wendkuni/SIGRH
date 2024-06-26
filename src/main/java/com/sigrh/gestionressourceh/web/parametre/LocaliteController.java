@@ -27,7 +27,7 @@ public class LocaliteController {
         return service.findAll();
     }
 
-    @GetMapping(path = "/affectationByLocalite")
+    @GetMapping(path = "/AllDdren")
     public ResponseEntity<ApiResponse<List<String>>> getAllListeLocalite () {
         ApiResponse<List<String>> reponse = new ApiResponse.
                 Builder<List<String>>().status(HttpStatus.OK.value())
