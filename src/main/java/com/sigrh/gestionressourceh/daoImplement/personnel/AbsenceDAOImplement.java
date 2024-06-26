@@ -25,8 +25,8 @@ public class AbsenceDAOImplement implements DAOTemplete<PersonnelAbsenceModel> {
     @Override
     public boolean create(PersonnelAbsenceModel obj) {
         try {
-            String sql = "Insert into absencea(autorisation,IDagent,dateeffet,motif,nombrejr,signataire) " +
-                    "values (?,?,?,?,?,?)";
+            String sql = "Insert into absencea(autorisation,IDagent,dateeffet,motif,libelleab,nombrejr,signataire) " +
+                    "values (?,?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql, obj.getAutorisation(),  obj.getPersonnel().getIdAgent(),
                     obj.getDateeffet(), obj.getMotif(),obj.getLibelle(),obj.getNbJour(),obj.getSignataire())!=0;
         }catch (Exception e) {
@@ -56,10 +56,10 @@ public class AbsenceDAOImplement implements DAOTemplete<PersonnelAbsenceModel> {
     @Override
     public boolean update(PersonnelAbsenceModel obj) {
         try {
-            String SQL = "update  absencea set autorisation= ?,IDagent= ?,dateeffet= ?,motif= ?,nombrejr= ?,signataire= ?" +
+            String SQL = "update  absencea set autorisation= ?,IDagent= ?,dateeffet= ?,motif= ?,libelleab=?,nombrejr= ?,signataire= ?" +
                     " where IDABSENCEA = ?";
             return  jdbcTemplate.update(SQL, obj.getAutorisation(),  obj.getPersonnel().getIdAgent(),
-                    obj.getDateeffet(), obj.getMotif(),obj.getLibelle(),obj.getNbJour(),obj.getSignataire())!=0;
+                    obj.getDateeffet(), obj.getMotif(),obj.getLibelle(),obj.getNbJour(),obj.getSignataire(),obj.getIdAbsence())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
