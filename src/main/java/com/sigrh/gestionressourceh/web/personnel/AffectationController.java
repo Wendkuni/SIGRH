@@ -1,6 +1,8 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
 import com.sigrh.gestionressourceh.common.ApiResponse;
+import com.sigrh.gestionressourceh.common.constant.TypeEducation;
+import com.sigrh.gestionressourceh.common.constant.TypeNature;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.services.personnel.AffectationService;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -45,6 +48,15 @@ public class AffectationController {
     @GetMapping(path = "/affectationsByAgent/{IDagent}")
     public PersonnelAffectationModel getAffectationByAgent(@PathVariable Integer IDagent) {
         return service.find(IDagent);
+    }
+
+    @GetMapping(path = "/TypeNature")
+    public ResponseEntity<ApiResponse<List<String>>> getAllTypeNature(){
+        List<String> types = Arrays.stream(TypeNature.values()).map(e->e.toString().toUpperCase()).toList();
+        ApiResponse<List<String>> response=new ApiResponse.Builder<List<String>>().
+                status(HttpStatus.OK.value())
+                .message("Liste des types nature").result(types).build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
