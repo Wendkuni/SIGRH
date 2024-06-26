@@ -37,7 +37,7 @@ public class AbsenceAndCongeController {
         }
     }
         @PutMapping(path = "/update/{id}")
-        public ResponseEntity<ApiResponse<PersonnelAbsenceModel>> updateAbsence (@RequestParam Integer id, PersonnelAbsenceModel model){
+        public ResponseEntity<ApiResponse<PersonnelAbsenceModel>> updateAbsence (@PathVariable Integer id, @RequestBody PersonnelAbsenceModel model){
             ApiResponse<PersonnelAbsenceModel> response;
             if (service.update(id, model)) {
                 response = new ApiResponse

@@ -49,8 +49,15 @@ public class AbsenceService implements InterfaceTemplete<PersonnelAbsenceModel> 
     public boolean update(Integer id, PersonnelAbsenceModel m) {
         PersonnelAbsenceModel model = find(id);
         if(model != null) {
-            model=m;
-            model.setIdAbsence(Long.valueOf(id));
+//            model=m;
+//            model.setIdAbsence(Long.valueOf(id));
+        	model.setAutorisation(m.getAutorisation());
+        	model.setDateeffet(m.getDateeffet());
+        	model.setLibelle(m.getLibelle());
+        	model.setMotif(m.getMotif());
+        	model.setNbJour(m.getNbJour());
+        	model.setPersonnel(m.getPersonnel());
+        	model.setSignataire(m.getSignataire());
             return this.update(model);
         }return false;
     }
