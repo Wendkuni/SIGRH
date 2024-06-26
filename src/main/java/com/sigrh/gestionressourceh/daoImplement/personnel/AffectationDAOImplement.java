@@ -94,6 +94,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
 
     }
 
+
     @Override
     public List<PersonnelAffectationModel> findAll() {
         try {
@@ -121,9 +122,9 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     public List<PersonnelAffectationModel> findByAgent(int IDagent) {
         try {
             String SQL = "select * from affectation aff " +
-                    " inner join personnel p on p.IDagent =aff.IDagent " +
-                    " where IDagent ="+IDagent;
-            return jdbcTemplate.query(SQL,new AffectationMapper());
+                    " left join personnel p on p.IDagent =aff.IDagent " +
+                    " where aff.IDagent = ?";
+            return jdbcTemplate.query(SQL,new Object[]{IDagent},new AffectationMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;

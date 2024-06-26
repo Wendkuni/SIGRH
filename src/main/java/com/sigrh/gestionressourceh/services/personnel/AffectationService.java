@@ -4,6 +4,7 @@ import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.AffectationDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

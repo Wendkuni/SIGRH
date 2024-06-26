@@ -91,5 +91,27 @@ public class LocaliteDAOImplement implements DAOTemplete<LocaliteModel> {
 
     }
 
+    public List<String> ListePriority() {
+        try {
+            String SQL = "select priority  from localite group by priority";
+            return jdbcTemplate.queryForList(SQL, String.class).stream().map(String::toUpperCase).toList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public List<String> ListeNombrePoint() {
+        try {
+            String SQL = "select nombredepoint  from localite group by nombredepoint";
+            return jdbcTemplate.queryForList(SQL, String.class).stream().map(String::toUpperCase).toList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
 

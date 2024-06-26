@@ -43,4 +43,20 @@ public class LocaliteService implements InterfaceTemplete<LocaliteModel> {
     public List<String> ListeLocalite() {
         return dao.ListeLocalite();
     }
+
+    public List<String> ListeCodew() {
+        return dao.ListeCodeW();
+    }
+
+    public List<String> ListePriority() {
+        return dao.ListePriority();
+    }
+
+    public List<String> ListeNombrePoint() {
+        return dao.ListeNombrePoint();
+    }
+
+    public List<String> ListeCodeMougkata() {
+        return dao.ListeCodeMougkata();
+    }
 }

@@ -31,7 +31,31 @@ public class LocaliteController {
     public ResponseEntity<ApiResponse<List<String>>> getAllListeLocalite () {
         ApiResponse<List<String>> reponse = new ApiResponse.
                 Builder<List<String>>().status(HttpStatus.OK.value())
-                .message("Liste des echelons").result(service.ListeLocalite()).build();
+                .message("Liste des Dren").result(service.ListeLocalite()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/AllCodeW")
+    public ResponseEntity<ApiResponse<List<String>>> getAllCodeW () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des CodeW").result(service.ListeCodew()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/AllCodeMougkata")
+    public ResponseEntity<ApiResponse<List<String>>> getAllCodeMougkata () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des CodeMougkata").result(service.ListeCodeMougkata()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/AllPriority")
+    public ResponseEntity<ApiResponse<List<String>>> getAllPriority () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des priority").result(service.ListePriority()).build();
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 

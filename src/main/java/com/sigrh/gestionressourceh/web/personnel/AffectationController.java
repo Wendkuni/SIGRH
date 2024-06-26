@@ -46,8 +46,8 @@ public class AffectationController {
     }
 
     @GetMapping(path = "/affectationsByAgent/{IDagent}")
-    public PersonnelAffectationModel getAffectationByAgent(@PathVariable Integer IDagent) {
-        return service.find(IDagent);
+    public List<PersonnelAffectationModel> getAffectationByAgent(@PathVariable Integer IDagent) {
+        return service.findByAgent(IDagent);
     }
 
     @GetMapping(path = "/TypeNature")
