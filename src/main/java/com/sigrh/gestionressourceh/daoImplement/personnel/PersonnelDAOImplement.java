@@ -28,10 +28,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 .usingGeneratedKeyColumns("IDagent");
 	}
 
-    public List<String> findDistinctFonctions() {
-        String sql = "SELECT DISTINCT libfonctn FROM fonctionliste";
-        return jdbcTemplate.queryForList(sql, String.class);
-    }
+
 	@Override
     public void setDataSource(DataSource ds) {
 //        this.insert = new SimpleJdbcInsert(ds)
@@ -95,7 +92,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " codbank=?, bank=?, datenaiss=?, " +
                 "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
                 "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
-                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=? where IDagent = ?";
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=? where IDagent = ?";
         boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
                 obj.getAdressEmp(), obj.getCleRib(),
                 obj.getDteSortie(), obj.getNomPrenom(),
@@ -108,6 +105,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
                 obj.getTypeeducation().getLabel(),
+                obj.getImagPers(),
                 obj.getIdAgent()) != 0;
         return b;
     }
@@ -134,7 +132,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
     public List<PersonnelModel> findByLocalite(String localite) {
         String SQL = "select p.* from personnel p" +
                 " right join affectation aff on p.IDagent=aff.IDagent" +
-                " where localite ="+localite;
+                " where aff.localite = '"+localite+"'";
         return jdbcTemplate.query(SQL, new PersonnelMapper());
     }
 

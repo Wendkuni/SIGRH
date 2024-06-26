@@ -4,6 +4,7 @@ import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.DossierMapper;
+import com.sigrh.gestionressourceh.mappers.personnel.FonctionAgentMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -56,11 +57,12 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
 
     @Override
     public boolean update(PersonnelDossierScanModel obj) {
+       // System.out.println(obj.getLibelDossier());
         try {
-            String SQL = "update  dossierscan set libeldossier= ?,IDagent= ?,observation= ?,dateupload= ?,imagfold= ?" +
-                    " where IDdossierscan = ?";
-            return  jdbcTemplate.update(SQL, obj.getLibelDossier(),  obj.getPersonnel().getIdAgent(),obj.getObservation(),
-                    obj.getDateUpload(),obj.getImagFold(),obj.getIdDossierScan() )!=0;
+            String SQL = "update  dossierscan set libeldossier= ?,observation= ?,dateupload= ?,imagfold= ?" +
+                    " where IDdossierscan= ? ";
+            return  jdbcTemplate.update(SQL, obj.getLibelDossier(),obj.getObservation(),
+                    obj.getDateUpload(),obj.getImagFold(),obj.getIdDossierScan())!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -95,13 +97,14 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
 
 	public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
         try {
-            String SQL = "select * from dossierscan aff " +
-                    " inner join personnel p on p.IDagent =aff.IDagent " +
-                    " where IDagent ="+IDagent;
-            return jdbcTemplate.query(SQL,new DossierMapper());
+            String SQL = "select * from dossierscan fction  "
+                    + "left join personnel p on p.IDagent =fction.IDagent "
+                    + "where fction.IDagent =?";
+            return jdbcTemplate.query(SQL, new Object[]{IDagent}, new DossierMapper());
         }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
 	}
+
 }

@@ -6,12 +6,15 @@ import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.DossierDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.zip.DataFormatException;
+
 @Service
 @Transactional
 public class DossierService implements InterfaceTemplete<PersonnelDossierScanModel> {
@@ -74,6 +77,11 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
 
     public List<PersonnelDossierScanModel> findByAgent(int IDagent) {
         return dao.findByAgent(IDagent);
+    }
+
+    public byte[] getImage(int id) throws DataFormatException, IOException {
+        PersonnelDossierScanModel dbImage = this.find(id);
+        return dbImage.getImagFold();
     }
 
 }

@@ -42,7 +42,7 @@ FonctionAgentService service;
         }
     }
     @PutMapping(path = "/Update/{id}")
-    public ResponseEntity<ApiResponse<PersonnelFonctionModel>> updateFonctionAgent (@RequestParam Integer id, PersonnelFonctionModel model){
+    public ResponseEntity<ApiResponse<PersonnelFonctionModel>> updateFonctionAgent (@PathVariable Integer id, @RequestBody PersonnelFonctionModel model){
         ApiResponse<PersonnelFonctionModel> response;
         if (service.update(id, model)) {
             response = new ApiResponse
@@ -97,7 +97,7 @@ FonctionAgentService service;
     }
 
     @GetMapping(path = "/ByAgent/{IDagent}")
-    public PersonnelFonctionModel getFonctionByAgent(@PathVariable int IDagent) {
+    public List<PersonnelFonctionModel> getFonctionByAgent(@PathVariable int IDagent) {
         return service.findByAgent(IDagent);
     }
 

@@ -52,7 +52,7 @@ public class PersonnelController  {
     
     @PutMapping(path = "/updade/{id}",consumes =MULTIPART_FORM_DATA_VALUE)
     public boolean updatePersonnel(@RequestPart(value = "image") MultipartFile image,@PathVariable Integer id, PersonnelModel model) throws IOException {
-    	model.setImagPers(ImageUtil.compressImage(image.getBytes()));
+    	model.setImagPers(image.getBytes());
         return service.update(id,model);
     }
 
@@ -76,9 +76,9 @@ public class PersonnelController  {
         return service.findByAffectation(id);
     };
 
-    @GetMapping(path = "/ByLocalite/{id}")
-    public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String id) {
-        return service.findByLocalite(id);
+    @GetMapping(path = "/ByLocalite/{libelle}")
+    public List<PersonnelModel> getAllPersonnelByLocalite(@PathVariable String libelle) {
+        return service.findByLocalite(libelle);
     }
 
     @GetMapping(path = "/TypeEducations")
