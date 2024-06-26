@@ -59,5 +59,13 @@ public class LocaliteController {
         return new ResponseEntity<>(reponse, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/AllNombrePoint")
+    public ResponseEntity<ApiResponse<List<String>>> getAllNombrePoint () {
+        ApiResponse<List<String>> reponse = new ApiResponse.
+                Builder<List<String>>().status(HttpStatus.OK.value())
+                .message("Liste des priority").result(service.ListeNombrePoint()).build();
+        return new ResponseEntity<>(reponse, HttpStatus.OK);
+    }
+
 
 }
