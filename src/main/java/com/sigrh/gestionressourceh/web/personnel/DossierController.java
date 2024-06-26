@@ -30,21 +30,18 @@ public class DossierController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
 
-//    @PostMapping(path = "/create")
-//    public boolean addDossier(@RequestBody PersonnelDossierScanModel model) {
-//        return service.create(model);
-//    }
-    
-//  @PutMapping(path = "/Update/{id}")
-//  public boolean updateDossier(@RequestParam Integer id, PersonnelDossierScanModel model) {
-//      return service.update(id,model);
-//  }   
+
 
     @PostMapping(path = "/create",consumes=MULTIPART_FORM_DATA_VALUE)
-    public boolean createDossier(@RequestPart(value = "image") MultipartFile image, DossierDTO model)
-    {
-        return service.create(image,new DossierDTO().toDossierScanModel(model));
-     }
+    public boolean createDossier(@RequestPart(value = "image") MultipartFile image, @RequestPart(value = "dossier") String dossier) {
+        try {
+            objectMapper.findAndRegisterModules();
+            DossierDTO model = objectMapper.readValue(dossier, DossierDTO.class);
+            return service.create(image,new DossierDTO().toDossierScanModel(model));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     @PutMapping(path = "/Update/{id}",consumes=MULTIPART_FORM_DATA_VALUE)
     public boolean updateDossier(@RequestPart(value = "image") MultipartFile image,@RequestParam Integer id, DossierDTO model) throws IOException {

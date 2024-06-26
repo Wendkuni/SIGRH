@@ -5,6 +5,7 @@ import com.sigrh.gestionressourceh.common.ApiResponse;
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
+import com.sigrh.gestionressourceh.services.dtos.personnel.DossierDTO;
 import com.sigrh.gestionressourceh.services.personnel.PersonnelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,31 +31,28 @@ public class PersonnelController  {
     @Autowired
     private PersonnelService service;
     private final ObjectMapper objectMapper = new ObjectMapper();
-//    @PostMapping(path = "/create")
-//    public boolean addPersonnel(@RequestBody PersonnelModel model) {
-//        return service.create(model);
-//    }
-    
-//    @PutMapping(path = "/updade/{id}")
-//    public boolean updatePersonnel(@PathVariable Integer id, @RequestBody PersonnelModel model) {
-//        return service.update(id,model);
-//    }
+
 
     @PostMapping(path = "/create",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart(value = "image") MultipartFile image, PersonnelModel model) {
+    public boolean createPersonnel(@RequestPart(value = "image") MultipartFile image, @RequestPart(value = "personnel") String personnel) {
         try {
-            return service.create(image,model);
+            objectMapper.findAndRegisterModules();
+            PersonnelModel model = objectMapper.readValue(personnel, PersonnelModel.class);
+            return service.create(image, model);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to create personnel", e);
         }
     }
 
-    
+
+
     @PutMapping(path = "/updade/{id}",consumes =MULTIPART_FORM_DATA_VALUE)
     public boolean updatePersonnel(@RequestPart(value = "image") MultipartFile image,@PathVariable Integer id, PersonnelModel model) throws IOException {
     	model.setImagPers(image.getBytes());
         return service.update(id,model);
     }
+
+
 
     @DeleteMapping(path = "/delete/{id}")
     public boolean deletePersonnel(@PathVariable Integer id) {

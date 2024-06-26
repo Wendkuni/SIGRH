@@ -6,6 +6,7 @@ import com.sigrh.gestionressourceh.common.constant.TypeNature;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.services.personnel.AffectationService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping(value = "/v1/api")
 @AllArgsConstructor
 public class AffectationController {
-    AffectationService service;
+     AffectationService service;
 
     @PostMapping(path = "/affectation")
     public boolean addAffectation(@RequestBody PersonnelAffectationModel model) {
