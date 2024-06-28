@@ -19,6 +19,14 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .serviceEcole(rs.getString("serviceecole"))
+                .motif(rs.getString("motif"))
+                .situationSanit(rs.getString("situationsanit"))
+                .imgSanit(rs.getBytes("imgsanit"))
+                .libelDos(rs.getString("libeldoss"))
+                .imgDos(rs.getBytes("imgdos"))
+                .nombreFant(rs.getInt("nombrefant"))
+                .ancieneteGen(rs.getInt("ancienetegen"))
+                .ancienetePoste(rs.getInt("ancieneteposte"))
                 .nature(rs.getString("nature")!=null? TypeNature.getNatureByLabel(rs.getString("nature")):TypeNature.PERMUTATION)
                 .build();
     }

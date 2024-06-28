@@ -25,6 +25,14 @@ public class PersonnelAffectationModel implements Serializable {
     private double notePedagogiq;
     @Enumerated(EnumType.STRING)
     private TypeNature nature;
+    private String motif;
+    private String situationSanit;
+    private byte[] imgSanit;
+    private String libelDos;
+    private byte[] imgDos;
+    private Integer nombreFant;
+    private Integer ancieneteGen;
+    private Integer ancienetePoste;
 
 
 }

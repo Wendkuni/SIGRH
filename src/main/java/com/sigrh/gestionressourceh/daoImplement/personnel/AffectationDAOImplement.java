@@ -36,10 +36,12 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean create(PersonnelAffectationModel obj) {
         try {
-            String sql = "Insert into affectation(IDaffectation,dateffet,DREN,localite,NOTEPEDAGOCIQ,IDagent,serviceecole, nature) " +
-                    "values (?,?,?,?,?,?,?,?)";
+            String sql = "Insert into affectation(IDaffectation,dateffet,DREN,localite,NOTEPEDAGOCIQ,IDagent,serviceecole, nature,motif,situationsanit,imgsanit,libeldoss,imgdos,nombrefant,ancienetegen,ancieneteposte) " +
+                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getIdAffectation(), obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
-                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(), obj.getNature().getLabel() )!=0;
+                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(), obj.getNature().getLabel(),
+                    obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
+                    obj.getAncieneteGen(), obj.getAncienetePoste() )!=0;
         }catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -69,10 +71,13 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean update(PersonnelAffectationModel obj) {
         try {
-            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ? " +
+            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?,  nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=? " +
                     " where IDaffectation = ?";
             boolean b = jdbcTemplate.update(SQL, obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
-                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),obj.getIdAffectation() )!=0;
+                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
+                    obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
+                    obj.getAncieneteGen(), obj.getAncienetePoste(),
+                    obj.getIdAffectation() )!=0;
             return b;
         }catch (Exception e) {
             e.printStackTrace();
