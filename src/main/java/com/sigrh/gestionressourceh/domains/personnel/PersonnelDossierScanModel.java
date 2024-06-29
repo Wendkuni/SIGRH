@@ -20,4 +20,5 @@ public class PersonnelDossierScanModel implements Serializable {
     private LocalDate dateUpload;
     private String observation;
     private byte[] imagFold;
+    private long refsAffectation;
 }
