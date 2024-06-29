@@ -22,11 +22,6 @@ public class FonctionListeDAOImplement implements DAOTemplete<FonctionListeModel
 
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(FonctionListeModel obj) {
         try {
             String sql = "Insert into fonctionliste(ECHELLE,echelon,GRADE,INDIXE,libfonctn,libfonctnarab,salbase,IDFONCTIONLISTE) " +

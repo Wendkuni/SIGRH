@@ -29,13 +29,6 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
 	}
 
 
-	@Override
-    public void setDataSource(DataSource ds) {
-//        this.insert = new SimpleJdbcInsert(ds)
-//                .withTableName("personnel")
-//                .usingGeneratedKeyColumns("IDagent");
-    }
-
 
     @Override
     public boolean delete(PersonnelModel obj) {

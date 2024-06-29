@@ -17,10 +17,6 @@ public class AbsenceDAOImplement implements DAOTemplete<PersonnelAbsenceModel> {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(PersonnelAbsenceModel obj) {

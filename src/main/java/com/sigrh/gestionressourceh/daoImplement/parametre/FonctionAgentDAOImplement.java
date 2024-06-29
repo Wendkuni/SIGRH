@@ -17,10 +17,6 @@ public class FonctionAgentDAOImplement implements DAOTemplete<PersonnelFonctionM
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(PersonnelFonctionModel obj) {

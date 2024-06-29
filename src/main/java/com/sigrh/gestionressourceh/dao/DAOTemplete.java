@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface DAOTemplete<T> {
 
-	public void setDataSource(DataSource ds);
-
 	boolean create(T obj);
 	
 	boolean delete(int id);

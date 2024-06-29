@@ -20,11 +20,6 @@ public class DossierDAOImplement implements DAOTemplete<PersonnelDossierScanMode
     }
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(PersonnelDossierScanModel obj) {
         try {
             String sql = "Insert into dossierscan(IDdossierscan,libeldossier,IDagent,observation,dateupload,imagfold) " +

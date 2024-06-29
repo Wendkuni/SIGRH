@@ -23,10 +23,7 @@ public class MatiereDAOImplement implements DAOTemplete <PersonnelMatieresModel>
                 .withTableName("matieres")
                 .usingGeneratedKeyColumns("IDMATIERES");
     }
-    @Override
-    public void setDataSource(DataSource ds) {
 
-    }
 
     @Override
     public boolean create(PersonnelMatieresModel obj) {

@@ -18,11 +18,6 @@ public class IndeminiteListeDAOImplement implements DAOTemplete<IndeminitesListe
     }
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(IndeminitesListeModel obj) {
         try {
             String sql = "Insert into indeminitesliste(libidnmite,IDINDEMINITES) " +
