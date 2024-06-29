@@ -1,7 +1,6 @@
 package com.sigrh.gestionressourceh.dao;
 
 
-import javax.sql.DataSource;
 import java.util.List;
 
 public interface DAOTemplete<T> {
