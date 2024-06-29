@@ -46,6 +46,9 @@ public class PersonnelModel implements Serializable {
     private String autres2;
 
 
+
+
+
     /*public String toString() {
         return nomPrenom +" Mle:"+matricule+" Nni:"+nni;
     }*/

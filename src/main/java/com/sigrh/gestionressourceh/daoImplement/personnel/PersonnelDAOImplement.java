@@ -2,7 +2,9 @@ package com.sigrh.gestionressourceh.daoImplement.personnel;
 
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
+import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -139,5 +141,11 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " where aff.localite = '"+localite+"'";
         return jdbcTemplate.query(SQL, new PersonnelMapper());
     }
+
+    public PersonnelModel findByMatricule(String matricule) {
+        String SQL = "select * from personnel where matricul =?";
+        return jdbcTemplate.queryForObject(SQL, new Object[]{matricule}, new PersonnelMapper());
+    }
+
 
 }

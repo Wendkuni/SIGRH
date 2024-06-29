@@ -69,6 +69,11 @@ public class PersonnelController  {
         return service.find(id);
     }
 
+    @GetMapping(path = "/ByMatricule/{matricule}")
+    public PersonnelModel getPersonnelByMatricule(@PathVariable String matricule) {
+        return service.findByMatricul(matricule);
+    }
+
     @GetMapping(path = "/ByAffectation/{id}")
     public List<PersonnelModel> getAllPersonnelByAffectation(@PathVariable Integer id) {
         return service.findByAffectation(id);

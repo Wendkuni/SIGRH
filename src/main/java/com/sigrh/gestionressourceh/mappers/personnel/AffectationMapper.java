@@ -27,6 +27,10 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .nombreFant(rs.getInt("nombrefant"))
                 .ancieneteGen(rs.getInt("ancienetegen"))
                 .ancienetePoste(rs.getInt("ancieneteposte"))
+                .posteOrigin(rs.getString("posteorigin"))
+                .posteDestinat1(rs.getString("postedestinat1"))
+                .posteDestinat2(rs.getString("postedestinat2"))
+                .posteDestinat3(rs.getString("postedestinat3"))
                 .nature(rs.getString("nature")!=null? TypeNature.getNatureByLabel(rs.getString("nature")):TypeNature.PERMUTATION)
                 .build();
     }

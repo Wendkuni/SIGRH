@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -33,6 +34,12 @@ public class PersonnelAffectationModel implements Serializable {
     private Integer nombreFant;
     private Integer ancieneteGen;
     private Integer ancienetePoste;
+    private String posteOrigin;
+    private String posteDestinat1;
+    private String posteDestinat2;
+    private String posteDestinat3;
+
+
 
 
 }

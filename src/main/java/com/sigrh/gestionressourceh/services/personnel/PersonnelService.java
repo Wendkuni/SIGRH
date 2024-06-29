@@ -95,6 +95,10 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
     public List<PersonnelModel> findByAffectation(int id) {
         return this.daoImplement.findByAffectation(id);
     }
+    public PersonnelModel findByMatricul(String matricule) {
+        return this.daoImplement.findByMatricule(matricule);
+    }
+
 
     public List<PersonnelModel> findByLocalite(String localite) {
         return this.daoImplement.findByLocalite(localite);

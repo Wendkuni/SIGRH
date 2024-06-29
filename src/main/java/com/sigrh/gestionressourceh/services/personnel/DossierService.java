@@ -1,18 +1,17 @@
 package com.sigrh.gestionressourceh.services.personnel;
 
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
-import com.sigrh.gestionressourceh.common.util.ImageUtil;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.DossierDAOImplement;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.DataFormatException;
 
 @Service
@@ -25,9 +24,14 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
         return dao.create(obj);
     }
 
-    public boolean create(MultipartFile imageFile, PersonnelDossierScanModel obj) {
+
+    //faire la liste des images
+    public boolean  create(List<MultipartFile> imageFile, PersonnelDossierScanModel obj) {
         try {
-            obj.setImagFold((imageFile.getBytes()));
+            for (MultipartFile imageDossier : imageFile) {
+                obj.setImagFold(imageDossier.getBytes());
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -79,9 +83,19 @@ public class DossierService implements InterfaceTemplete<PersonnelDossierScanMod
         return dao.findByAgent(IDagent);
     }
 
-    public byte[] getImage(int id) throws DataFormatException, IOException {
+    /* public byte[] getImage(int id) throws DataFormatException, IOException {
         PersonnelDossierScanModel dbImage = this.find(id);
         return dbImage.getImagFold();
     }
 
+     */
+    public Map<String, Object> getImages(int id) throws DataFormatException, IOException {
+        PersonnelDossierScanModel dbImage = this.find(id);
+        HashMap<String, Object> mapImage = new HashMap<>();
+        mapImage.put("imagfold", dbImage.getImagFold());
+        return mapImage;
+    }
+
 }
+
+
