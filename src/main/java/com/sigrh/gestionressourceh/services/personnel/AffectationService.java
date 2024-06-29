@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ import java.util.zip.DataFormatException;
 @Transactional
 public class AffectationService implements InterfaceTemplete<PersonnelAffectationModel> {
     private final AffectationDAOImplement dao= new AffectationDAOImplement(ConnectionDAO.getInstance());
-
+    private DossierService dossierService;
     @Override
     public boolean create(PersonnelAffectationModel obj) {
         return dao.create(obj);
@@ -84,10 +85,27 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
         }return false;
     }
 
-    public boolean create(MultipartFile imageDossier, MultipartFile imageSanitaire,PersonnelAffectationModel obj) throws IOException {
-        obj.setImgDos(imageDossier.getBytes());
-        obj.setImgSanit(imageSanitaire.getBytes());
-        return this.dao.create(obj);
+    public boolean create(List<MultipartFile> imageDossiers,PersonnelAffectationModel obj) throws IOException {
+        if (this.dao.create(obj)&&!imageDossiers.isEmpty()) {
+            try {
+                for (MultipartFile file : imageDossiers) {
+                    PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
+                            .libelDossier(file.getOriginalFilename())
+                            .personnel(obj.getPersonnel())
+                            .refsAffectation(obj.getIdAffectation())
+                            .imagFold(file.getBytes())
+                            .dateUpload(LocalDate.now())
+                            .observation("dossier d'affectation")
+                            .build();
+                    dossierService.create(dossier);
+                }
+                return true;
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
     }
 
     public Map<String,Object> getImage(int id) throws DataFormatException, IOException {
