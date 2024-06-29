@@ -36,7 +36,12 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setDetacher(rs.getString("detacher"));
         personnel.setMinisterOrigine(rs.getString("ministerorigne"));
         personnel.setImagPers(rs.getBytes("imgpers"));
+        personnel.setSexePers(rs.getString("sexepers"));
+        personnel.setSituationMatri(rs.getString("situationmatri"));
+        personnel.setAutres(rs.getString("autres"));
+        personnel.setAutres2(rs.getString("autres2"));
         String typeEducation = rs.getString("Typeeducation");
+
 
         if (typeEducation != null&&!typeEducation.isBlank()) {
             personnel.setTypeeducation(TypeEducation.getTypeEducationByLabel(typeEducation));

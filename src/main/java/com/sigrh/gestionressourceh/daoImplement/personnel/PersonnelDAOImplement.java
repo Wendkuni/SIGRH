@@ -69,6 +69,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("tlphone",obj.getTlphone());
            params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().getLabel():TypeEducation.PROFESSIONNEL.getLabel());
            params.put("imgpers", obj.getImagPers());
+           params.put("sexpers",obj.getSexePers());
+           params.put("situationmatri", obj.getSituationMatri());
+           params.put("autres", obj.getAutres());
+           params.put("autres2", obj.getAutres2());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
            return true;
@@ -92,7 +96,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " codbank=?, bank=?, datenaiss=?, " +
                 "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
                 "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
-                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=? where IDagent = ?";
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=? where IDagent = ?";
         boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
                 obj.getAdressEmp(), obj.getCleRib(),
                 obj.getDteSortie(), obj.getNomPrenom(),
@@ -105,7 +109,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
                 obj.getTypeeducation().getLabel(),
-                obj.getImagPers(),
+                obj.getImagPers(), obj.getSexePers(),obj.getSituationMatri(),obj.getAutres(),obj.getAutres2(),
                 obj.getIdAgent()) != 0;
         return b;
     }

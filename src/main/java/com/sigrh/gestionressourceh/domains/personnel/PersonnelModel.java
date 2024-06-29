@@ -40,6 +40,10 @@ public class PersonnelModel implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeEducation Typeeducation;
     private byte[] imagPers;
+    private String sexePers;
+    private String situationMatri;
+    private String autres;
+    private String autres2;
 
 
     /*public String toString() {
