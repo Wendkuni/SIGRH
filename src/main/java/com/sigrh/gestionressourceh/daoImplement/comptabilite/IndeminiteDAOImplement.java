@@ -17,10 +17,6 @@ public class IndeminiteDAOImplement implements DAOTemplete<IndeminiteModel> {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(IndeminiteModel obj) {

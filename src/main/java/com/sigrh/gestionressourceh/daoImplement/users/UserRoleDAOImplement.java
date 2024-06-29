@@ -10,11 +10,6 @@ import java.util.List;
 public class UserRoleDAOImplement implements DAOTemplete<UtilisateurRoleaModel> {
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(UtilisateurRoleaModel obj) {
         return false;
     }

@@ -7,10 +7,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 public class UserDAOImplement implements DAOTemplete<UtilisateurModel> {
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
+ 
 
     @Override
     public boolean create(UtilisateurModel obj) {

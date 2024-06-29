@@ -24,11 +24,6 @@ public class RenumerationAgentDAOImplement implements DAOTemplete<RenumerationAg
     }
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(RenumerationAgentModel obj) {
         try {
             String sql = "Insert into renumerationagent(codebank,banklib,dateeffet,valmnt,IDagent, IDRENUMERATIONAGENT) " +

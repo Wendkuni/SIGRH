@@ -16,10 +16,6 @@ public class ConfigIndeminiteDAOImplement implements DAOTemplete<ConfigIdemitMod
         this.ds = ds;
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(ConfigIdemitModel obj) {

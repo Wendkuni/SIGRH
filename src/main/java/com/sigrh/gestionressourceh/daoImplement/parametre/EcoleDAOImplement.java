@@ -17,11 +17,6 @@ public class EcoleDAOImplement implements DAOTemplete<EcolesModel> {
     }
 
     @Override
-    public void setDataSource(DataSource ds) {
-
-    }
-
-    @Override
     public boolean create(EcolesModel obj) {
         return false;
     }

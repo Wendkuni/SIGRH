@@ -16,10 +16,6 @@ public class GradeDAOImplement implements DAOTemplete<GradeModel> {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(GradeModel obj) {

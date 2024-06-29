@@ -28,10 +28,6 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
                 .usingGeneratedKeyColumns("IDaffectation");
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(PersonnelAffectationModel obj) {

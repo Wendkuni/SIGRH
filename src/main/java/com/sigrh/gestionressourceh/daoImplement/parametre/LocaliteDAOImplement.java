@@ -18,10 +18,6 @@ public class LocaliteDAOImplement implements DAOTemplete<LocaliteModel> {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
-    @Override
-    public void setDataSource(DataSource ds) {
-
-    }
 
     @Override
     public boolean create(LocaliteModel obj) {
