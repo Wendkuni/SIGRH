@@ -5,16 +5,13 @@ import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.personnel.AffectationDAOImplement;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.zip.DataFormatException;
 
 @Service
@@ -108,6 +105,24 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
         return false;
     }
 
+    public List<PersonnelDossierScanModel> getDossierAffectation(PersonnelAffectationModel obj) {
+        return dao.getDossierByAffectation(obj);
+    }
+
+
+    public List<byte[]> getImages(PersonnelAffectationModel obj) {
+
+        try {
+            List<byte[]> content =new ArrayList<>();
+            for (PersonnelDossierScanModel doss:this.getDossierAffectation(obj))
+                content.add(doss.getImagFold());
+            return content;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public Map<String,Object> getImage(int id) throws DataFormatException, IOException {
         PersonnelAffectationModel dbImage = this.find(id);
         HashMap<String, Object> mapImage = new HashMap<>();
@@ -115,5 +130,6 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
         mapImage.put("imgSanit",dbImage.getImgSanit());
         return mapImage;
     }
+
 
 }

@@ -3,8 +3,10 @@ package com.sigrh.gestionressourceh.daoImplement.personnel;
 import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
+import com.sigrh.gestionressourceh.mappers.personnel.DossierMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
@@ -133,7 +135,17 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
 
     }
 
-
+    public List<PersonnelDossierScanModel> getDossierByAffectation(PersonnelAffectationModel obj) {
+        try {
+            String SQL = "select * from dossierscan doss" +
+                    " inner join personnel p on p.IDagent =doss.IDagent " +
+                    "where doss.refsaffectation="+obj.getIdAffectation()+" and p.IDagent ="+obj.getPersonnel().getIdAgent() ;
+            return jdbcTemplate.query(SQL, new DossierMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
+    }
 
 
 }
