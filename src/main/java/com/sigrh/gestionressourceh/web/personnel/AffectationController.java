@@ -1,14 +1,13 @@
 package com.sigrh.gestionressourceh.web.personnel;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sigrh.gestionressourceh.common.ApiResponse;
-import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.common.constant.TypeNature;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
+import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
 import com.sigrh.gestionressourceh.services.personnel.AffectationService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,11 +30,11 @@ public class AffectationController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(path = "/affectation",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart(value = "image") MultipartFile imageDossier,MultipartFile imageSanitaire, @RequestPart(value = "affectation") String affectation) {
+    public boolean createPersonnel(@RequestPart(value = "image") List<MultipartFile> imageDossiers, @RequestPart(value = "affectation") String affectation) {
         try {
             objectMapper.findAndRegisterModules();
             PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
-            return service.create(imageDossier,imageSanitaire, model);
+            return service.create(imageDossiers,model);
         } catch (IOException e) {
             throw new RuntimeException("Failed to create affectation", e);
         }
@@ -88,6 +87,34 @@ public class AffectationController {
             throw new RuntimeException(e);
         }
     }
+    @GetMapping(path = "/images",produces = {APPLICATION_PDF_VALUE, IMAGE_PNG_VALUE,IMAGE_JPEG_VALUE})
+    public List<byte[]> getImages(@RequestPart(value = "affectation") String affectation){
+        try {
+            objectMapper.findAndRegisterModules();
+            PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
+            return this.service.getImages(model);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
+
+    @GetMapping(path = "/dossiersAffectations")
+    public ResponseEntity<ApiResponse<List<PersonnelDossierScanModel>>> getDossiersAffectations(@RequestPart(value = "affectation") String affectation) {
+        objectMapper.findAndRegisterModules();
+        PersonnelAffectationModel model = null;
+        try {
+            model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
+            ApiResponse<List<PersonnelDossierScanModel>> response= new ApiResponse.
+                    Builder<List<PersonnelDossierScanModel>>()
+                    .message((" liste des dossiers d'affectation"))
+                    .result(service.getDossierAffectation(model))
+                    .status(HttpStatus.OK.value())
+                    .build();
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
