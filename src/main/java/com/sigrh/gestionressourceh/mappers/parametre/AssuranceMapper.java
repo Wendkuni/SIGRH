@@ -1,7 +1,6 @@
 package com.sigrh.gestionressourceh.mappers.parametre;
 
 import com.sigrh.gestionressourceh.common.constant.TypeAssurance;
-import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.common.util.DateUtil;
 import com.sigrh.gestionressourceh.domains.parametres.AssurancesModel;
 import com.sigrh.gestionressourceh.mappers.personnel.PersonnelMapper;

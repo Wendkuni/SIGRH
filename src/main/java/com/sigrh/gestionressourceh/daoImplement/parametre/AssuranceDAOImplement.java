@@ -93,4 +93,16 @@ public class AssuranceDAOImplement implements DAOTemplete<AssurancesModel> {
         }
         
     }
+
+    public List<AssurancesModel> findByAgent(Integer id) {
+        try {
+            String SQL = "select * from assurances  assu "
+                    + "left join personnel p on p.IDagent =assu.IDagent" +
+                    "where assu.IDagent="+id;
+            return jdbcTemplate.query(SQL,new AssuranceMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
+    }
 }

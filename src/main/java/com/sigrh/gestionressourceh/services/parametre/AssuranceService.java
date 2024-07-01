@@ -2,11 +2,16 @@ package com.sigrh.gestionressourceh.services.parametre;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.sigrh.gestionressourceh.common.InterfaceTemplete;
 import com.sigrh.gestionressourceh.dao.ConnectionDAO;
 import com.sigrh.gestionressourceh.daoImplement.parametre.AssuranceDAOImplement;
 import com.sigrh.gestionressourceh.domains.parametres.AssurancesModel;
 
+@Service
+@Transactional
 public class AssuranceService  implements InterfaceTemplete<AssurancesModel>{
 	private final AssuranceDAOImplement dao=new AssuranceDAOImplement(ConnectionDAO.getInstance());
 	
@@ -52,5 +57,7 @@ public class AssuranceService  implements InterfaceTemplete<AssurancesModel>{
 			 return this.update(model);
 	        }return false;
 		}
-
+	public List<AssurancesModel> findByAgent(Integer id) {
+		return dao.findByAgent(id);
+	}
 }
