@@ -16,7 +16,7 @@ import java.util.zip.DataFormatException;
 
 @Service
 @Transactional
-public class AffectationService implements InterfaceTemplete<PersonnelAffectationModel> {
+public class  AffectationService implements InterfaceTemplete<PersonnelAffectationModel> {
     private final AffectationDAOImplement dao= new AffectationDAOImplement(ConnectionDAO.getInstance());
     private DossierService dossierService;
     @Override
@@ -89,7 +89,8 @@ public class AffectationService implements InterfaceTemplete<PersonnelAffectatio
                     PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
                             .libelDossier(file.getOriginalFilename())
                             .personnel(obj.getPersonnel())
-                            .refsAffectation(obj.getIdAffectation())
+                            .refsAffectation(dao.findAll().size())
+                          //  .refsAffectation(obj.getIdAffectation())
                             .imagFold(file.getBytes())
                             .dateUpload(LocalDate.now())
                             .observation("dossier d'affectation")

@@ -34,10 +34,10 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean create(PersonnelAffectationModel obj) {
         try {
-            String sql = "Insert into affectation(IDaffectation,dateffet,DREN,localite,NOTEPEDAGOCIQ,IDagent,serviceecole, nature,motif,situationsanit,imgsanit,libeldoss,imgdos,nombrefant,ancienetegen,ancieneteposte,posteorigin,postedestinat1,postedestinat2,postedestinat3) " +
-                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "Insert into affectation(IDaffectation,dateffet,DREN,localite,NOTEPEDAGOCIQ,IDagent,serviceecole,motif,situationsanit,imgsanit,libeldoss,imgdos,nombrefant,ancienetegen,ancieneteposte,posteorigin,postedestinat1,postedestinat2,postedestinat3) " +
+                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             return  jdbcTemplate.update(sql,obj.getIdAffectation(), obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
-                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(), obj.getNature().getLabel(),
+                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
                     obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
                     obj.getAncieneteGen(), obj.getAncienetePoste(), obj.getPosteOrigin(),obj.getPosteDestinat1(),obj.getPosteDestinat2(),obj.getPosteDestinat3() )!=0;
         }catch (Exception e) {
