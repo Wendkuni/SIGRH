@@ -1,6 +1,7 @@
 package net.gestion.pgm.mappers.personnel;
 
 
+import net.gestion.pgm.common.constant.TypeDistinction;
 import net.gestion.pgm.common.constant.TypeNature;
 import net.gestion.pgm.common.util.DateUtil;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
@@ -32,7 +33,11 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .posteDestinat1(rs.getString("postedestinat1"))
                 .posteDestinat2(rs.getString("postedestinat2"))
                 .posteDestinat3(rs.getString("postedestinat3"))
-                .nature(rs.getString("nature")!=null? TypeNature.getNatureByLabel(rs.getString("nature")):TypeNature.PERMUTATION)
+                .posteDestinat4(rs.getString("postedestinat4"))
+                .posteDestinat5(rs.getString("postedestinat5"))
+                .distinction(rs.getString("distinctions")!=null? TypeDistinction.getDistinctionByLabel(rs.getString("distinctions")):TypeDistinction.NATIONAL)
+                .regroupementConjoint(rs.getString("regroupconjoint"))
+                .autresSocial(rs.getString("autressocial"))
                 .build();
     }
 }

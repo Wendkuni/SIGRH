@@ -1,6 +1,7 @@
 package net.gestion.pgm.daoImplement.personnel;
 
 
+import net.gestion.pgm.common.constant.TypeDistinction;
 import net.gestion.pgm.dao.DAOTemplete;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
@@ -51,6 +52,11 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("postedestinat1",obj.getPosteDestinat1() );
             params.put("postedestinat2",obj.getPosteDestinat2() );
             params.put("postedestinat3", obj.getPosteDestinat3());
+            params.put("postedestinat4",obj.getPosteDestinat4());
+            params.put("postedestinat5",obj.getPosteDestinat5());
+            params.put("distinctions",obj.getDistinction()!=null?obj.getDistinction().getLabel(): TypeDistinction.NATIONAL.getLabel());
+            params.put("regroupconjoint", obj.getRegroupementConjoint());
+            params.put("autressocial", obj.getAutresSocial());
             Number newId = insert.executeAndReturnKey(params);
             obj.setIdAffectation(newId.longValue());
 

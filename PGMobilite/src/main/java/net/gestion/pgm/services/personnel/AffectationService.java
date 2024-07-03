@@ -81,6 +81,11 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
             model.setPosteDestinat1(m.getPosteDestinat1());
             model.setPosteDestinat2(m.getPosteDestinat2());
             model.setPosteDestinat3(m.getPosteDestinat3());
+            model.setPosteDestinat4(m.getPosteDestinat4());
+            model.setPosteDestinat5(m.getPosteDestinat5());
+            model.setDistinction(m.getDistinction());
+            model.setRegroupementConjoint(m.getRegroupementConjoint());
+            model.setAutresSocial(m.getAutresSocial());
 
             return this.update(model);
         }return false;

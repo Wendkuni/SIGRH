@@ -1,6 +1,7 @@
 package net.gestion.pgm.domains.personnel;
 
 import lombok.*;
+import net.gestion.pgm.common.constant.TypeDistinction;
 import net.gestion.pgm.common.constant.TypeNature;
 
 import javax.persistence.EnumType;
@@ -36,6 +37,12 @@ public class PersonnelAffectationModel implements Serializable {
     private String posteDestinat1;
     private String posteDestinat2;
     private String posteDestinat3;
+    private String posteDestinat4;
+    private String posteDestinat5;
+    @Enumerated(EnumType.STRING)
+    private TypeDistinction distinction;
+    private String regroupementConjoint;
+    private String autresSocial;
 
 
 
