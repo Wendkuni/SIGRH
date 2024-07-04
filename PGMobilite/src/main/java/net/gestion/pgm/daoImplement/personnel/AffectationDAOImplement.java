@@ -57,6 +57,8 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("distinctions",obj.getDistinction()!=null?obj.getDistinction().getLabel(): TypeDistinction.NATIONAL.getLabel());
             params.put("regroupconjoint", obj.getRegroupementConjoint());
             params.put("autressocial", obj.getAutresSocial());
+            params.put("noteadminitrative",obj.getNoteAdministrative());
+            params.put("situationmatrimo",obj.getSituationMatrimo());
             Number newId = insert.executeAndReturnKey(params);
             obj.setIdAffectation(newId.longValue());
 
@@ -96,13 +98,15 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean update(PersonnelAffectationModel obj) {
         try {
-            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=? " +
+            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=?,postedestinat4=?,postedestinat5=?,distinctions=?,regroupconjoint=?,autressocial=?,noteadminitrative=?,situationmatrimo=? " +
                     " where IDaffectation = ?";
             boolean b = jdbcTemplate.update(SQL, obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
                     obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
                     obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
                     obj.getAncieneteGen(), obj.getAncienetePoste(),obj.getPosteOrigin(),obj.getPosteDestinat1(),obj.getPosteDestinat2(),
-                    obj.getPosteDestinat3(), obj.getIdAffectation() )!=0;
+                    obj.getPosteDestinat3(), obj.getPosteDestinat4(),obj.getPosteDestinat5(),obj.getDistinction(),
+                    obj.getRegroupementConjoint(),obj.getAutresSocial(),obj.getNoteAdministrative(),obj.getSituationMatrimo(),
+                    obj.getIdAffectation() )!=0;
             return b;
         }catch (Exception e) {
             e.printStackTrace();

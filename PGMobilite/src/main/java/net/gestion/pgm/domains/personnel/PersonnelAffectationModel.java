@@ -43,6 +43,8 @@ public class PersonnelAffectationModel implements Serializable {
     private TypeDistinction distinction;
     private String regroupementConjoint;
     private String autresSocial;
+    private int noteAdministrative;
+    private String situationMatrimo;
 
 
 

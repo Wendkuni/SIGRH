@@ -38,6 +38,8 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .distinction(rs.getString("distinctions")!=null? TypeDistinction.getDistinctionByLabel(rs.getString("distinctions")):TypeDistinction.NATIONAL)
                 .regroupementConjoint(rs.getString("regroupconjoint"))
                 .autresSocial(rs.getString("autressocial"))
+                .noteAdministrative(rs.getInt("noteadminitrative"))
+                .situationMatrimo(rs.getString("situationmatrimo"))
                 .build();
     }
 }
