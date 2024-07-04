@@ -13,7 +13,7 @@ public interface RestControllerTemplate <T> {
 
     ResponseEntity<ApiResponse<Void>> delete(String obj);
 
-    ResponseEntity<ApiResponse<Boolean>> update(T obj);
+    ResponseEntity<ApiResponse<Boolean>> update(int id,T obj);
 
     ResponseEntity<ApiResponse<T>> find(int id);
 

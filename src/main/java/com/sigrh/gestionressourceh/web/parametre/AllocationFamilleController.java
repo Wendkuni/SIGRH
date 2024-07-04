@@ -3,8 +3,9 @@ package com.sigrh.gestionressourceh.web.parametre;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sigrh.gestionressourceh.common.ApiResponse;
+import com.sigrh.gestionressourceh.domains.parametres.AllocationFamilleModel;
 import com.sigrh.gestionressourceh.domains.parametres.AssurancesModel;
-import com.sigrh.gestionressourceh.services.parametre.AssuranceService;
+import com.sigrh.gestionressourceh.services.parametre.AllocationFamilleService;
 import com.sigrh.gestionressourceh.web.RestControllerTemplate;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,46 +18,57 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping(value = "/v1/api")
 @AllArgsConstructor
-public class AssuranceController implements RestControllerTemplate<AssurancesModel> {
+public class AllocationFamilleController implements RestControllerTemplate<AllocationFamilleModel> {
     private final ObjectMapper objectMapper = new ObjectMapper();
-    AssuranceService service;
+    private AllocationFamilleService service;
+    /**
+     * @param obj 
+     * @return
+     */
 
-    @PostMapping(path = "/assurance")
+    @PostMapping(path = "/allocationFamille")
     @Override
-    public ResponseEntity<ApiResponse<Boolean>> create(@RequestBody AssurancesModel obj) {
+    public ResponseEntity<ApiResponse<Boolean>> create(@RequestBody AllocationFamilleModel obj) {
         boolean isOk = service.create(obj);
         ApiResponse<Boolean> response=new ApiResponse.Builder<Boolean>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"Création d'assurance reussie":"échec de la création")
+                .message(isOk?"Création d'allocationFamille reussie":"échec de la création")
                 .result(isOk)
                 .build();
         return new ResponseEntity<>(response,isOk?HttpStatus.OK:HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @DeleteMapping(path = "/assurance/delete/{id}")
+    /**
+     * @param id 
+     * @return
+     */
+    @DeleteMapping(path = "/allocationFamille/delete/{id}")
     @Override
-    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable int id) {
-
+    public ResponseEntity<ApiResponse<Void>> delete(int id) {
         boolean isOk = service.delete(id);
         ApiResponse<Void> response=new ApiResponse.Builder<Void>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"suppression de l'assurance reussie":"échec de la suppression")
+                .message(isOk?"suppression de l'allocationFamille reussie":"échec de la suppression")
                 .build();
         return new ResponseEntity<>(response,isOk?HttpStatus.OK:HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @DeleteMapping(path = "/assurance/delete")
+    /**
+     * @param allocation
+     * @return
+     */
+    @DeleteMapping(path = "/allocationFamille/delete")
     @Override
-    public ResponseEntity<ApiResponse<Void>> delete(@RequestPart(value = "assurance") String assurance) {
+    public ResponseEntity<ApiResponse<Void>> delete(@RequestPart(value = "allocation") String allocation) {
         boolean isOk;
         ApiResponse<Void> response;
         try {
             objectMapper.findAndRegisterModules();
-            AssurancesModel model = objectMapper.readValue(assurance, AssurancesModel.class);
+            AllocationFamilleModel model = objectMapper.readValue(allocation, AllocationFamilleModel.class);
             isOk = service.delete(model);
             response = new ApiResponse.Builder<Void>()
                     .status(HttpStatus.OK.value())
-                    .message(isOk ? "suppression de l'assurance reussie":"échec de la suppression")
+                    .message(isOk ? "suppression de l'allocationFamille reussie":"échec de la suppression")
                     .build();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -65,54 +77,63 @@ public class AssuranceController implements RestControllerTemplate<AssurancesMod
         return new ResponseEntity<>(response, isOk ? HttpStatus.OK : HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @PutMapping(path = "/assurance/{id}")
+    /**
+     * @param obj 
+     * @return
+     */
+    @PutMapping(path = "/allocationFamille/{id}")
     @Override
-    public ResponseEntity<ApiResponse<Boolean>> update(@PathVariable int id,AssurancesModel obj) {
+    public ResponseEntity<ApiResponse<Boolean>> update(@PathVariable int id,AllocationFamilleModel obj) {
         boolean isOk = service.update(id,obj);
         ApiResponse<Boolean> response=new ApiResponse.Builder<Boolean>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"mise à jour de l'assurance reussie":"échec de la mise à jour ")
+                .message(isOk?"mise à jour de l'allocationFamille reussie":"échec de la mise à jour ")
                 .result(isOk)
                 .build();
         return new ResponseEntity<>(response,isOk?HttpStatus.OK:HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(path = "/assurancesBy/{id}")
+    /**
+     * @param id 
+     * @return
+     */
+    @GetMapping(path = "/allocationFamillesBy/{id}")
     @Override
-    public ResponseEntity<ApiResponse<AssurancesModel>> find(@PathVariable int id) {
-        AssurancesModel model = service.find(id);
+    public ResponseEntity<ApiResponse<AllocationFamilleModel>> find(@PathVariable int id) {
+        AllocationFamilleModel model = service.find(id);
         boolean isOk = model!=null;
-        ApiResponse<AssurancesModel> response=new ApiResponse.Builder<AssurancesModel>()
+        ApiResponse<AllocationFamilleModel> response=new ApiResponse.Builder<AllocationFamilleModel>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"Assurance trouvée":"Aucune assurance trouvée")
+                .message(isOk?"allocationFamille trouvée":"Aucune allocationFamille trouvée")
                 .result(model)
                 .build();
         return new ResponseEntity<>(response,isOk?HttpStatus.OK:HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(path = "/assurances")
+    /**
+     * @return 
+     */
+    @GetMapping(path = "/allocationFamilles")
     @Override
-    public ResponseEntity<ApiResponse<List<AssurancesModel>>> findAll() {
-
-        List<AssurancesModel> list = service.findAll();
+    public ResponseEntity<ApiResponse<List<AllocationFamilleModel>>> findAll() {
+        List<AllocationFamilleModel> list = service.findAll();
         boolean isOk=list!=null;
-        ApiResponse<List<AssurancesModel>> response=new ApiResponse.Builder<List<AssurancesModel>>()
+        ApiResponse<List<AllocationFamilleModel>> response=new ApiResponse.Builder<List<AllocationFamilleModel>>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"Liste des assurances":"Aucun élément trouvé")
+                .message(isOk?"Liste des allocationFamille":"Aucun élément trouvé")
                 .result(list)
                 .build();
-
         return new ResponseEntity<>(response,isOk?HttpStatus.OK:HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping(path = "/assurancesByAgent/{id}")
-    public ResponseEntity<ApiResponse<List<AssurancesModel>>> findByAgent(@PathVariable int id) {
+    @GetMapping(path = "/allocationFamillesByAgent/{id}")
+    public ResponseEntity<ApiResponse<List<AllocationFamilleModel>>> findByAgent(@PathVariable int id) {
 
-        List<AssurancesModel> list = service.findByAgent(id);
+        List<AllocationFamilleModel> list = service.findByAgent(id);
         boolean isOk=list!=null;
-        ApiResponse<List<AssurancesModel>> response=new ApiResponse.Builder<List<AssurancesModel>>()
+        ApiResponse<List<AllocationFamilleModel>> response=new ApiResponse.Builder<List<AllocationFamilleModel>>()
                 .status(HttpStatus.OK.value())
-                .message(isOk?"Liste des assurances par agent":"Aucun élément trouvé")
+                .message(isOk?"Liste des allocationFamilles par agent":"Aucun élément trouvé")
                 .result(list)
                 .build();
 
