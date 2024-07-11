@@ -1,7 +1,7 @@
 package net.gestion.pgm.daoImplement.personnel;
 
 
-import net.gestion.pgm.common.constant.TypeEducation;
+
 import net.gestion.pgm.dao.DAOTemplete;
 import net.gestion.pgm.domains.personnel.PersonnelModel;
 import net.gestion.pgm.mappers.personnel.PersonnelMapper;
@@ -61,7 +61,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("numrocpte",obj.getNumroCpte());
            params.put("statusemp",obj.getStatusEmp());
            params.put("tlphone",obj.getTlphone());
-           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().getLabel(): TypeEducation.PROFESSIONNEL.getLabel());
+           params.put("Typeeducation",obj.getTypeeducation());
            params.put("imgpers", obj.getImagPers());
            params.put("sexpers",obj.getSexePers());
            params.put("situationmatri", obj.getSituationMatri());
@@ -106,7 +106,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getLieuNaiss(), obj.getMinisterOrigine(),
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
-                obj.getTypeeducation().getLabel(),
+                obj.getTypeeducation(),
                 obj.getImagPers(), obj.getSexePers(),
                 obj.getSituationMatri(),obj.getAutres(),
                 obj.getAutres2(), obj.getCorpsRecrt(), obj.getTypeF(),

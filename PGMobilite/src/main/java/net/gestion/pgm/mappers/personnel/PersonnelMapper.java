@@ -45,14 +45,7 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setTypeF(rs.getString("typef"));
         personnel.setRefRec(rs.getString("refrec"));
         personnel.setFonctnRef(rs.getString("fonctnref"));
-        String typeEducation = rs.getString("Typeeducation");
-
-        if (typeEducation != null&&!typeEducation.isBlank()) {
-            personnel.setTypeeducation(TypeEducation.getTypeEducationByLabel(typeEducation));
-        } else {
-            personnel.setTypeeducation(TypeEducation.AUCUN);
-        }
-
+        personnel.setTypeeducation(rs.getString("Typeeducation"));
 
         return personnel;
     }

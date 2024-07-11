@@ -2,10 +2,7 @@ package net.gestion.pgm.domains.personnel;
 
 
 import lombok.*;
-import net.gestion.pgm.common.constant.TypeEducation;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -38,8 +35,8 @@ public class PersonnelModel implements Serializable {
     private String cleRib;
     private String detacher;
     private String ministerOrigine;
-    @Enumerated(EnumType.STRING)
-    private TypeEducation Typeeducation;
+
+    private String Typeeducation;
     private byte[] imagPers;
     private String sexePers;
     private String situationMatri;
