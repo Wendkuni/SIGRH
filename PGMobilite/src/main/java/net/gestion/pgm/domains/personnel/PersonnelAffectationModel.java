@@ -45,6 +45,9 @@ public class PersonnelAffectationModel implements Serializable {
     private String autresSocial;
     private int noteAdministrative;
     private String situationMatrimo;
+    private String etatAffect;
+    private float pointsPondere;
+    private String autresDiplome;
 
 
 

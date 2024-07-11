@@ -1,7 +1,6 @@
 package net.gestion.pgrecrutement.mappers.personnel;
 
 
-import net.gestion.pgrecrutement.common.constant.TypeEducation;
 import net.gestion.pgrecrutement.common.util.DateUtil;
 import net.gestion.pgrecrutement.domains.personnel.PersonnelModel;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,14 +40,11 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setSituationMatri(rs.getString("situationmatri"));
         personnel.setAutres(rs.getString("autres"));
         personnel.setAutres2(rs.getString("autres2"));
-        String typeEducation = rs.getString("Typeeducation");
-
-
-        if (typeEducation != null&&!typeEducation.isBlank()) {
-            personnel.setTypeeducation(TypeEducation.getTypeEducationByLabel(typeEducation));
-        } else {
-            personnel.setTypeeducation(TypeEducation.AUCUN);
-        }
+        personnel.setCorpsRecrt(rs.getString("corpsrecrt"));
+        personnel.setTypeF(rs.getString("typef"));
+        personnel.setRefRec(rs.getString("refrec"));
+        personnel.setFonctnRef(rs.getString("fonctnref"));
+        personnel.setTypeeducation(rs.getString("Typeeducation"));
 
 
         return personnel;

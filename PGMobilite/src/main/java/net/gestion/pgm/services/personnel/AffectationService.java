@@ -88,7 +88,9 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
             model.setAutresSocial(m.getAutresSocial());
             model.setNoteAdministrative(m.getNoteAdministrative());
             model.setSituationMatrimo(m.getSituationMatrimo());
-
+            model.setEtatAffect(m.getEtatAffect());
+            model.setPointsPondere(m.getPointsPondere());
+            model.setAutresDiplome(m.getAutresDiplome());
             return this.update(model);
         }return false;
     }

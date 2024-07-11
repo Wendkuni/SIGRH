@@ -22,6 +22,7 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .personnel(new PersonnelMapper().mapRow(rs,rowNum))
                 .serviceEcole(rs.getString("serviceecole"))
                 .motif(rs.getString("motif"))
+                .nature(TypeNature.valueOf(rs.getString("nature")))
                 .situationSanit(rs.getString("situationsanit"))
                 .imgSanit(rs.getBytes("imgsanit"))
                 .libelDos(rs.getString("libeldoss"))
@@ -40,6 +41,11 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .autresSocial(rs.getString("autressocial"))
                 .noteAdministrative(rs.getInt("noteadminitrative"))
                 .situationMatrimo(rs.getString("situationmatrimo"))
+                .etatAffect(rs.getString("etataffect"))
+                .pointsPondere(rs.getFloat("pointspondere"))
+                .autresDiplome(rs.getString("autresdiplomes"))
                 .build();
+
+
     }
 }

@@ -42,6 +42,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("IDagent",obj.getPersonnel().getIdAgent() );
             params.put("serviceecole",obj.getServiceEcole() );
             params.put("motif",obj.getMotif() );
+            params.put("nature",obj.getNature());
             params.put("situationsanit",obj.getSituationSanit() );
             params.put("imgsanit",obj.getImgSanit() );
             params.put("libeldoss",obj.getLibelDos() );
@@ -59,6 +60,9 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("autressocial", obj.getAutresSocial());
             params.put("noteadminitrative",obj.getNoteAdministrative());
             params.put("situationmatrimo",obj.getSituationMatrimo());
+            params.put("etataffect",obj.getEtatAffect());
+            params.put("pointspondere",obj.getPointsPondere());
+            params.put("autresdiplome",obj.getAutresDiplome());
             Number newId = insert.executeAndReturnKey(params);
             obj.setIdAffectation(newId.longValue());
 
@@ -98,14 +102,20 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean update(PersonnelAffectationModel obj) {
         try {
-            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=?,postedestinat4=?,postedestinat5=?,distinctions=?,regroupconjoint=?,autressocial=?,noteadminitrative=?,situationmatrimo=? " +
+            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=?,postedestinat4=?,postedestinat5=?,distinctions=?,regroupconjoint=?,autressocial=?,noteadminitrative=?,situationmatrimo=?, etataffect=?, pointspondere=?, autresdiplomes=?, nature=? " +
                     " where IDaffectation = ?";
             boolean b = jdbcTemplate.update(SQL, obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
                     obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
-                    obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
-                    obj.getAncieneteGen(), obj.getAncienetePoste(),obj.getPosteOrigin(),obj.getPosteDestinat1(),obj.getPosteDestinat2(),
-                    obj.getPosteDestinat3(), obj.getPosteDestinat4(),obj.getPosteDestinat5(),obj.getDistinction(),
-                    obj.getRegroupementConjoint(),obj.getAutresSocial(),obj.getNoteAdministrative(),obj.getSituationMatrimo(),
+                    obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(),
+                    obj.getImgDos(), obj.getNombreFant(),
+                    obj.getAncieneteGen(), obj.getAncienetePoste(),obj.getPosteOrigin(),
+                    obj.getPosteDestinat1(),obj.getPosteDestinat2(),
+                    obj.getPosteDestinat3(), obj.getPosteDestinat4(),
+                    obj.getPosteDestinat5(),obj.getDistinction(),
+                    obj.getRegroupementConjoint(),obj.getAutresSocial(),
+                    obj.getNoteAdministrative(),obj.getSituationMatrimo(),
+                    obj.getEtatAffect(), obj.getPointsPondere(), obj.getAutresDiplome(),
+                    obj.getNature(),
                     obj.getIdAffectation() )!=0;
             return b;
         }catch (Exception e) {

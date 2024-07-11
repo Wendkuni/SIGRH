@@ -67,6 +67,10 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("situationmatri", obj.getSituationMatri());
            params.put("autres", obj.getAutres());
            params.put("autres2", obj.getAutres2());
+           params.put("corpsrecrt",obj.getCorpsRecrt());
+           params.put("typef",obj.getTypeF());
+           params.put("refrec",obj.getRefRec());
+           params.put("fonctnref",obj.getFonctnRef());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
            return true;
@@ -90,7 +94,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " codbank=?, bank=?, datenaiss=?, " +
                 "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
                 "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
-                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=? where IDagent = ?";
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=?, corpsrecrt=?, typef=?, refrec=?, fonctnref=? where IDagent = ?";
         boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
                 obj.getAdressEmp(), obj.getCleRib(),
                 obj.getDteSortie(), obj.getNomPrenom(),
@@ -103,8 +107,11 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
                 obj.getTypeeducation().getLabel(),
-                obj.getImagPers(), obj.getSexePers(),obj.getSituationMatri(),obj.getAutres(),obj.getAutres2(),
-                obj.getIdAgent()) != 0;
+                obj.getImagPers(), obj.getSexePers(),
+                obj.getSituationMatri(),obj.getAutres(),
+                obj.getAutres2(), obj.getCorpsRecrt(), obj.getTypeF(),
+                obj.getRefRec(), obj.getFonctnRef(),
+                obj.getIdAgent())!= 0;
         return b;
     }
 

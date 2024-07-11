@@ -45,6 +45,10 @@ public class PersonnelModel implements Serializable {
     private String situationMatri;
     private String autres;
     private String autres2;
+    private String corpsRecrt;
+    private String typeF;
+    private String refRec;
+    private String fonctnRef;
 
 
 

@@ -23,11 +23,19 @@
         <option value="$PROJECT_DIR$/Gateway-Service/pom.xml" />
         <option value="$PROJECT_DIR$/discovery-services/pom.xml" />
         <option value="$PROJECT_DIR$/config-service/pom.xml" />
+        <option value="$PROJECT_DIR$/sigrh_discovery_service/pom.xml" />
+        <option value="$PROJECT_DIR$/sigrh_gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/pg_recrutement/pom.xml" />
+        <option value="$PROJECT_DIR$/pg_mobilite/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/PGRM/pom.xml" />
+        <option value="$PROJECT_DIR$/pg_mobilite/pom.xml" />
+        <option value="$PROJECT_DIR$/pg_recrutement/pom.xml" />
+        <option value="$PROJECT_DIR$/sigrh_discovery_service/pom.xml" />
+        <option value="$PROJECT_DIR$/sigrh_gateway/pom.xml" />
       </set>
     </option>
   </component>

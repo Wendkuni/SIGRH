@@ -28,6 +28,14 @@
     <file url="file://$PROJECT_DIR$/config-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-services/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pg_mobilite/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pg_mobilite/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pg_recrutement/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pg_recrutement/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sigrh_discovery_service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sigrh_discovery_service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sigrh_gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sigrh_gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

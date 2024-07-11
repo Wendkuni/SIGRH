@@ -1,7 +1,6 @@
 package net.gestion.pgrecrutement.daoImplement.personnel;
 
 
-import net.gestion.pgrecrutement.common.constant.TypeEducation;
 import net.gestion.pgrecrutement.dao.DAOTemplete;
 import net.gestion.pgrecrutement.domains.personnel.PersonnelModel;
 import net.gestion.pgrecrutement.mappers.personnel.PersonnelMapper;
@@ -61,12 +60,16 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("numrocpte",obj.getNumroCpte());
            params.put("statusemp",obj.getStatusEmp());
            params.put("tlphone",obj.getTlphone());
-           params.put("Typeeducation",obj.getTypeeducation()!=null?obj.getTypeeducation().getLabel(): TypeEducation.PROFESSIONNEL.getLabel());
+           params.put("Typeeducation",obj.getTypeeducation());
            params.put("imgpers", obj.getImagPers());
            params.put("sexpers",obj.getSexePers());
            params.put("situationmatri", obj.getSituationMatri());
            params.put("autres", obj.getAutres());
            params.put("autres2", obj.getAutres2());
+           params.put("corpsrecrt",obj.getCorpsRecrt());
+           params.put("typef",obj.getTypeF());
+           params.put("refrec",obj.getRefRec());
+           params.put("fonctnref",obj.getFonctnRef());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
            return true;
@@ -90,7 +93,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " codbank=?, bank=?, datenaiss=?, " +
                 "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
                 "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
-                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=? where IDagent = ?";
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=?, corpsrecrt=?, typef=?, refrec=?, fonctnref=? where IDagent = ?";
         boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
                 obj.getAdressEmp(), obj.getCleRib(),
                 obj.getDteSortie(), obj.getNomPrenom(),
@@ -102,8 +105,11 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getLieuNaiss(), obj.getMinisterOrigine(),
                 obj.getNomPrenomArab(), obj.getNumroCpte(),
                 obj.getStatusEmp(), obj.getTlphone(),
-                obj.getTypeeducation().getLabel(),
-                obj.getImagPers(), obj.getSexePers(),obj.getSituationMatri(),obj.getAutres(),obj.getAutres2(),
+                obj.getTypeeducation(),
+                obj.getImagPers(), obj.getSexePers(),obj.getSituationMatri(),
+                obj.getAutres(),obj.getAutres2(),
+                obj.getCorpsRecrt(), obj.getTypeF(),
+                obj.getRefRec(), obj.getFonctnRef(),
                 obj.getIdAgent()) != 0;
         return b;
     }

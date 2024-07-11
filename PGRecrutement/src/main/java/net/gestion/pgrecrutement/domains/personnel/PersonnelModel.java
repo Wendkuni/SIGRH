@@ -1,10 +1,7 @@
 package net.gestion.pgrecrutement.domains.personnel;
 
 import lombok.*;
-import net.gestion.pgrecrutement.common.constant.TypeEducation;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -37,13 +34,17 @@ public class PersonnelModel implements Serializable {
     private String cleRib;
     private String detacher;
     private String ministerOrigine;
-    @Enumerated(EnumType.STRING)
-    private TypeEducation Typeeducation;
+
+    private String Typeeducation;
     private byte[] imagPers;
     private String sexePers;
     private String situationMatri;
     private String autres;
     private String autres2;
+    private String corpsRecrt;
+    private String typeF;
+    private String refRec;
+    private String fonctnRef;
 
 
 

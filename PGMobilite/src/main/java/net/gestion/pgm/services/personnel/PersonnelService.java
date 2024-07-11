@@ -86,6 +86,10 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
             model.setSituationMatri(m.getSituationMatri());
             model.setAutres(m.getAutres());
             model.setAutres2(m.getAutres2());
+            model.setCorpsRecrt(m.getCorpsRecrt());
+            model.setTypeF(m.getTypeF());
+            model.setRefRec(m.getRefRec());
+            model.setFonctnRef(m.getFonctnRef());
             model.setTypeeducation(m.getTypeeducation());
             return this.update(model);
         }
