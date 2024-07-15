@@ -48,6 +48,9 @@ public class PersonnelAffectationModel implements Serializable {
     private String etatAffect;
     private float pointsPondere;
     private String autresDiplome;
+    private LocalDate dateDemande;
+    private String destinationRetenue;
+    private String appreciation;
 
 
 

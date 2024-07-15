@@ -91,6 +91,8 @@ public class PersonnelService implements InterfaceTemplete<PersonnelModel> {
             model.setTypeF(m.getTypeF());
             model.setRefRec(m.getRefRec());
             model.setFonctnRef(m.getFonctnRef());
+            model.setDateIntegration(m.getDateIntegration());
+            model.setSalairePrestataire(m.getSalairePrestataire());
             return this.update(model);
         }
         return false;

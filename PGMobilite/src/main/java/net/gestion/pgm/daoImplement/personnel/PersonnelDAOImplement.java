@@ -71,6 +71,8 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
            params.put("typef",obj.getTypeF());
            params.put("refrec",obj.getRefRec());
            params.put("fonctnref",obj.getFonctnRef());
+           params.put("dateintegreatition", obj.getDateIntegration());
+           params.put("saliareprestataire", obj.getSalairePrestataire());
            Number newId = insert.executeAndReturnKey(params);
            obj.setIdAgent(newId.intValue());
            return true;
@@ -94,7 +96,7 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 " codbank=?, bank=?, datenaiss=?, " +
                 "debucntrat=?, detacher=?, dterecrutmnt=?,dtetitularisation=?, " +
                 "fincntrat=?, lieunaiss=?, ministerorigne=?, nometprenomarab=?, " +
-                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=?, corpsrecrt=?, typef=?, refrec=?, fonctnref=? where IDagent = ?";
+                "numrocpte=?, statusemp=?, tlphone=?, Typeeducation=?,imgpers=?, sexepers=?, situationmatri=?,autres=?,autres2=?, corpsrecrt=?, typef=?, refrec=?, fonctnref=?, dateintegreatition=?, saliareprestataire=? where IDagent = ?";
         boolean b = jdbcTemplate.update(SQL, obj.getActifOrNot(),
                 obj.getAdressEmp(), obj.getCleRib(),
                 obj.getDteSortie(), obj.getNomPrenom(),
@@ -110,7 +112,8 @@ public class PersonnelDAOImplement implements DAOTemplete<PersonnelModel>
                 obj.getImagPers(), obj.getSexePers(),
                 obj.getSituationMatri(),obj.getAutres(),
                 obj.getAutres2(), obj.getCorpsRecrt(), obj.getTypeF(),
-                obj.getRefRec(), obj.getFonctnRef(),
+                obj.getRefRec(), obj.getFonctnRef(), obj.getDateIntegration(),
+                obj.getSalairePrestataire(),
                 obj.getIdAgent())!= 0;
         return b;
     }

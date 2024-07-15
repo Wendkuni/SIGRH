@@ -44,6 +44,9 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .etatAffect(rs.getString("etataffect"))
                 .pointsPondere(rs.getFloat("pointspondere"))
                 .autresDiplome(rs.getString("autresdiplomes"))
+                .dateDemande(DateUtil.parse(rs.getString("datedemande")))
+                .destinationRetenue(rs.getString("destnationretenue"))
+                .appreciation(rs.getString("appreciation"))
                 .build();
 
 

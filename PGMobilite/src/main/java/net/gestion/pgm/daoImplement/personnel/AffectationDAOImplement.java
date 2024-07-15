@@ -63,6 +63,9 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("etataffect",obj.getEtatAffect());
             params.put("pointspondere",obj.getPointsPondere());
             params.put("autresdiplome",obj.getAutresDiplome());
+            params.put("datedemande",obj.getDateDemande());
+            params.put("destnationretenu", obj.getDestinationRetenue());
+            params.put("appreciation", obj.getAppreciation());
             Number newId = insert.executeAndReturnKey(params);
             obj.setIdAffectation(newId.longValue());
 
@@ -102,7 +105,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
     @Override
     public boolean update(PersonnelAffectationModel obj) {
         try {
-            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=?,postedestinat4=?,postedestinat5=?,distinctions=?,regroupconjoint=?,autressocial=?,noteadminitrative=?,situationmatrimo=?, etataffect=?, pointspondere=?, autresdiplomes=?, nature=? " +
+            String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=?,postedestinat4=?,postedestinat5=?,distinctions=?,regroupconjoint=?,autressocial=?,noteadminitrative=?,situationmatrimo=?, etataffect=?, pointspondere=?, autresdiplomes=?, nature=?, datedemande=?, destnationretenue=?, appreciation=? " +
                     " where IDaffectation = ?";
             boolean b = jdbcTemplate.update(SQL, obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
                     obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
@@ -115,7 +118,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
                     obj.getRegroupementConjoint(),obj.getAutresSocial(),
                     obj.getNoteAdministrative(),obj.getSituationMatrimo(),
                     obj.getEtatAffect(), obj.getPointsPondere(), obj.getAutresDiplome(),
-                    obj.getNature(),
+                    obj.getNature(), obj.getDateDemande(), obj.getDestinationRetenue(), obj.getAppreciation(),
                     obj.getIdAffectation() )!=0;
             return b;
         }catch (Exception e) {

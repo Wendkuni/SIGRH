@@ -45,8 +45,8 @@ public class PersonnelModel implements Serializable {
     private String typeF;
     private String refRec;
     private String fonctnRef;
-
-
+    private LocalDate dateIntegration;
+    private Float salairePrestataire;
 
 
 

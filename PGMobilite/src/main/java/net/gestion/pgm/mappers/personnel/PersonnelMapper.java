@@ -46,6 +46,8 @@ public class PersonnelMapper implements RowMapper<PersonnelModel> {
         personnel.setRefRec(rs.getString("refrec"));
         personnel.setFonctnRef(rs.getString("fonctnref"));
         personnel.setTypeeducation(rs.getString("Typeeducation"));
+        personnel.setDateIntegration(DateUtil.parse(rs.getString("dateintegreatition")));
+        personnel.setSalairePrestataire(rs.getFloat("saliareprestataire"));
 
         return personnel;
     }
