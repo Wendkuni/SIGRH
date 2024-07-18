@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 @Getter
 public enum TypeDistinction {
 
-    NATIONAL("national"),
+    NATIONALE("national"),
     REGIONALE("regionale"),
     DEPARTEMENTALE("departementale");
 

@@ -55,7 +55,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("postedestinat3", obj.getPosteDestinat3());
             params.put("postedestinat4",obj.getPosteDestinat4());
             params.put("postedestinat5",obj.getPosteDestinat5());
-            params.put("distinctions",obj.getDistinction()!=null?obj.getDistinction().getLabel(): TypeDistinction.NATIONAL.getLabel());
+            params.put("distinctions",obj.getDistinction()!=null?obj.getDistinction().getLabel(): TypeDistinction.NATIONALE.getLabel());
             params.put("regroupconjoint", obj.getRegroupementConjoint());
             params.put("autressocial", obj.getAutresSocial());
             params.put("noteadminitrative",obj.getNoteAdministrative());

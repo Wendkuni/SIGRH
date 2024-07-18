@@ -36,7 +36,7 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .posteDestinat3(rs.getString("postedestinat3"))
                 .posteDestinat4(rs.getString("postedestinat4"))
                 .posteDestinat5(rs.getString("postedestinat5"))
-                .distinction(rs.getString("distinctions")!=null? TypeDistinction.getDistinctionByLabel(rs.getString("distinctions")):TypeDistinction.NATIONAL)
+                .distinction(rs.getString("distinctions")!=null? TypeDistinction.getDistinctionByLabel(rs.getString("distinctions")):TypeDistinction.NATIONALE)
                 .regroupementConjoint(rs.getString("regroupconjoint"))
                 .autresSocial(rs.getString("autressocial"))
                 .noteAdministrative(rs.getInt("noteadminitrative"))

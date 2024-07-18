@@ -2,8 +2,11 @@ package net.gestion.pgm.services.personnel;
 
 
 import net.gestion.pgm.common.InterfaceTemplete;
+import net.gestion.pgm.common.constant.TypeAffectation;
+import net.gestion.pgm.common.constant.TypeNature;
 import net.gestion.pgm.dao.ConnectionDAO;
 import net.gestion.pgm.daoImplement.personnel.AffectationDAOImplement;
+import net.gestion.pgm.domains.personnel.CritereAffectation;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -146,6 +150,189 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         mapImage.put("imgDos",dbImage.getImgDos());
         mapImage.put("imgSanit",dbImage.getImgSanit());
         return mapImage;
+    }
+
+
+    public boolean estEligiblePourPermutation(PersonnelAffectationModel affectation) {
+        if (affectation.getAncieneteGen()>3) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public float calculerPonderationC(PersonnelAffectationModel affectation) {
+        float points = 0;
+
+        // Ancieneté Poste prevoir une exception: si la condition n'est pas respecter,
+        if (affectation.getAncienetePoste() != null && affectation.getAncienetePoste() >= 4) {
+            points += (affectation.getAncienetePoste() - 3) * 0.5;
+        }
+//
+        // Ancieneté willaya : revu
+        if (affectation.getAncieneteGen() != null) {
+            if (affectation.getAncieneteGen() >= 15) {
+                points += 15;
+            } else {
+                points += affectation.getAncieneteGen();
+            }
+        }
+
+
+
+        // Note Pédagogique
+        points += affectation.getNotePedagogiq();
+
+        // Moyenne des trois dernières notes administratives: revu
+        points += affectation.getNoteAdministrative();
+
+        // Distinction
+        if (affectation.getDistinction() != null) {
+            switch (affectation.getDistinction()) {
+                case NATIONALE:
+                    points += 10;
+                    break;
+                case REGIONALE:
+                    points += 8;
+                    break;
+                case DEPARTEMENTALE:
+                    points += 5;
+                    break;
+            }
+        }
+
+        // Nombre d'enfants
+        if (affectation.getNombreFant() != null) {
+            if (affectation.getNombreFant() >= 5) {
+                points += 10;
+            } else {
+                points += affectation.getNombreFant() * 2;
+            }
+        }
+
+        // Mettre en stand by DREN
+        switch (affectation.getDren()) {
+            case "Nouakchott Nord":
+            case "Nouakchott Ouest":
+            case "Nouakchott Sud":
+                points += 0;
+                break;
+            case "Trarza":
+            case "Inchiri":
+            case "D. Nouadhibou":
+                points += 1;
+                break;
+            case "Brakna":
+            case "Adrar":
+            case "Tiris Zemour":
+                points += 4;
+                break;
+            case "Gorgol":
+            case "Assaba":
+            case "Hodh Gharbi":
+                points += 8;
+                break;
+            case "H. Charghi":
+            case "Guidimakha":
+            case "Tagant":
+                points += 10;
+                break;
+        }
+
+        // Sexe VCERIFIER LE FORMAT DE CASSE (revu)
+        if (affectation.getPersonnel() != null && "FEMININ".equalsIgnoreCase(affectation.getPersonnel().getSexePers())) {
+            points += 5;
+        }
+
+        // Situation Sanitaire
+        if (affectation.getSituationSanit() != null) {
+            points += 10;
+        }
+
+        // Regroupement Conjoint: revu
+        if (affectation.getRegroupementConjoint() != null) {
+            points += 10;
+        }
+
+        // Autres Social
+        if (affectation.getAutresSocial() != null) {
+            points += 5;
+        }
+
+        affectation.setPointsPondere(points);
+        return points;
+    }
+
+    public float calculerPonderationN(PersonnelAffectationModel affectation) {
+        float points = 0;
+
+        // Ancieneté willaya : revu
+        if (affectation.getAncieneteGen() != null) {
+            if (affectation.getAncieneteGen() >= 15) {
+                points += 15;
+            } else {
+                points += affectation.getAncieneteGen();
+            }
+        }
+
+        // Ancieneté Scolaire
+       /* if (affectation.getAncieneteGen() != null && affectation.getAncieneteGen() >= 15) {
+            points += affectation.getAncieneteGen() - 15;
+        }
+
+        */
+
+        // Ancieneté Poste
+        if (affectation.getAncienetePoste() != null && affectation.getAncienetePoste() >= 4) {
+            points += (affectation.getAncienetePoste() - 3) * 0.5;
+        }
+
+        // Note Pédagogique
+        points += affectation.getNotePedagogiq();
+
+        // Moyenne des trois dernières notes administratives
+        points += affectation.getNoteAdministrative() ;
+
+        // Distinction
+        if (affectation.getDistinction() != null) {
+            switch (affectation.getDistinction()) {
+                case NATIONALE:
+                    points += 10;
+                    break;
+                case REGIONALE:
+                    points += 8;
+                    break;
+                case DEPARTEMENTALE:
+                    points += 5;
+                    break;
+            }
+        }
+
+        // Sexe
+        if (affectation.getPersonnel() != null && "FEMININ".equalsIgnoreCase(affectation.getPersonnel().getSexePers())) {
+            points += 5;
+        }
+/*
+REVOIR LA PERMUTATION: SI IL N'Y A PAS TROIS ANS
+*/
+
+        // Autres Diplomes
+        if (affectation.getAutresDiplome() != null) {
+            switch (affectation.getAutresDiplome()) {
+                case "bac+5":
+                    points += 10;
+                    break;
+                case "bac+3":
+                    points += 8;
+                    break;
+                default:
+                    points += 5;
+                    break;
+            }
+        }
+
+        affectation.setPointsPondere(points);
+        return points;
     }
 
 

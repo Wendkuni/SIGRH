@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 import net.gestion.pgm.common.ApiResponse;
+import net.gestion.pgm.common.constant.TypeAffectation;
 import net.gestion.pgm.common.constant.TypeNature;
+import net.gestion.pgm.domains.personnel.CritereAffectation;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
 import net.gestion.pgm.services.personnel.AffectationService;
@@ -31,7 +33,7 @@ public class AffectationController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(path = "/create",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart(value = "image") List<MultipartFile> imageDossiers, @RequestPart(value = "affectation") String affectation) {
+    public boolean createPersonnel(@RequestPart("image") List<MultipartFile> imageDossiers, @RequestPart(value = "affectation") String affectation) {
         try {
             objectMapper.findAndRegisterModules();
             PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
@@ -116,6 +118,40 @@ public class AffectationController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+   /* @PostMapping("/calculer-ponderation")
+    public ResponseEntity<Float> calculerPonderation(@RequestBody PersonnelAffectationModel affectation,
+                                                     @RequestParam TypeAffectation typeAffectation, List<CritereAffectation> criteres) {
+        float ponderation = service.calculerPonderation(affectation, typeAffectation, criteres);
+        return ResponseEntity.ok(ponderation);
+    }
+
+    */
+
+    @PostMapping("/calculer-ponderation/convenance-personnel")
+    public float calculerPonderationConvenancePersonnel(@RequestBody PersonnelAffectationModel affectation) {
+        if (affectation.getNature() == TypeNature.PERSONNEL) {
+            return service.calculerPonderationC(affectation);
+        } else {
+            throw new IllegalArgumentException("TypeNature must be CONVENANCE_PERSONNEL");
+        }
+    }
+
+    @PostMapping("/ByPermutation")
+    public boolean permutation(@RequestBody PersonnelAffectationModel affectation) {
+        if (affectation.getNature()== TypeNature.PERMUTATION ) {
+            return service.estEligiblePourPermutation(affectation) ;
+        }
+        throw new IllegalArgumentException("L'utilisateur doit avoir plus de 3 ans dans la fonction publique pour bénéficier d'une permutation.");
+    }
+    @PostMapping("/calculer-ponderation/nomination")
+    public float calculerPonderationNomination(@RequestBody PersonnelAffectationModel affectation) {
+        if (affectation.getNature() == TypeNature.NOMINATION) {
+            return service.calculerPonderationN(affectation);
+        } else {
+            throw new IllegalArgumentException("TypeNature must be NOMINATION");
         }
     }
 }
