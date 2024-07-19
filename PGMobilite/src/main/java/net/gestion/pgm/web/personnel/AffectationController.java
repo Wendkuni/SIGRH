@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.AllArgsConstructor;
 import net.gestion.pgm.common.ApiResponse;
-import net.gestion.pgm.common.constant.TypeAffectation;
 import net.gestion.pgm.common.constant.TypeNature;
-import net.gestion.pgm.domains.personnel.CritereAffectation;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
 import net.gestion.pgm.services.personnel.AffectationService;
@@ -33,11 +31,11 @@ public class AffectationController {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(path = "/create",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart("image") List<MultipartFile> imageDossiers, @RequestPart(value = "affectation") String affectation) {
+    public boolean createPersonnel(@RequestPart("image") List<MultipartFile> image, @RequestPart(value = "affectation") String affectation) {
         try {
             objectMapper.findAndRegisterModules();
             PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
-            return service.create(imageDossiers,model);
+            return service.create(image,model);
         } catch (IOException e) {
             throw new RuntimeException("Failed to create affectation", e);
         }
@@ -142,7 +140,7 @@ public class AffectationController {
     @PostMapping("/ByPermutation")
     public boolean permutation(@RequestBody PersonnelAffectationModel affectation) {
         if (affectation.getNature()== TypeNature.PERMUTATION ) {
-            return service.estEligiblePourPermutation(affectation) ;
+            return service.estEligiblePourPermutation(affectation);
         }
         throw new IllegalArgumentException("L'utilisateur doit avoir plus de 3 ans dans la fonction publique pour bénéficier d'une permutation.");
     }
