@@ -54,8 +54,6 @@ public class PersonnelAffectationModel implements Serializable {
     private String appreciation;
 
 
-
-
 }
 
 

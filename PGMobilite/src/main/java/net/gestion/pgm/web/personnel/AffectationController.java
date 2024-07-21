@@ -104,7 +104,7 @@ public class AffectationController {
     @GetMapping(path = "/Alldossiers")
     public ResponseEntity<ApiResponse<List<PersonnelDossierScanModel>>> getDossiersAffectations(@RequestPart(value = "affectation") String affectation) {
         objectMapper.findAndRegisterModules();
-        PersonnelAffectationModel model = null;
+        PersonnelAffectationModel model;
         try {
             model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
             ApiResponse<List<PersonnelDossierScanModel>> response= new ApiResponse.
