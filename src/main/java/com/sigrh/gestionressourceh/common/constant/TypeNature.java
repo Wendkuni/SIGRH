@@ -24,6 +24,6 @@ public enum TypeNature {
 
     @Override
     public String toString() {
-        return label.toString();
+        return label;
     }
 }

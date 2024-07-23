@@ -21,6 +21,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
     private DossierService dossierService;
     @Override
     public boolean create(PersonnelAffectationModel obj) {
+        obj.calculerPonderation();
         return dao.create(obj);
     }
 
