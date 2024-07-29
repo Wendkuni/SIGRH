@@ -6,6 +6,8 @@ import net.gestion.pgm.dao.ConnectionDAO;
 import net.gestion.pgm.daoImplement.personnel.AffectationDAOImplement;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
+import net.gestion.pgm.domains.personnel.PersonnelFonctionModel;
+import net.gestion.pgm.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,10 +25,102 @@ import java.util.zip.DataFormatException;
 public class  AffectationService implements InterfaceTemplete<PersonnelAffectationModel> {
     private final AffectationDAOImplement dao= new AffectationDAOImplement(ConnectionDAO.getInstance());
     private DossierService dossierService;
+
+    private PersonnelService service;
+
+    private FonctionAgentService fonctionAgentservice;
     @Override
     public boolean create(PersonnelAffectationModel obj) {
-        return dao.create(obj);
+            return dao.create(obj);
     }
+
+    public boolean createPermutatation(List<MultipartFile> image,PersonnelAffectationModel obj, String matricule) throws IOException {
+
+        if (verifierAnciennete(obj.getAgent())) {
+            PersonnelModel agent2 = new PersonnelService().findByMatricul(matricule);
+            PersonnelModel agent1 = obj.getAgent();
+            PersonnelFonctionModel fonctionagent1= new FonctionAgentService().findByAgent((int) agent1.getIdAgent());
+            PersonnelFonctionModel fonctionagent2= new FonctionAgentService().findByAgent(((int)agent2.getIdAgent()));
+
+            if(verifierGradeCorpsFonction(fonctionagent1,fonctionagent2)){
+                obj.setAgent2(agent2);
+                for (MultipartFile file : image) {
+                    PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
+                            .libelDossier(file.getOriginalFilename())
+                            .personnel(obj.getAgent())
+                            // .refsAffectation(dao.findAll().size())
+                            .refsAffectation(obj.getIdAffectation())
+                            .imagFold(file.getBytes())
+                            .dateUpload(LocalDate.now())
+                            .observation("dossier d'affectation")
+                            .build();
+                    dossierService.create(dossier);
+                }
+                return dao.create(obj);
+            }
+            return false;
+        }
+
+        return false;
+
+    }
+
+    public boolean verifierAnciennete(PersonnelModel agent) {
+        LocalDate dateRecrutement = agent.getDteRecrutement();
+        return dateRecrutement != null && dateRecrutement.isBefore(LocalDate.now().minusYears(3));
+    }
+
+    public boolean verifierGradeCorpsFonction(PersonnelFonctionModel fonctionAgent1, PersonnelFonctionModel fonctionAgent2) {
+        return fonctionAgent1.getGrade().equals(fonctionAgent2.getGrade()) &&
+                fonctionAgent1.getCorps().equals(fonctionAgent2.getCorps()) &&
+                fonctionAgent1.getLibelleFonction().equals(fonctionAgent2.getLibelleFonctionArab());
+    }
+
+
+
+
+    public boolean initierPermutation(PersonnelAffectationModel affectation) {
+        PersonnelModel agent1 = affectation.getAgent();
+        if (!verifierAnciennete(agent1)) {
+            return false; // Ancienneté insuffisante pour agent1
+        }
+        dao.create(affectation);
+        return true;
+    }
+
+
+/*
+    public boolean validerPermutation(PersonnelAffectationModel affectation, PersonnelModel agent2) {
+        PersonnelModel agent1 = affectation.getAgent();
+
+        if (!verifierAnciennete(agent2)) {
+            return false; // Ancienneté insuffisante pour agent2
+        }
+
+        FonctionAgentModel fonctionAgent1 = obtenirFonctionAgent(agent1);
+        FonctionAgentModel fonctionAgent2 = obtenirFonctionAgent(agent2);
+
+        if (!verifierGradeCorpsFonction(fonctionAgent1, fonctionAgent2)) {
+            return false; // Les agents ne sont pas du même grade, corps ou fonction
+        }
+
+        affectation.setAgent2(agent2);
+        PersonnelModel.create(affectation);
+        return true;
+    }
+
+    public boolean completerPermutation(PersonnelAffectationModel affectation) {
+        // Logique de complétion de la permutation (envoi à la DREN, puis à la commission)
+        personnelAffectationRepository.save(affectation);
+        return true;
+    }
+}
+
+
+
+
+
+     */
 
     @Override
     public boolean delete(PersonnelAffectationModel obj) {
@@ -62,7 +156,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
     public boolean update(Integer id, PersonnelAffectationModel m) {
         PersonnelAffectationModel model = find(id);
         if(model != null) {
-            model.setPersonnel(m.getPersonnel());
+            model.setAgent(m.getAgent());
             model.setLocalite(m.getLocalite());
             model.setServiceEcole(m.getServiceEcole());
             model.setDateEffet(m.getDateEffet());
@@ -104,7 +198,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
                 for (MultipartFile file : image) {
                     PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
                             .libelDossier(file.getOriginalFilename())
-                            .personnel(obj.getPersonnel())
+                            .personnel(obj.getAgent())
                            // .refsAffectation(dao.findAll().size())
                             .refsAffectation(obj.getIdAffectation())
                             .imagFold(file.getBytes())
@@ -160,14 +254,14 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
     public float calculerPonderationC(PersonnelAffectationModel affectation) {
         float points = 0;
 
-        // Ancieneté Poste prevoir une exception: si la condition n'est pas respecter,
-        if (affectation.getAncienetePoste() != null && affectation.getAncienetePoste() >= 4) {
-            points += (affectation.getAncienetePoste() - 3) * 0.5;
+        // Ancieneté dans la fonction public
+        if (affectation.getAncieneteGen() != null && affectation.getAncieneteGen() >= 4) {
+            points += (affectation.getAncieneteGen() - 3) * 0.5;
         }
 
         // Ancieneté willaya
-        if (affectation.getAncieneteGen() != null) {
-            if (affectation.getAncieneteGen() >= 15) {
+        if (affectation.getAncienetePoste() != null) {
+            if (affectation.getAncienetePoste() >= 15) {
                 points += 15;
             } else {
                 points += affectation.getAncieneteGen();
@@ -234,7 +328,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         }
 
         // Sexe
-        if (affectation.getPersonnel() != null && "FEMININ".equalsIgnoreCase(affectation.getPersonnel().getSexePers())) {
+        if (affectation.getAgent() != null && "FEMININ".equalsIgnoreCase(affectation.getAgent().getSexePers())) {
             points += 5;
         }
 
@@ -261,9 +355,9 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         float points = 0;
 // avoir une ancienneté générale de cinq ans au moins avant de faire une demande de nommination.
 
-        // Ancieneté willaya
-        if (affectation.getAncieneteGen() != null && affectation.getAncieneteGen()>5) {
-            if (affectation.getAncieneteGen() >= 15) {
+        // Ancieneté au poste
+        if (affectation.getAncienetePoste() != null && affectation.getAncienetePoste()>5) {
+            if (affectation.getAncienetePoste() >= 15) {
                 points += 15;
             } else {
                 points += affectation.getAncieneteGen();
@@ -279,9 +373,9 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
 
 
 
-        // Ancieneté Poste
-        if (affectation.getAncienetePoste() != null && affectation.getAncienetePoste() >= 4) {
-            points += (affectation.getAncienetePoste() - 3) * 0.5;
+        // Ancieneté dans la fonction public
+        if (affectation.getAncieneteGen() != null && affectation.getAncieneteGen() >= 4) {
+            points += (affectation.getAncieneteGen() - 3) * 0.5;
         }
 
         // Note Pédagogique
@@ -306,7 +400,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         }
 
         // Sexe
-        if (affectation.getPersonnel() != null && "FEMININ".equalsIgnoreCase(affectation.getPersonnel().getSexePers())) {
+        if (affectation.getAgent() != null && "FEMININ".equalsIgnoreCase(affectation.getAgent().getSexePers())) {
             points += 5;
         }
 

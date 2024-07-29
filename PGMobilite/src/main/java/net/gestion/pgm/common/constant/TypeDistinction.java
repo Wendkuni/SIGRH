@@ -25,7 +25,7 @@ public enum TypeDistinction {
 
     @Override
     public String toString() {
-        return label.toString();
+        return label;
     }
 }
 

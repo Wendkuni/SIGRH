@@ -8,7 +8,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,12 +17,15 @@ import java.util.List;
 public class PersonnelAffectationModel implements Serializable {
 
     private Long idAffectation;
-    private PersonnelModel personnel;
+    private PersonnelModel agent;
+    private PersonnelModel agent2;
+
     private String localite;
     private String serviceEcole;
     private LocalDate dateEffet ;
     private String dren;
     private double notePedagogiq;
+
     @Enumerated(EnumType.STRING)
     private TypeNature nature;
     private String motif;
@@ -40,16 +42,19 @@ public class PersonnelAffectationModel implements Serializable {
     private String posteDestinat3;
     private String posteDestinat4;
     private String posteDestinat5;
+
     @Enumerated(EnumType.STRING)
     private TypeDistinction distinction;
     private String regroupementConjoint;
     private String autresSocial;
     private int noteAdministrative;
     private String situationMatrimo;
+
     private String etatAffect;
     private float pointsPondere;
     private String autresDiplome;
     private LocalDate dateDemande;
+
     private String destinationRetenue;
     private String appreciation;
 

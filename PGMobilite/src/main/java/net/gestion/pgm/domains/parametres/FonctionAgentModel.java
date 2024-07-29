@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class FonctionAgentModel implements Serializable {
     private long idFonctionAgent;
     private PersonnelModel personnel;
-    private String foctionLib;
+    private String fonctionLib;
     private LocalDate dateFonctio;
     private String echelle;
     private String echelon;

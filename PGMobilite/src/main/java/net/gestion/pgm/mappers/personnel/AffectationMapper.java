@@ -19,7 +19,8 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .dren(rs.getString("DREN"))
                 .localite(rs.getString("localite"))
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))
-                .personnel(new PersonnelMapper().mapRow(rs,rowNum))
+                .agent(new PersonnelMapper().mapRow(rs,rowNum)) // recupere tout se qui concerne l'agent a travers le ID
+                .agent2(new PersonnelMapper().mapRow(rs,rowNum)) // recupere tout se qui concerne l'agent2 a travers le ID
                 .serviceEcole(rs.getString("serviceecole"))
                 .motif(rs.getString("motif"))
                 .nature(TypeNature.valueOf(rs.getString("nature")))
@@ -48,6 +49,7 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .destinationRetenue(rs.getString("destnationretenue"))
                 .appreciation(rs.getString("appreciation"))
                 .build();
+
 
 
     }

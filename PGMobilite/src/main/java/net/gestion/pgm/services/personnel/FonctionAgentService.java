@@ -5,6 +5,7 @@ import net.gestion.pgm.common.InterfaceTemplete;
 import net.gestion.pgm.dao.ConnectionDAO;
 import net.gestion.pgm.daoImplement.parametre.FonctionAgentDAOImplement;
 import net.gestion.pgm.domains.personnel.PersonnelFonctionModel;
+import net.gestion.pgm.domains.personnel.PersonnelModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,7 +54,7 @@ public class FonctionAgentService implements InterfaceTemplete<PersonnelFonction
         }return false;
     }
 
-	public List<PersonnelFonctionModel> findByAgent(int IDagent) {
+	public PersonnelFonctionModel findByAgent( int IDagent) {
 		
 		return dao.findByAgent(IDagent);
 	}

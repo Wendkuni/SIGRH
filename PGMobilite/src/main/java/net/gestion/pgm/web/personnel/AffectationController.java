@@ -8,6 +8,7 @@ import net.gestion.pgm.common.ApiResponse;
 import net.gestion.pgm.common.constant.TypeNature;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
+import net.gestion.pgm.domains.personnel.PersonnelFonctionModel;
 import net.gestion.pgm.services.personnel.AffectationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +31,26 @@ public class AffectationController {
      AffectationService service;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping(path = "/create",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart("image") List<MultipartFile> image, @RequestPart(value = "affectation") String affectation) {
-        try {
-            objectMapper.findAndRegisterModules();
-            PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
-            return service.create(image,model);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to create affectation", e);
-        }
+    @PostMapping(path = "/createAffectation",consumes =MULTIPART_FORM_DATA_VALUE)
+    public boolean create(@RequestPart("image") List<MultipartFile> image,
+                          @RequestPart(value = "affectation") String affectation,
+                          String matricule) {
+
+          try {
+              objectMapper.findAndRegisterModules();
+              PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
+              if(model.getNature()!= TypeNature.PERMUTATION){
+                  return service.create(image,model);
+              }else return service.createPermutatation(image, model, matricule);
+
+          } catch (IOException e) {
+              throw new RuntimeException("Failed to create affectation", e);
+          }
+
+
     }
+
+
     @PutMapping(path = "/updateAff/{id}")
     public boolean updateAffectation(@RequestParam Integer id, PersonnelAffectationModel model) {
         return service.update(id,model);
@@ -137,13 +148,15 @@ public class AffectationController {
         }
     }
 
-    @PostMapping("/ByPermutation")
-    public boolean permutation(@RequestBody PersonnelAffectationModel affectation) {
+    /*@PostMapping("/ByPermutation")
+    public boolean permutation(@RequestBody PersonnelAffectationModel affectation, String matricule) {
         if (affectation.getNature()== TypeNature.PERMUTATION ) {
-            return service.estEligiblePourPermutation(affectation);
+            return service.createPermutatation(matricule);
         }
         throw new IllegalArgumentException("L'utilisateur doit avoir plus de 3 ans dans la fonction publique pour bénéficier d'une permutation.");
     }
+
+     */
     @PostMapping("/calculer-ponderation/nomination")
     public float calculerPonderationNomination(@RequestBody PersonnelAffectationModel affectation) {
         if (affectation.getNature() == TypeNature.NOMINATION) {
