@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -31,17 +32,24 @@ public class AffectationController {
      AffectationService service;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping(path = "/createAffectation",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean create(@RequestPart("image") List<MultipartFile> image,
+    @PostMapping(path = "/createAffectation")
+
+    public boolean create(@RequestPart("dossier") List<String> dossier,
                           @RequestPart(value = "affectation") String affectation,
-                          String matricule) {
+                          @RequestParam(value = "matricule", required = false) String matricule) {
 
           try {
               objectMapper.findAndRegisterModules();
               PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
+              List<PersonnelDossierScanModel> dossiers = new ArrayList<>();
+              for (String d: dossier){
+                  PersonnelDossierScanModel dossierScanModel = objectMapper.readValue(d, PersonnelDossierScanModel.class);
+                  //
+                  dossiers.add(dossierScanModel);
+              }
               if(model.getNature()!= TypeNature.PERMUTATION){
-                  return service.create(image,model);
-              }else return service.createPermutatation(image, model, matricule);
+                  return service.create(dossiers, model);
+              }else return service.createPermutatation(dossiers, model, matricule);
 
           } catch (IOException e) {
               throw new RuntimeException("Failed to create affectation", e);

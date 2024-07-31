@@ -34,7 +34,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
             return dao.create(obj);
     }
 
-    public boolean createPermutatation(List<MultipartFile> image,PersonnelAffectationModel obj, String matricule) throws IOException {
+    public boolean createPermutatation(List<PersonnelDossierScanModel> image,PersonnelAffectationModel obj, String matricule) throws IOException {
 
         if (verifierAnciennete(obj.getAgent())) {
             PersonnelModel agent2 = new PersonnelService().findByMatricul(matricule);
@@ -44,19 +44,23 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
 
             if(verifierGradeCorpsFonction(fonctionagent1,fonctionagent2)){
                 obj.setAgent2(agent2);
-                for (MultipartFile file : image) {
-                    PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
-                            .libelDossier(file.getOriginalFilename())
-                            .personnel(obj.getAgent())
-                            // .refsAffectation(dao.findAll().size())
-                            .refsAffectation(obj.getIdAffectation())
-                            .imagFold(file.getBytes())
-                            .dateUpload(LocalDate.now())
-                            .observation("dossier d'affectation")
-                            .build();
-                    dossierService.create(dossier);
+                if (this.dao.create(obj)&&!image.isEmpty()){
+                   try{
+                       for (PersonnelDossierScanModel dossier : image) {
+                           dossier.setDateUpload(LocalDate.now());
+                           dossier.setPersonnel(obj.getAgent());
+                           dossier.setRefsAffectation(obj.getIdAffectation());
+                           dossier.setObservation("dossier d'affectation");
+
+                           dossierService.create(dossier);
                 }
                 return dao.create(obj);
+                   }catch (Exception e){
+                       e.printStackTrace();
+                       return false;
+                   }
+                }
+
             }
             return false;
         }
@@ -192,23 +196,50 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         }return false;
     }
 
-    public boolean create(List<MultipartFile> image,PersonnelAffectationModel obj) throws IOException {
+    public boolean create(List<PersonnelDossierScanModel> image,PersonnelAffectationModel obj) throws IOException {
         if (this.dao.create(obj)&&!image.isEmpty()) {
             try {
-                for (MultipartFile file : image) {
+                for (PersonnelDossierScanModel dossier : image) {
+                    dossier.setDateUpload(LocalDate.now());
+                    dossier.setPersonnel(obj.getAgent());
+                    dossier.setRefsAffectation(obj.getIdAffectation());
+                    dossier.setObservation("dossier d'affectation");
+
+                    dossierService.create(dossier);
+                }
+                return true;
+            }catch (Exception e){
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean create(List<MultipartFile> images, List<String> libelles, PersonnelAffectationModel obj) throws IOException {
+        if (images.size() != libelles.size()) {
+            throw new IllegalArgumentException("Le nombre de fichiers doit correspondre au nombre de libellés.");
+        }
+
+        if (this.dao.create(obj) && !images.isEmpty()) {
+            try {
+                for (int i = 0; i < images.size(); i++) {
+                    MultipartFile file = images.get(i);
+                    String libelle = libelles.get(i);
+
                     PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
-                            .libelDossier(file.getOriginalFilename())
+                            .libelDossier(libelle)
                             .personnel(obj.getAgent())
-                           // .refsAffectation(dao.findAll().size())
                             .refsAffectation(obj.getIdAffectation())
                             .imagFold(file.getBytes())
                             .dateUpload(LocalDate.now())
                             .observation("dossier d'affectation")
                             .build();
+
                     dossierService.create(dossier);
                 }
                 return true;
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return false;
             }
