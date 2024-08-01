@@ -8,6 +8,7 @@ import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
 import net.gestion.pgm.domains.personnel.PersonnelFonctionModel;
 import net.gestion.pgm.domains.personnel.PersonnelModel;
+import net.gestion.pgm.services.dtos.personnel.DossierDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +35,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
             return dao.create(obj);
     }
 
-    public boolean createPermutatation(List<PersonnelDossierScanModel> image,PersonnelAffectationModel obj, String matricule) throws IOException {
+    public boolean createPermutatation(List<DossierDTO> image, PersonnelAffectationModel obj, String matricule) throws IOException {
 
         if (verifierAnciennete(obj.getAgent())) {
             PersonnelModel agent2 = new PersonnelService().findByMatricul(matricule);
@@ -46,15 +47,15 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
                 obj.setAgent2(agent2);
                 if (this.dao.create(obj)&&!image.isEmpty()){
                    try{
-                       for (PersonnelDossierScanModel dossier : image) {
-                           dossier.setDateUpload(LocalDate.now());
-                           dossier.setPersonnel(obj.getAgent());
-                           dossier.setRefsAffectation(obj.getIdAffectation());
+                       for (DossierDTO dossier : image) {
                            dossier.setObservation("dossier d'affectation");
-
-                           dossierService.create(dossier);
+                           dossier.setDateUpload(LocalDate.now());
+                           PersonnelDossierScanModel doss = new DossierDTO().toDossierScanModel(dossier);
+                           doss.setPersonnel(obj.getAgent());
+                           doss.setRefsAffectation(obj.getIdAffectation());
+                           dossierService.create(doss);
                 }
-                return dao.create(obj);
+                return this.create(obj);
                    }catch (Exception e){
                        e.printStackTrace();
                        return false;
@@ -196,16 +197,16 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         }return false;
     }
 
-    public boolean create(List<PersonnelDossierScanModel> image,PersonnelAffectationModel obj) throws IOException {
+    public boolean create(List<DossierDTO> image,PersonnelAffectationModel obj) throws IOException {
         if (this.dao.create(obj)&&!image.isEmpty()) {
             try {
-                for (PersonnelDossierScanModel dossier : image) {
-                    dossier.setDateUpload(LocalDate.now());
-                    dossier.setPersonnel(obj.getAgent());
-                    dossier.setRefsAffectation(obj.getIdAffectation());
+                for (DossierDTO dossier : image) {
                     dossier.setObservation("dossier d'affectation");
-
-                    dossierService.create(dossier);
+                    dossier.setDateUpload(LocalDate.now());
+                    PersonnelDossierScanModel doss = new DossierDTO().toDossierScanModel(dossier);
+                    doss.setPersonnel(obj.getAgent());
+                    doss.setRefsAffectation(obj.getIdAffectation());
+                    dossierService.create(doss);
                 }
                 return true;
             }catch (Exception e){

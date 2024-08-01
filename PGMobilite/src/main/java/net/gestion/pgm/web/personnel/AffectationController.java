@@ -9,6 +9,7 @@ import net.gestion.pgm.common.constant.TypeNature;
 import net.gestion.pgm.domains.personnel.PersonnelAffectationModel;
 import net.gestion.pgm.domains.personnel.PersonnelDossierScanModel;
 import net.gestion.pgm.domains.personnel.PersonnelFonctionModel;
+import net.gestion.pgm.services.dtos.personnel.DossierDTO;
 import net.gestion.pgm.services.personnel.AffectationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class AffectationController {
      AffectationService service;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping(path = "/createAffectation")
+    @PostMapping(path = "/createAffectation",consumes =MULTIPART_FORM_DATA_VALUE)
 
     public boolean create(@RequestPart("dossier") List<String> dossier,
                           @RequestPart(value = "affectation") String affectation,
@@ -41,9 +42,9 @@ public class AffectationController {
           try {
               objectMapper.findAndRegisterModules();
               PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
-              List<PersonnelDossierScanModel> dossiers = new ArrayList<>();
+              List<DossierDTO> dossiers = new ArrayList<>();
               for (String d: dossier){
-                  PersonnelDossierScanModel dossierScanModel = objectMapper.readValue(d, PersonnelDossierScanModel.class);
+                  DossierDTO dossierScanModel = objectMapper.readValue(d, DossierDTO.class);
                   //
                   dossiers.add(dossierScanModel);
               }
