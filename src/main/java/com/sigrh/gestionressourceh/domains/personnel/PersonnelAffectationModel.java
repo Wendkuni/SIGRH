@@ -17,7 +17,8 @@ import java.time.LocalDate;
 public class PersonnelAffectationModel implements Serializable {
 
     private Long idAffectation;
-    private PersonnelModel personnel;
+    private PersonnelModel agent;
+    private PersonnelModel agent2;
     private String localite;
     private String serviceEcole;
     private LocalDate dateEffet ;
@@ -63,7 +64,7 @@ public class PersonnelAffectationModel implements Serializable {
         /*
             Discrimination positive
          * */
-        if (getPersonnel() != null && "FEMININ".equalsIgnoreCase(getPersonnel().getSexePers()))
+        if (getAgent() != null && "FEMININ".equalsIgnoreCase(getAgent().getSexePers()))
             this.pointsPondere += 5;
 
         /*

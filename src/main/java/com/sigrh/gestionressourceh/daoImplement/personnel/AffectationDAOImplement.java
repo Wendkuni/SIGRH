@@ -1,10 +1,8 @@
 package com.sigrh.gestionressourceh.daoImplement.personnel;
 
-import com.sigrh.gestionressourceh.common.constant.TypeEducation;
 import com.sigrh.gestionressourceh.dao.DAOTemplete;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
-import com.sigrh.gestionressourceh.domains.personnel.PersonnelModel;
 import com.sigrh.gestionressourceh.mappers.personnel.AffectationMapper;
 import com.sigrh.gestionressourceh.mappers.personnel.DossierMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,7 +37,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             params.put("DREN",obj.getDren() );
             params.put("localite",obj.getLocalite() );
             params.put("NOTEPEDAGOCIQ",obj.getNotePedagogiq() );
-            params.put("IDagent",obj.getPersonnel().getIdAgent() );
+            params.put("IDagent",obj.getAgent().getIdAgent() );
             params.put("serviceecole",obj.getServiceEcole() );
             params.put("motif",obj.getMotif() );
             params.put("situationsanit",obj.getSituationSanit() );
@@ -94,7 +92,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
             String SQL = "update  affectation set dateffet= ?,DREN= ?,localite= ?,NOTEPEDAGOCIQ= ?,IDagent= ?,serviceecole= ?, nature=?,motif=?,situationsanit=?,imgsanit=?,libeldoss=?,imgdos=?,nombrefant=?,ancienetegen=?,ancieneteposte=?,posteorigin=?,postedestinat1=?,postedestinat2=?,postedestinat3=? " +
                     " where IDaffectation = ?";
             boolean b = jdbcTemplate.update(SQL, obj.getDateEffet(),  obj.getDren(), obj.getLocalite(),
-                    obj.getNotePedagogiq(),obj.getPersonnel().getIdAgent(),obj.getServiceEcole(),
+                    obj.getNotePedagogiq(),obj.getAgent().getIdAgent(),obj.getServiceEcole(),
                     obj.getMotif(), obj.getSituationSanit(), obj.getImgSanit(), obj.getLibelDos(), obj.getImgDos(), obj.getNombreFant(),
                     obj.getAncieneteGen(), obj.getAncienetePoste(),obj.getPosteOrigin(),obj.getPosteDestinat1(),obj.getPosteDestinat2(),
                     obj.getPosteDestinat3(), obj.getIdAffectation() )!=0;
@@ -161,7 +159,7 @@ public class AffectationDAOImplement implements DAOTemplete<PersonnelAffectation
         try {
             String SQL = "select * from dossierscan doss" +
                     " inner join personnel p on p.IDagent =doss.IDagent " +
-                    "where doss.refsaffectation="+obj.getIdAffectation()+" and p.IDagent ="+obj.getPersonnel().getIdAgent() ;
+                    "where doss.refsaffectation="+obj.getIdAffectation()+" and p.IDagent ="+obj.getAgent().getIdAgent() ;
             return jdbcTemplate.query(SQL, new DossierMapper());
         }catch (Exception e) {
             e.printStackTrace();

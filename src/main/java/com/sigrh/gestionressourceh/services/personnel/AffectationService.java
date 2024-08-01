@@ -21,7 +21,6 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
     private DossierService dossierService;
     @Override
     public boolean create(PersonnelAffectationModel obj) {
-        obj.calculerPonderation();
         return dao.create(obj);
     }
 
@@ -59,7 +58,7 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
     public boolean update(Integer id, PersonnelAffectationModel m) {
         PersonnelAffectationModel model = find(id);
         if(model != null) {
-            model.setPersonnel(m.getPersonnel());
+            model.setAgent(m.getAgent());
             model.setLocalite(m.getLocalite());
             model.setServiceEcole(m.getServiceEcole());
             model.setDateEffet(m.getDateEffet());
@@ -83,20 +82,15 @@ public class  AffectationService implements InterfaceTemplete<PersonnelAffectati
         }return false;
     }
 
-    public boolean create(List<MultipartFile> imageDossiers,PersonnelAffectationModel obj) throws IOException {
+    public boolean create(List<PersonnelDossierScanModel> imageDossiers,PersonnelAffectationModel obj) throws IOException {
         if (this.dao.create(obj)&&!imageDossiers.isEmpty()) {
             try {
-                for (MultipartFile file : imageDossiers) {
-                    PersonnelDossierScanModel dossier = PersonnelDossierScanModel.builder()
-                            .libelDossier(file.getOriginalFilename())
-                            .personnel(obj.getPersonnel())
-                           // .refsAffectation(dao.findAll().size())
-                            .refsAffectation(obj.getIdAffectation())
-                            .imagFold(file.getBytes())
-                            .dateUpload(LocalDate.now())
-                            .observation("dossier d'affectation")
-                            .build();
-                    dossierService.create(dossier);
+                for (PersonnelDossierScanModel file : imageDossiers) {
+                	file.setObservation("dossier d'affectation");
+                	file.setPersonnel(obj.getAgent());
+                	file.setRefsAffectation(obj.getIdAffectation());
+                	file.setDateUpload(LocalDate.now());
+                	dossierService.create(file);
                 }
                 return true;
             }catch (Exception e){

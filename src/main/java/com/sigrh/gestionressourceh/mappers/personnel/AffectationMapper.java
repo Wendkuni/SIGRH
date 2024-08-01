@@ -17,7 +17,7 @@ public class AffectationMapper implements RowMapper<PersonnelAffectationModel> {
                 .dren(rs.getString("DREN"))
                 .localite(rs.getString("localite"))
                 .notePedagogiq(rs.getLong("NOTEPEDAGOCIQ"))
-                .personnel(new PersonnelMapper().mapRow(rs,rowNum))
+                .agent(new PersonnelMapper().mapRow(rs,rowNum))
                 .serviceEcole(rs.getString("serviceecole"))
                 .motif(rs.getString("motif"))
                 .situationSanit(rs.getString("situationsanit"))

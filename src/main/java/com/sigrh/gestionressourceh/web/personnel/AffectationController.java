@@ -6,6 +6,8 @@ import com.sigrh.gestionressourceh.common.ApiResponse;
 import com.sigrh.gestionressourceh.common.constant.TypeNature;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelAffectationModel;
 import com.sigrh.gestionressourceh.domains.personnel.PersonnelDossierScanModel;
+import com.sigrh.gestionressourceh.services.dtos.personnel.AffectationDTO;
+import com.sigrh.gestionressourceh.services.dtos.personnel.DossierDTO;
 import com.sigrh.gestionressourceh.services.personnel.AffectationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,12 +31,10 @@ public class AffectationController {
      AffectationService service;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping(path = "/affectation",consumes =MULTIPART_FORM_DATA_VALUE)
-    public boolean createPersonnel(@RequestPart(value = "image") List<MultipartFile> imageDossiers, @RequestPart(value = "affectation") String affectation) {
+    @PostMapping(path = "/affectation",consumes =MULTIPART_FORM_DATA_VALUE,produces = APPLICATION_JSON_VALUE)
+    public boolean create(@ModelAttribute(value = "affectation") AffectationDTO affectation,String matricule) {
         try {
-            objectMapper.findAndRegisterModules();
-            PersonnelAffectationModel model = objectMapper.readValue(affectation, PersonnelAffectationModel.class);
-            return service.create(imageDossiers,model);
+            return service.create(new DossierDTO().toListDossier(affectation.getDocuments()),new AffectationDTO().toAffectationModel(affectation));
         } catch (IOException e) {
             throw new RuntimeException("Failed to create affectation", e);
         }
