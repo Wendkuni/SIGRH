@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: sig-recrutement
+
+  config:
+    import: optional:configserver:http://root:s3cr3t@localhost:8888
+
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: sig-config-common,${spring.application.name}

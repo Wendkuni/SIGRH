@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: sig-gateway
+
+  config:
+    import: optional:configserver:http://root:s3cr3t@localhost:8888
+
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: ${spring.application.name}
+

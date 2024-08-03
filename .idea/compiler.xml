@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sig-sanctions-recompenses" />
+        <module name="sig-recrutement" />
+        <module name="sig-referentiel" />
+        <module name="sig-config-server" />
+        <module name="sig-mobilite" />
+        <module name="sig-formation" />
+        <module name="sig-carriere" />
+        <module name="sig-remuneration" />
+        <module name="sig-users" />
+        <module name="sig-discovery" />
+        <module name="sig-gateway" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sig-carriere" options="-parameters" />
+      <module name="sig-config-server" options="-parameters" />
+      <module name="sig-discovery" options="-parameters" />
+      <module name="sig-formation" options="-parameters" />
+      <module name="sig-gateway" options="-parameters" />
+      <module name="sig-mobilite" options="-parameters" />
+      <module name="sig-recrutement" options="-parameters" />
+      <module name="sig-referentiel" options="-parameters" />
+      <module name="sig-remuneration" options="-parameters" />
+      <module name="sig-sanctions-recompenses" options="-parameters" />
+      <module name="sig-users" options="-parameters" />
+    </option>
+  </component>
+</project>

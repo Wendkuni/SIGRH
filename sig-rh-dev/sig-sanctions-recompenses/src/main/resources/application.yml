@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: sig-sanctions-recompenses
+
+  config:
+    import: optional:configserver:http://root:s3cr3t@localhost:8888
+
+  cloud:
+    config:
+      uri: http://localhost:8888/
+      name: sig-config-common,${spring.application.name}
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+  web:
+    resources:
+      static-locations: file:./sig-sanctions-recompenses/uploads/
+
+file:
+  storage:
+    location: ./sig-sanctions-recompenses/uploads
